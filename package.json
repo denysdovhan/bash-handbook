@@ -2,6 +2,9 @@
   "name": "bash-handbook",
   "version": "0.0.0",
   "description": "For those who wanna learn Bash",
+  "bin": {
+    "bash-handbook": "cmd.js"
+  },
   "scripts": {
     "postpublish": "git push --follow-tags"
   },
@@ -19,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/denysdovhan/bash-handbook/issues"
   },
-  "homepage": "https://github.com/denysdovhan/bash-handbook#readme"
+  "homepage": "https://github.com/denysdovhan/bash-handbook#readme",
+  "devDependencies": {
+    "default-pager": "^1.0.2",
+    "msee": "^0.2.0",
+    "through2": "^2.0.0"
+  }
 }
