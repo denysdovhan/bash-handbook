@@ -1,0 +1,23 @@
+{
+  "name": "bash-handbook",
+  "version": "0.0.0",
+  "description": "For those who wanna learn Bash",
+  "scripts": {
+    "postpublish": "git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denysdovhan/bash-handbook.git"
+  },
+  "keywords": [
+    "bash",
+    "guide",
+    "handbook"
+  ],
+  "author": "Denys Dovhan <email@denysdovhan.com> (http://denysdovhan.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denysdovhan/bash-handbook/issues"
+  },
+  "homepage": "https://github.com/denysdovhan/bash-handbook#readme"
+}
