@@ -23,7 +23,7 @@
     "url": "https://github.com/denysdovhan/bash-handbook/issues"
   },
   "homepage": "https://github.com/denysdovhan/bash-handbook#readme",
-  "devDependencies": {
+  "dependencies": {
     "default-pager": "^1.0.2",
     "msee": "^0.2.0",
     "through2": "^2.0.0"
