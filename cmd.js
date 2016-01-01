@@ -5,9 +5,13 @@ var obj = require('through2').obj;
 var pager = require('default-pager');
 var msee = require('msee');
 
+var mseeOpts = {
+  paragraphEnd: '\n\n'
+};
+
 fs.createReadStream(__dirname + '/README.md')
   .pipe(obj(function (chunk, enc, cb) {
-    this.push(msee.parse(chunk.toString()));
+    this.push(msee.parse(chunk.toString(), mseeOpts));
     cb();
   }))
   .pipe(pager());
