@@ -17,6 +17,7 @@ are presently doing.
 - [Shells and modes](#shells-and-modes)
   - [Interactive](#interactive-mode)
   - [Non-interactive](#non-interactive-mode)
+- [Comments](#comments)
 - [License](#licenses)
 
 # Introduction
@@ -79,6 +80,20 @@ In addition, the first line of the script must indicate the system which program
 Or if you wanna use `sh` instead of `bash`, just replace `#!/bin/bash` to `#!/bin/sh`.  That is called a [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). After that, you can run script like this:
 
     /path/to/script.sh
+
+# Comments
+
+Scripts may contain _comments_. Comments are special statements that do absolutely nothing and just ignore while the script is executing. They begin with `#` symbol and continue to the line ending.
+
+For example:
+
+```bash
+#!/bin/bash
+# This script will print your username.
+whoami
+```
+
+Use comments to explain what your script does and how.
 
 ## License
 
