@@ -18,6 +18,10 @@ are presently doing.
   - [Interactive](#interactive-mode)
   - [Non-interactive](#non-interactive-mode)
 - [Comments](#comments)
+- [Variables](#variables)
+  - [Local variables](#local-variables)
+  - [Environment variables](#environment-variables)
+  - [Positional parameters](#positional-parameters)
 - [License](#licenses)
 
 # Introduction
@@ -94,6 +98,77 @@ whoami
 ```
 
 Use comments to explain what your script does and how.
+
+# Variables
+
+Of course, you are free to use variables as in any programming language.
+
+There aren't data types, but variables in bash can contain only a number, a character or string of characters. The variable can be declared in three scopes: local variables, environment variables and positional parameters.
+
+## Local variables
+
+**Local variables** are variables within a single script. They are inaccessible for other programs and scripts.
+
+The local variable can be declared using `=` sign (shouldn't be any space between variable's name and value) and accessed using `$` sign. For example:
+
+```bash
+username="denysdovhan"  # declare variable
+echo $username          # display value
+unset username          # delete variable
+```
+
+Getting ahead of ourselves, we can declare local variable inside the function by applying `local` keyword. After that variable will be accessible only inside this function.
+
+```bash
+local local_var="I'm local value"
+```
+
+## Environment variables
+
+**Environment variables** are variables, accessible for any program or script running in current shell. They might be declared in such way as local variables, but adding keyword `export`.
+
+```bash
+export GLOBAL_VAR="I'm global variable"
+```
+
+There are a lot of global variables in bash. Entirely possible you might meet them in scripts, so here is a table with most used ones:
+
+| Variable     | Description                                                   |
+| :----------- | :------------------------------------------------------------ |
+| `$HOME`      | The current user's home directory.                            |
+| `$PATH`      | A colon-separated list of directories in which the shell looks for commands. |
+| `$PWD`       | The current working directory.                                |
+| `$RANDOM`    | Random integer between 0 and 32767.                           |
+| `$UID`       | The numeric, real user ID of the current user.                |
+| `$PS1`       | The primary prompt string.                                    |
+| `$PS2`       | The secondary prompt string.                                  |
+
+Look at extended table of available environment variables [here](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04).
+
+## Positional parameters
+
+**Positional parameters** comes when you want to give arguments to your scripts. Few parameters are described below:
+
+| Parameter      | Description                                                 |
+| :------------- | :---------------------------------------------------------- |
+| `$0`           | Script's name.                                              |
+| `$1 … $9`      | The argument list elements from 1 to 9.                     |
+| `${10} … ${N}` | The argument list elements from 10 to N.                    |
+| `$*` or `$@`   | All positional parameters except `$0`.                      |
+| `$#`           | The number of arguments, not counting $0.                   |
+| `$FUNCNAME`    | The function name (has value only inside the function).     |
+
+Below inside the script example we will get `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+
+    ./script.sh foo bar
+
+Also, variables may have default values. We can easily define them using this expression:
+
+```bash
+ # if variables are empty, assign then default values
+: ${VAR:='default'}
+: ${$1:='first'}
+```
 
 # License
 
