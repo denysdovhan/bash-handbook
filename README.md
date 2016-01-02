@@ -95,7 +95,7 @@ whoami
 
 Use comments to explain what your script does and how.
 
-## License
+# License
 
 [![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
 
