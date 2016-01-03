@@ -22,6 +22,11 @@ are presently doing.
   - [Local variables](#local-variables)
   - [Environment variables](#environment-variables)
   - [Positional parameters](#positional-parameters)
+- [Arrays](#arrays)
+  - [Array declaration](#array-declaration)
+  - [Array slice](#array-slice)
+  - [Adding elements into array](#adding-elements-into-array)
+  - [Deleting elements from array](#deleting-elements-from-array)
 - [License](#licenses)
 
 # Introduction
@@ -168,6 +173,57 @@ Also, variables may have default values. We can easily define them using this ex
  # if variables are empty, assign then default values
 : ${VAR:='default'}
 : ${$1:='first'}
+```
+
+# Arrays
+
+As in other programming languages, an array is a variable containing multiple values. In bash arrays are zero-based: that means the first element in arrays is indexed with the number 0.
+
+Dealing with arrays, we should know about special environment variable `IFS`. **IFS** or **Input Field Separator** — it's value that contains the character which separates elements in array. As default `IFS=' '`.
+
+## Array declaration
+
+Easy to declare arrays using these indirect declaration:
+
+```bash
+fruits[0]=Apple
+fruits[1]=Pear
+fruits[2]=Plum
+echo ${fruits[*]} # echo ${fruits[@]} may be used as well
+```
+
+Array variables may also be created using compound assignments such as:
+
+```bash
+fruits=(Apple Pear Plum)
+```
+
+## Array slice
+
+Besides, we can take part of array using _slice_:
+
+```bash
+echo ${fruits[*]:0:2} # Apple Pear
+```
+
+In example above, `fruits[*]` returns the content of array, `:0:2` takes a slice length of 2, starting at index 0.
+
+## Adding elements into array
+
+If we wanna add new elements into array, we are happy, because it quite simple. Compound assignments come to help us here. We can use them such as:
+
+```bash
+fruits=(Orange ${fruits[*]} Banana Cherry)
+echo ${fruits[*]} # Orange Apple Pear Plum Banana Charry
+```
+
+## Deleting elements from array
+
+The `unset` command, which we are already familiar, is used to destroy arrays or element of array:
+
+```bash
+unset fruits[0]
+echo ${fruits[*]} # Apple Pear Plum Banana Charry
 ```
 
 # License
