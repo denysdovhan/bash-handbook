@@ -1,6 +1,6 @@
 # bash-handbook [![CC 4.0][cc-image]][cc-url]
 
-This document was written for for those who want to learn Bash without diving up too deeply.
+This document was written for those who want to learn Bash without diving up too deeply.
 
 # Node Packaged Manuscript
 
@@ -27,11 +27,14 @@ are presently doing.
   - [Array slice](#array-slice)
   - [Adding elements into array](#adding-elements-into-array)
   - [Deleting elements from array](#deleting-elements-from-array)
+- [Shell expansions](#shell-expansions)
+  - [Brace Expansion](#brace-Expansion)
+  - [Command Substitution](#command-substitution)
 - [License](#licenses)
 
 # Introduction
 
-If you are a developer, then you know about the value of time. Optimization of working process - one of the most important aspects of IT.
+If you are a developer, then you know about the value of time. Optimization of working process — one of the most important aspects of IT.
 
 Either way, our work requires repetition of the same actions: quick screenshots and uploading them to server, processing selected text, converting files, parsing data and so on. And here bash comes to help us.
 
@@ -83,12 +86,16 @@ However, you can simplify the script calling, just make it executable using `chm
 
 In addition, the first line of the script must indicate the system which program to use to run the file, like so:
 
-    #!/bin/bash
-    echo "Hello, world!"
+```bash
+#!/bin/bash
+echo "Hello, world!"
+```
 
 Or if you wanna use `sh` instead of `bash`, just replace `#!/bin/bash` to `#!/bin/sh`.  That is called a [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). After that, you can run script like this:
 
     /path/to/script.sh
+
+Besides, we should do yet another important conclusion: if we wanna output something, we need to use `echo` command.
 
 # Comments
 
