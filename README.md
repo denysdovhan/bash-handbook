@@ -28,8 +28,10 @@ are presently doing.
   - [Adding elements into array](#adding-elements-into-array)
   - [Deleting elements from array](#deleting-elements-from-array)
 - [Shell expansions](#shell-expansions)
-  - [Brace Expansion](#brace-Expansion)
-  - [Command Substitution](#command-substitution)
+  - [Brace expansion](#brace-Expansion)
+  - [Command substitution](#command-substitution)
+  - [Arithmetic expansion](#arithmetic-expansion)
+  - [Double and single quotes](#double-and-single-quotes)
 - [License](#licenses)
 
 # Introduction
@@ -231,6 +233,57 @@ The `unset` command, which we are already familiar, is used to destroy arrays or
 ```bash
 unset fruits[0]
 echo ${fruits[*]} # Apple Pear Plum Banana Charry
+```
+
+# Shell expansions
+
+Expansion is performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
+
+If you are interested, you can read [more about shell expasions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
+
+## Brace expansion
+
+Brace expansion give us opportunity to generate arbitrary strings. It's similar to _filename expansion_. For example:
+
+```bash
+echo beg{i,a,u}n # begin began begun
+```
+
+Also brace expansions may be used for creating ranges, which are iterated over in loops.
+
+```bash
+echo {0..5} # 0 1 2 3 4 5
+echo {00..8..2} # 00 02 04 06 08
+```
+
+## Command substitution
+
+Command substitution allows the output of a command to replace the command itself. Command substitution works when a command is enclosed in ` `` ` or `$()`.  For example, we can use it as follow:
+
+```bash
+now=`data +%T`
+# or
+now=$(data +%T)
+
+echo now # 19:08:26
+```
+
+## Arithmetic expansion
+
+In bash we can feel free to perform arithmetical operations. But expression that we need to perform should be enclosed in `$(( ))` The format for arithmetic expansion is:
+
+```bash
+result=$(( ((10 + 5*3) - 7) / 2 ))
+echo $result # 9
+```
+
+## Double and single quotes
+
+There is an important difference between double and single quotes. The expression is treated as if it were within double quotes, but a double quote inside the parentheses is not treated specially. Just look at this:
+
+```bash
+echo "Your home: $HOME" # Your home: /Users/<username>
+echo 'Your home: $HOME' # Your home: $HOME
 ```
 
 # License
