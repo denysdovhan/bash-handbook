@@ -38,6 +38,8 @@ are presently doing.
   - [Lists of commands](#lists-of-commands)
 - [Conditional statements](#conditional-statements)
   - [Primary and combining expressions](#primary-and-combining-expressions)
+  - [Using of `if` statement](#using-of-if-statement)
+  - [Using of `case` statement](#using-of-case-statement)
 - [License](#licenses)
 
 # Introduction
@@ -441,6 +443,71 @@ Conditions may be combined using these **combining expressions:**
 | `[ (EXPR) ]`   | Returns the value of `EXPR`.                                |
 | `[ EXPR1 -a EXPR2 ]` | Logical _AND_. True if `EXPR1` **a**nd `EXPR2` are true. |
 | `[ EXPR1 -o EXPR2 ]` | Logical _OR_. True if `EXPR1` **o**r `EXPR2` are true.|
+
+Sure, there is more useful primaries and you can easily find it in [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
+
+## Using of `if` statement
+
+`if` statement works completely at the same way as it works in other programming languages. If the expression within braces is true, the code between `then` and `fi`, which indicates the end of the conditionally executed code.
+
+```bash
+# Single-line
+if [[ 1 -eq 1 ]]; then echo "true"; fi;
+
+# Multi-line
+if [[ 1 -eq 1 ]]; then
+  echo "true";
+fi;
+```
+
+At the same time, we could use `if..else` statement such as:
+
+```bash
+# Single-line
+if [[ 2 -ne 1 ]]; then echo "true"; else echo "false"; fi;
+
+# Multi-line
+if [[ 2 -ne 1 ]]; then
+  echo "true";
+else
+  echo "false";
+fi;
+```
+
+Sometimes `if..else` statements is not enough to do what we wanna do. In this case we shouldn't forget about existence of `if..elif..else` statement, which may be very handy. Look at the example below:
+
+```bash
+if [[ `uname` == "Adam" ]]; then
+  echo "Do not eat an apple!";
+elif [[ `uname` == "Eva" ]]; then
+  echo "Do not take an apple!";
+else
+  echo "Apples are delicious!";
+fi;
+```
+
+## Using of `case` statement
+
+If you are confronted with a couple of different possible actions to take, then using of `case` statement may more useful than nested `if` statement. For more complex conditions use `case` like below:
+
+```bash
+case "$extension" in
+  "jpg"|"jpeg")
+    echo "It's image with jpeg extension."
+  ;;
+  "png")
+    echo "It's image with png extension."
+  ;;
+  "gif")
+    echo "Oh, it's a giphy!"
+  ;;
+  *)
+    echo "Woops! It's not image!"
+  ;;
+esac;
+```
+
+Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` it's pattern for anything else, than doesn't match with defined patterns. Each block of command should be divided with `;;` operator.
 
 # License
 
