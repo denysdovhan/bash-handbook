@@ -198,7 +198,7 @@ Dealing with arrays, we should know about special environment variable `IFS`. **
 
 ## Array declaration
 
-Easy to declare arrays using these indirect declaration:
+It's easy to declare arrays using these indirect declaration:
 
 ```bash
 fruits[0]=Apple
@@ -238,7 +238,7 @@ The `unset` command, which we are already familiar, is used to destroy arrays or
 
 ```bash
 unset fruits[0]
-echo ${fruits[*]} # Apple Pear Plum Banana Charry
+echo ${fruits[*]} # 
 ```
 
 # Shell expansions
