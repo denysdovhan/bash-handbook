@@ -36,6 +36,8 @@ are presently doing.
   - [Streams](#streams)
   - [Pipes](#pipes)
   - [Lists of commands](#lists-of-commands)
+- [Conditional statements](#conditional-statements)
+  - [Primary and combining expressions](#primary-and-combining-expressions)
 - [License](#licenses)
 
 # Introduction
@@ -383,6 +385,62 @@ command1 || command2
 ```
 
 The return code of _AND_ and _OR_ lists is the exit status of the last executed command.
+
+# Conditional statements
+
+Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]`.
+
+Conditional expression may contain `&&` and `||` operator, which are _AND_ and _OR_ accordingly. Beside this, there many [other handy expression](#primary-and-combining-expressions).
+
+There are two different conditional statements: `if` statement and `case` statement.
+
+## Primary and combining expressions
+
+Expressions enclosed inside `[[ ]]` are called **test commands** or **primaries**. These expressions help us to indicate result of an conditional.
+
+**Working with file system:**
+
+| Primary       | Meaning                                                      |
+| :-----------: | :----------------------------------------------------------- |
+| `[ -e FILE ]` | True if `FILE` **e**xists and is a directory or regular file.|
+| `[ -f FILE ]` | True if `FILE` exists and is a regular **f**ile.             |
+| `[ -d FILE ]` | True if `FILE` exists and is a **d**irectory.                |
+| `[ -s FILE ]` | True if `FILE` exists and not empty (**s**ize more than 0).  |
+| `[ -r FILE ]` | True if `FILE` exists and is **r**eadable.                   |
+| `[ -w FILE ]` | True if `FILE` exists and is **w**ritable.                   |
+| `[ -x FILE ]` | True if `FILE` exists and is e**x**ecutable.                 |
+| `[ -L FILE ]` | True if `FILE` exists and is symbolic **l**ink.              |
+| `[ FILE1 -nt FILE2 ]` | FILE1 is **n**ewer **t**han FILE2.                   |
+| `[ FILE1 -ot FILE2 ]` | FILE1 is **o**lder **t**han FILE2.                   |
+
+**Working with strings:**
+
+| Primary        | Meaning                                                     |
+| :------------: | :---------------------------------------------------------- |
+| `[ -z STR ]`   | `STR` is empty (the length is **z**ero).                    |
+| `[ -n STR ]`   |`STR` is not empty (the length is **n**on-zero).             |
+| `[ STR1 == STR2 ]` | `STR1` and `STR2` are equal.                            |
+| `[ STR1 != STR2 ]` | `STR1` and `STR2` are not equal.                        |
+
+**Arithmetic binary operators:**
+
+| Primary             | Meaning                                                |
+| :-----------------: | :----------------------------------------------------- |
+| `[ ARG1 -eq ARG2 ]` | `ARG1` is **eq**ual to `ARG2`.                         |
+| `[ ARG1 -ne ARG2 ]` | `ARG1` is **n**ot **e**qual to `ARG2`.                 |
+| `[ ARG1 -lt ARG2 ]` | `ARG1` is **l**ess **t**han `ARG2`.                    |
+| `[ ARG1 -le ARG2 ]` | `ARG1` is **l**ess than or **e**qual to `ARG2`.        |
+| `[ ARG1 -gt ARG2 ]` | `ARG1` is **g**reater **t**han `ARG2`.                 |
+| `[ ARG1 -ge ARG2 ]` | `ARG1` is **g**reater or **e**qual to `ARG2`.          |
+
+Conditions may be combined using these **combining expressions:**
+
+| Operation      | Effect                                                      |
+| :------------: | :---------------------------------------------------------- |
+| `[ ! EXPR ]`   | True if `EXPR` is false.                                    |
+| `[ (EXPR) ]`   | Returns the value of `EXPR`.                                |
+| `[ EXPR1 -a EXPR2 ]` | Logical _AND_. True if `EXPR1` **a**nd `EXPR2` are true. |
+| `[ EXPR1 -o EXPR2 ]` | Logical _OR_. True if `EXPR1` **o**r `EXPR2` are true.|
 
 # License
 
