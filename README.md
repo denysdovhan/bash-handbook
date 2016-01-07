@@ -40,6 +40,8 @@ are presently doing.
   - [Primary and combining expressions](#primary-and-combining-expressions)
   - [Using of `if` statement](#using-of-if-statement)
   - [Using of `case` statement](#using-of-case-statement)
+- [Loops](#loops)
+  - [`for` loop](#for-loop)
 - [License](#licenses)
 
 # Introduction
@@ -508,6 +510,50 @@ esac;
 ```
 
 Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` it's pattern for anything else, than doesn't match with defined patterns. Each block of command should be divided with `;;` operator.
+
+# Loops
+
+Here we won't be surprised. As in any programming language, a loop in bash is a block of code that iterates as long as the control conditional is true.
+
+There are three types of loops in Bash: `for`, `while` and `select`.
+
+## `for` loop
+
+The `for` is very similar to its sibling in C. It looks like this:
+
+```bash
+for arg in elem1 elem2 ... elemN
+do
+  body
+done
+```
+
+During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Instead of these value may be wildcards or [brace expansion](#bracelexpansion).
+
+Also, we can write `for` loop in one line, but in this case there needs to be semicolon before `do`, like below:
+
+```bash
+for i in {1..5}; do echo $i; done
+```
+
+By the way, if `for..in..do` seems a little bit weird for you, as well you can write `for` in C-like style such as:
+
+```bash
+for (( i = 0; i < 10; i++ )); do
+  echo $i
+done
+```
+
+`for` is handy when we wanna do the same operation over each file in directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
+
+```bash
+#!/bin/bash
+
+for FILE in $HOME/*.bash; do
+  mv $FILE ${HOME}/scripts
+  chmod +x ${HOME}/scripts/${FILE}
+done
+```
 
 # License
 
