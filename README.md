@@ -242,7 +242,7 @@ The `unset` command, which we are already familiar, is used to destroy arrays or
 
 ```bash
 unset fruits[0]
-echo ${fruits[*]} # 
+echo ${fruits[*]} #
 ```
 
 # Shell expansions
