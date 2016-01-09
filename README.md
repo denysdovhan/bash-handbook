@@ -47,6 +47,7 @@ are presently doing.
   - [`until` loop](#until-loop)
   - [`select` loop](#select-loop)
   - [Loop control](#loop-control)
+- [Functions](#functions)
 - [License](#licenses)
 
 # Introduction
@@ -668,6 +669,45 @@ done
 ```
 
 If we run example above, it will print all odd numbers from 0 to 10.
+
+# Functions
+
+In scripts we have ability to define and call functions. As in any programming language, functions in bash it's a pieces of code, but there are differences.
+
+In bash functions it's a named group of commands. Calling a function is just like calling another program, you just write its name.
+
+We can declare our own function looks like below:
+
+```bash
+my_func () {
+  # statements
+}
+
+my_func # call my_func
+```
+
+Declaring of a function should be before the first call.
+
+Functions can take on arguments and return result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). Result can be returned using `return` command.
+
+So below is an function that takes name and return code of success:
+
+```bash
+# function with params
+greeting () {
+  if [[ -n $1 ]]; then
+    echo "Hello, $1!"
+  else
+    echo "Hello, unknown!"
+  fi
+  return 0
+}
+
+greeting Denys  # Hello, Denys!
+greeting        # Hello, unknown!
+```
+
+We've already mentioned about [exit codes](#exit-codes). The `return` command returns the exit code of the last executed command. Above, `return 0` will return successful exit code.
 
 # License
 
