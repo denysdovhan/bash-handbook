@@ -555,6 +555,34 @@ for FILE in $HOME/*.bash; do
 done
 ```
 
+## `while` loop
+
+The `while` loop tests a condition and looping till that condition is true. Condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
+
+```bash
+while [[ condition ]]
+do
+  body
+done
+```
+
+As in the same case with `for`, if we want to write `do` and condition in the same line, then should be a semicolon before `do`.
+
+Working example might be look such as:
+
+```bash
+#!/bin/bash
+
+# Squares of numbers from 1 to 10
+x=0
+while [[ $x -lt 10 ]]; do # value of x is less than 10
+  echo $(($x*$x))
+  x=`expr $x + 1` # increase x
+done
+```
+
+
+
 # License
 
 [![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
