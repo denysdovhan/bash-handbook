@@ -528,7 +528,7 @@ The `for` is very similar to its sibling in C. It looks like this:
 ```bash
 for arg in elem1 elem2 ... elemN
 do
-  body
+  # statements
 done
 ```
 
@@ -561,12 +561,12 @@ done
 
 ## `while` loop
 
-The `while` loop tests a condition and looping till that condition is true. Condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
+The `while` loop tests a condition and looping till that condition is _true_. Condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
 
 ```bash
 while [[ condition ]]
 do
-  body
+  # statements
 done
 ```
 
