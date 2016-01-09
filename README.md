@@ -17,6 +17,7 @@ are presently doing.
 - [Shells and modes](#shells-and-modes)
   - [Interactive](#interactive-mode)
   - [Non-interactive](#non-interactive-mode)
+  - [Exit codes](#exit-codes)
 - [Comments](#comments)
 - [Variables](#variables)
   - [Local variables](#local-variables)
@@ -112,6 +113,16 @@ Or if you wanna use `sh` instead of `bash`, just replace `#!/bin/bash` to `#!/bi
     /path/to/script.sh
 
 Besides, we should do yet another important conclusion: if we wanna output something, we need to use `echo` command.
+
+## Exit codes
+
+Every command returns an **exit code** (**return status** or **exit status**). A successful command returns a `0` (zero-code), at the smae time unsuccessful commands return non-zero value (error code). Unsuccessful codes must be an integer between 1 and 255.
+
+Within a script, an `exit` command is used to deliver an exit code to the shell. When the scripts ends with the `exit` code without any parameter, the exit code of this script is the exit code of the last executed command in this script.
+
+Every program, after finishing, assign its exit code into `#?` environment variable. The `#?` variable is especially useful for testing and debuging scripts.
+
+Likewise, functions within a script return an exit status. But inside the function we should use `return` command.
 
 # Comments
 
