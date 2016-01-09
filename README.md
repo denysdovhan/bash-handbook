@@ -351,7 +351,7 @@ Here are few examples of using redirections:
 # output of ls will be written to a file
 ls -l > list.txt
 
-# append output o a file
+# append output to a file
 ls -a >> list.txt
 
 # all errors will be written to a file
