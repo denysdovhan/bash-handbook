@@ -42,6 +42,10 @@ are presently doing.
   - [Using of `case` statement](#using-of-case-statement)
 - [Loops](#loops)
   - [`for` loop](#for-loop)
+  - [`while` loop](#while-loop)
+  - [`until` loop](#until-loop)
+  - [`select` loop](#select-loop)
+  - [Loop control](#loop-control)
 - [License](#licenses)
 
 # Introduction
@@ -591,6 +595,68 @@ until [[ conditions ]]; do
 done
 ```
 
+## `select` loop
+
+The `select` loop help us to organize a user menu. It has almost the same syntax as `for` loop:
+
+```bash
+select answer in elem1 elem2 ... elemN
+do
+  # statements
+done
+```
+
+The `select` print all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `#?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
+
+The working example might look like this:
+
+```bash
+#!/bin/bash
+
+PS3="Choose the package manager: "
+select ITEM in bower npm gem pip
+do
+  echo -n "Enter the package name: " && read PACKAGE
+  case $ITEM in
+    bower) bower install $PACKAGE ;;
+    npm)   npm   install $PACKAGE ;;
+    gem)   gem   install $PACKAGE ;;
+    pip)   pip   install $PACKAGE ;;
+  esac;
+  break # avoid infinite loop
+done
+```
+
+This example, as user what package manager would he/she like to use. After that it will ask what package we want to install and finally install it.
+
+If we run, we will have:
+
+```
+1) bower
+2) npm
+3) gem
+4) pip
+Choose the package manager: 2
+Enter the package name: bash-handbook
+<installing of bash-handbook>
+```
+
+## Loop control
+
+There are situation when we need to stop loop before its normal ending or step over iteration For these cases there are built-in **break** and **continue** statements and both of them work with every kind of loops as well.
+
+The **break** statement is used to exit the current loop before its ending. We have already met with it.
+
+The **continue** statement steps over one iteration. We can use it such as:
+
+```bash
+for (( i = 0; i < 10; i++ )); do
+  if [[ $(($i % 2)) == 0 ]]; then continue; fi;
+  echo $i
+done
+```
+
+If we run example above, it will print all odd numbers from 0 to 10.
 
 # License
 
