@@ -646,6 +646,7 @@ This example, as user what package manager would he/she like to use. After that 
 If we run, we will have:
 
 ```
+$ ./my_script
 1) bower
 2) npm
 3) gem
