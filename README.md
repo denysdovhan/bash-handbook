@@ -48,6 +48,7 @@ are presently doing.
   - [`select` loop](#select-loop)
   - [Loop control](#loop-control)
 - [Functions](#functions)
+- [Debugging](#debugging)
 - [License](#licenses)
 
 # Introduction
@@ -708,6 +709,67 @@ greeting        # Hello, unknown!
 ```
 
 We've already mentioned about [exit codes](#exit-codes). The `return` command returns the exit code of the last executed command. Above, `return 0` will return successful exit code.
+
+## Debugging
+
+The shell give us tools for debugging scripts. If we want to run script in debug mode, script's shebang should have a special option:
+
+```bash
+#!/bin/bash options
+```
+
+These options are settings that change shell behavior. The following table is a list of options which might be useful for you:
+
+| Short | Name        | Description                                            |
+| :---: | :---------- | :----------------------------------------------------- |
+| `-f`  | noglob      | Disable filename expansion (globbing).                 |
+| `-i`  | interactive | Script runs in _interactive_ mode.                     |
+| `-n`  | noexec      | Read command, but don't execute them (syntax check).   |
+| `-t`  | (none)      | Exit after first command.                              |
+| `-v`  | verbose     | Print each command to `stdout` before executing it.    |
+| `-x`  | xtrace      | Print each command to `stdout` before executing it and expands commands. |
+
+For example, we have script with `-x` option such as:
+
+```bash
+#!/bin/bash -x
+
+for (( i = 0; i < 3; i++ )); do
+  echo $i
+done
+```
+
+It will print to `stdout` value of variables and other useful information:
+
+```
+$ ./my_script
++ (( i = 0 ))
++ (( i < 3 ))
++ echo 0
+0
++ (( i++  ))
++ (( i < 3 ))
++ echo 1
+1
++ (( i++  ))
++ (( i < 3 ))
++ echo 2
+2
++ (( i++  ))
++ (( i < 3 ))
+```
+
+Sometimes we need to debug part of script. Here the `set` command comes to help us. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
+
+```bash
+#!/bin/bash
+
+echo "xtrace is turned off"
+set -x
+echo "xtrace is enabled"
+set +x
+echo "xtrace is turned off again"
+```
 
 # License
 
