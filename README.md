@@ -49,6 +49,7 @@ are presently doing.
   - [Loop control](#loop-control)
 - [Functions](#functions)
 - [Debugging](#debugging)
+- [Afterwords](#afterwords)
 - [License](#licenses)
 
 # Introduction
@@ -770,6 +771,16 @@ echo "xtrace is enabled"
 set +x
 echo "xtrace is turned off again"
 ```
+
+# Afterwords
+
+I hope this small handbook is really interesting for you. In general, I wrote this handbook for myself to not forget the basic of Bash. I tried to write concisely but meaningfully, so I believe you appreciate it.
+
+This handbook consists of my own experience with Bash. It does not purport to be comprehensive, so if you want more, please use `man bash`.
+
+I am trying be open to any thoughts. I will be very grateful for any adjustments, corrections or question. Please, send them to [Issues](https://github.com/denysdovhan/bash-handbook/issues).
+
+Thanks for reading!
 
 # License
 
