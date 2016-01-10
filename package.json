@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "For those who wanna learn Bash",
   "bin": {
-    "bash-handbook": "cmd.js"
+    "bash-handbook": "bin/cmd.js"
   },
   "scripts": {
     "postpublish": "git push --follow-tags"
