@@ -98,7 +98,7 @@ Use these command for running the shell in non-interactive mode:
     sh /path/to/script.sh
     bash /path/to/script.sh
 
-Above, `sctipt.sh` it's a just simple text file that contains commands to execute. You can easyly create that file using any text editor (e.g Vim, nano, Sublime Text, Atom, etc).
+Above, `sctipt.sh` it's a just simple text file that contains commands to execute. You can easily create that file using any text editor (e.g Vim, nano, Sublime Text, Atom, etc).
 However, you can simplify the script calling, just make it executable using `chmod` command:
 
 
@@ -119,11 +119,11 @@ Besides, we should do yet another important conclusion: if we wanna output somet
 
 ## Exit codes
 
-Every command returns an **exit code** (**return status** or **exit status**). A successful command returns a `0` (zero-code), at the smae time unsuccessful commands return non-zero value (error code). Unsuccessful codes must be an integer between 1 and 255.
+Every command returns an **exit code** (**return status** or **exit status**). A successful command returns a `0` (zero-code), at the same time unsuccessful commands return non-zero value (error code). Unsuccessful codes must be an integer between 1 and 255.
 
 Within a script, an `exit` command is used to deliver an exit code to the shell. When the scripts ends with the `exit` code without any parameter, the exit code of this script is the exit code of the last executed command in this script.
 
-Every program, after finishing, assign its exit code into `#?` environment variable. The `#?` variable is especially useful for testing and debuging scripts.
+Every program, after finishing, assign its exit code into `#?` environment variable. The `#?` variable is especially useful for testing and debugging scripts.
 
 Likewise, functions within a script return an exit status. But inside the function we should use `return` command.
 
@@ -373,7 +373,7 @@ Below, `command1` send its output to `command2`, which send its output to the in
 
 Constructions like this are called **pipelines**.
 
-In real world it can be used for proccessing data through few programs. For example, here the output of `ls -l` is sent to the `grep` program, which will print only files with `.md` extension, and after all, output will be sent to the `less` program:
+In real world it can be used for processing data through few programs. For example, here the output of `ls -l` is sent to the `grep` program, which will print only files with `.md` extension, and after all, output will be sent to the `less` program:
 
     ls -l | grep .md$ | less
 
