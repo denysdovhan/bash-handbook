@@ -342,7 +342,7 @@ Redirection makes it possible to control where the output of a command goes to, 
 | :------: | :------------------------------------------- |
 | `>`      | Redirecting output                           |
 | `&>`     | Redirecting output and error output          |
-| `&>`     | Appending redirected output and error output |
+| `&>>`    | Appending redirected output and error output |
 | `<`      | Redirecting input                            |
 | `<`      | Redirecting input                            |
 | `<<`     | [Here documents](http://tldp.org/LDP/abs/html/here-docs.html) syntax |
