@@ -290,9 +290,9 @@ echo {00..8..2} # 00 02 04 06 08
 Command substitution allows the output of a command to replace the command itself. Command substitution works when a command is enclosed in `` `​` `` or `$()`.  For example, we can use it as follow:
 
 ```bash
-now=`data +%T`
+now=`date +%T`
 # or
-now=$(data +%T)
+now=$(date +%T)
 
 echo now # 19:08:26
 ```
