@@ -1,15 +1,14 @@
 # bash-handbook [![CC 4.0][cc-image]][cc-url]
 
-This document was written for those who want to learn Bash without diving up too deeply.
+This document was written for those who want to learn Bash without diving in too deeply.
 
 # Node Packaged Manuscript
 
-You can install this handbook with npm. Just do:
+You can install this handbook with `npm`. Just run:
 
     $ npm install -g bash-handbook
 
-Now you will have a `bash-handbook` command that will open this readme file in your `$PAGER`. Otherwise, you may continue reading this document as you
-are presently doing.
+Now you should be able to run `bash-handbook` as command that will open this README file in your `$PAGER`. Otherwise, you may continue reading this document.
 
 # Table of Contents
 
@@ -54,23 +53,23 @@ are presently doing.
 
 # Introduction
 
-If you are a developer, then you know about the value of time. Optimization of working process — one of the most important aspects of IT.
+If you are a developer, then you know the value of time. Optimizing your work process is one of the most important aspects of the job.
 
-Either way, our work requires repetition of the same actions: quick screenshots and uploading them to server, processing selected text, converting files, parsing data and so on. And here bash comes to help us.
+In that path towards efficiency and productivity, we are often posed with actions that must be repeated over and over again, like taking a screenshot and uploading them to a server, processing text that may come in many shapes and forms, converting files between different formats, parsing a program's output and the list goes on. Enter bash, our savior.
 
-**Bash** is a Unix shell written by [Brian Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as default shell in Linux and OS X.
+**Bash** is a Unix shell written by [Brian Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as the Linux and OS X default shell for a long time.
 
-So why should we start to learn something written about 30 years ago? The answer is quite simple: this _something_ still stay one of the most powerful tools for writing efficient scripts on all Unix-based systems. That's why you should learn bash.
+So why do we need to learn something that was written more than 30 years ago? The answer is simple: this _something_ is today one of the most powerful and portable tools for writing efficient scripts for all Unix-based systems. And that's why you should learn bash. Period.
 
-In this handbook, I'm going to describe the most important concepts in bash with examples. I'm sure this compendium will be helpful for you.
+In this handbook, I'm going to describe the most important concepts in bash with examples. I hope this compendium will be helpful to you.
 
 # Shells and modes
 
-The user bash shell can work in two modes - interactive and accordingly non-interactive.
+The user bash shell can work in two modes - interactive and non-interactive.
 
 ## Interactive mode
 
-If you are working on Ubuntu, you can open the shell using `Ctrl-Alt-F1` keybinding. After that, familiar GUI will disappear and one of seven virtual terminals available in the Ubuntu will show.
+If you are working on Ubuntu, you can open the shell using the `Ctrl-Alt-F1` keybinding. After that, the familiar GUI will disappear and one of the seven virtual terminals available in Ubuntu will be shown.
 
 If you see something like this, then you are working in interactive mode:
 
@@ -80,9 +79,9 @@ Here you can enter a variety of Unix commands, such as `ls`, `grep`, `cd`, `mkdi
 
 We call this shell interactive because it interacts directly with the user.
 
-The desktop environment takes place in the seventh virtual terminal, so you can return to friendly GUI using `Ctrl-Alt-F7` keybinding.
+The desktop environment takes place in the seventh virtual terminal, so you can return to friendly GUI using the `Ctrl-Alt-F7` keybinding.
 
-Of course, using virtual terminal it's not so easy. Especially if you want to edit a document and at the same time execute any command. For this case, better to use virtual terminal emulators, for example:
+Using a virtual terminal it's not really convenient. For example, if you want to edit a document and execute another command at the same you are better off using a virtual terminal emulators like:
 
 - [GNOME Terminal](https://ru.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
@@ -91,45 +90,47 @@ Of course, using virtual terminal it's not so easy. Especially if you want to ed
 
 ## Non-interactive mode
 
-In non-interactive mode, the shell reads commands from a file and executes them. When interpreter comes to the end of the file, work with the shell will automatically complete.
+In non-interactive mode, the shell reads commands from a file or a pipe and executes them. When the interpreter reaches the end of the file, the shell process terminates the session and returns to the parent process.
 
-Use these command for running the shell in non-interactive mode:
+Use the following commands for running the shell in non-interactive mode:
 
     sh /path/to/script.sh
     bash /path/to/script.sh
 
-Above, `sctipt.sh` it's a just simple text file that contains commands to execute. You can easily create that file using any text editor (e.g Vim, nano, Sublime Text, Atom, etc).
-However, you can simplify the script calling, just make it executable using `chmod` command:
+In the example above, `script.sh` is just a regular text file that consists of commands the shell interpreter can evaluate and `sh` or `bash` is the shell's interpreter program. You can create `script.sh` using your preferred text editor (e.g. vim, nano, Sublime Text, Atom, etc).
+
+You can also simplify invoking the script by making it an executable file using the `chmod` command:
 
 
     chmod +x /path/to/script.sh
 
-In addition, the first line of the script must indicate the system which program to use to run the file, like so:
+Additionally, the first line in the script must indicate the system which program it should use to run the file, like so:
 
 ```bash
 #!/bin/bash
 echo "Hello, world!"
 ```
 
-Or if you wanna use `sh` instead of `bash`, just replace `#!/bin/bash` to `#!/bin/sh`.  That is called a [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). After that, you can run script like this:
+Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/sh`. This `#!` character sequence is known as the [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Now you can run script like this:
 
     /path/to/script.sh
 
-Besides, we should do yet another important conclusion: if we wanna output something, we need to use `echo` command.
+Another handy thing we learned above is using the `echo` to print something to the terminal screen.
+
 
 ## Exit codes
 
-Every command returns an **exit code** (**return status** or **exit status**). A successful command returns a `0` (zero-code), at the same time unsuccessful commands return non-zero value (error code). Unsuccessful codes must be an integer between 1 and 255.
+Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns non-zero value (error code). Failure codes must be positive integers between 1 and 255.
 
-Within a script, an `exit` command is used to deliver an exit code to the shell. When the scripts ends with the `exit` code without any parameter, the exit code of this script is the exit code of the last executed command in this script.
+Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
 
-Every program, after finishing, assign its exit code into `#?` environment variable. The `#?` variable is especially useful for testing and debugging scripts.
+When a program terminates, the shell assigns its **exit code** to the `#?` environment variable. The `#?` variable is how we usually test whether a script has a succeeded or not in its execution.
 
-Likewise, functions within a script return an exit status. But inside the function we should use `return` command.
+In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
 
 # Comments
 
-Scripts may contain _comments_. Comments are special statements that do absolutely nothing and just ignore while the script is executing. They begin with `#` symbol and continue to the line ending.
+Scripts may contain _comments_. Comments are special statements ignored by the `shell` interpreter. They begin with a `#` symbol and continue on to the end of the line.
 
 For example:
 
@@ -139,19 +140,19 @@ For example:
 whoami
 ```
 
-Use comments to explain what your script does and how.
+> **Tip**: Use comments to explain what your script does and _why_.
 
 # Variables
 
-Of course, you are free to use variables as in any programming language.
+Like in most programming languages, you can also create variables in bash.
 
-There aren't data types, but variables in bash can contain only a number, a character or string of characters. The variable can be declared in three scopes: local variables, environment variables and positional parameters.
+Bash knows no data types. Variables can contain only numbers or a string of one or more characters. There are three kinds of variables you can create: local variables, environment variables and variables as _positional arguments_.
 
 ## Local variables
 
-**Local variables** are variables within a single script. They are inaccessible for other programs and scripts.
+**Local variables** are variables that exist only within a single script. They are inaccessible to other programs and scripts.
 
-The local variable can be declared using `=` sign (shouldn't be any space between variable's name and value) and accessed using `$` sign. For example:
+A local variable can be declared using `=` sign (as a rule, there **should not** be any spaces between a variable's name, `=` and its value) and its value can be retrieved using the `$` sign. For example:
 
 ```bash
 username="denysdovhan"  # declare variable
@@ -159,21 +160,21 @@ echo $username          # display value
 unset username          # delete variable
 ```
 
-Getting ahead of ourselves, we can declare local variable inside the function by applying `local` keyword. After that variable will be accessible only inside this function.
+We can also declare a variable local to a single function using the `local` keyword. Doing so causes the variable to dissapoear when the function exits.
 
 ```bash
-local local_var="I'm local value"
+local local_var="I'm a local value"
 ```
 
 ## Environment variables
 
-**Environment variables** are variables, accessible for any program or script running in current shell. They might be declared in such way as local variables, but adding keyword `export`.
+**Environment variables** are variables accessible to any program or script running in current shell session. They are created just like local variables, but using the keyword `export` instead.
 
 ```bash
-export GLOBAL_VAR="I'm global variable"
+export GLOBAL_VAR="I'm a global variable"
 ```
 
-There are a lot of global variables in bash. Entirely possible you might meet them in scripts, so here is a table with most used ones:
+There are _a lot_ of global variables in bash. You will meet these variables fairly often, so here is a quick lookup table with the most practical ones:
 
 | Variable     | Description                                                   |
 | :----------- | :------------------------------------------------------------ |
@@ -185,11 +186,11 @@ There are a lot of global variables in bash. Entirely possible you might meet th
 | `$PS1`       | The primary prompt string.                                    |
 | `$PS2`       | The secondary prompt string.                                  |
 
-Look at extended table of available environment variables [here](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04).
+Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) to see an extended list of environment variables in Bash.
 
-## Positional parameters
+## Positional arguments
 
-**Positional parameters** comes when you want to give arguments to your scripts. Few parameters are described below:
+**Positional arguments** are variables allocated when a function is evaluated and are given positionally. The following table lists positional argument variables and other special variables and their meanings when you are inside a function.
 
 | Parameter      | Description                                                 |
 | :------------- | :---------------------------------------------------------- |
@@ -197,14 +198,14 @@ Look at extended table of available environment variables [here](http://tldp.org
 | `$1 … $9`      | The argument list elements from 1 to 9.                     |
 | `${10} … ${N}` | The argument list elements from 10 to N.                    |
 | `$*` or `$@`   | All positional parameters except `$0`.                      |
-| `$#`           | The number of arguments, not counting $0.                   |
-| `$FUNCNAME`    | The function name (has value only inside the function).     |
+| `$#`           | The number of arguments, not counting `$0`.                 |
+| `$FUNCNAME`    | The function name (has a value only inside a function).     |
 
-Below inside the script example we will get `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+In the example below, the positional arguments will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
 
     ./script.sh foo bar
 
-Also, variables may have default values. We can easily define them using this expression:
+Variables may also have _default_ values. We can define as such using the following syntax:
 
 ```bash
  # if variables are empty, assign then default values
