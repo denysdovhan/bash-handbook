@@ -287,7 +287,7 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allows the output of a command to replace the command itself. Command substitution works when a command is enclosed in ` `` ` or `$()`.  For example, we can use it as follow:
+Command substitution allows the output of a command to replace the command itself. Command substitution works when a command is enclosed in `` `​` `` or `$()`.  For example, we can use it as follow:
 
 ```bash
 now=`data +%T`
