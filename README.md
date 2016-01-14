@@ -4,11 +4,13 @@ This document was written for those who want to learn Bash without diving in too
 
 # Node Packaged Manuscript
 
-You can install this handbook with `npm`. Just run:
+You can install this handbook using `npm`. Just run:
 
-    $ npm install -g bash-handbook
+```
+$ npm install -g bash-handbook
+```
 
-Now you should be able to run `bash-handbook` as command that will open this README file in your `$PAGER`. Otherwise, you may continue reading this document.
+You should be able to run `bash-handbook` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
 
 # Table of Contents
 
