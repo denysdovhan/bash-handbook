@@ -162,7 +162,7 @@ echo $username          # display value
 unset username          # delete variable
 ```
 
-We can also declare a variable local to a single function using the `local` keyword. Doing so causes the variable to dissapoear when the function exits.
+We can also declare a variable local to a single function using the `local` keyword. Doing so causes the variable to disappear when the function exits.
 
 ```bash
 local local_var="I'm a local value"
@@ -272,7 +272,7 @@ echo ${fruits[*]} # Apple Pear Plum Banana Cherry
 
 _Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
 
-If you are interested, you can read [more about shell expasions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
+If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
 
 ## Brace expansion
 
