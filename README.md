@@ -4,11 +4,13 @@ This document was written for those who want to learn Bash without diving in too
 
 # Node Packaged Manuscript
 
-You can install this handbook with `npm`. Just run:
+You can install this handbook using `npm`. Just run:
 
-    $ npm install -g bash-handbook
+```
+$ npm install -g bash-handbook
+```
 
-Now you should be able to run `bash-handbook` as command that will open this README file in your `$PAGER`. Otherwise, you may continue reading this document.
+You should be able to run `bash-handbook` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
 
 # Table of Contents
 
@@ -215,13 +217,13 @@ Variables may also have _default_ values. We can define as such using the follow
 
 # Arrays
 
-As in other programming languages, an array is a variable containing multiple values. In bash arrays are zero-based: that means the first element in arrays is indexed with the number 0.
+Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
 
-Dealing with arrays, we should know about special environment variable `IFS`. **IFS** or **Input Field Separator** — it's value that contains the character which separates elements in array. As default `IFS=' '`.
+When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS** or **Input Field Separator** — is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
 
 ## Array declaration
 
-It's easy to declare arrays using these indirect declaration:
+In bash you create an array by simply assigning a value to an index in the array variable:
 
 ```bash
 fruits[0]=Apple
@@ -230,7 +232,7 @@ fruits[2]=Plum
 echo ${fruits[*]} # echo ${fruits[@]} may be used as well
 ```
 
-Array variables may also be created using compound assignments such as:
+Array variables can also be created using compound assignments such as:
 
 ```bash
 fruits=(Apple Pear Plum)
@@ -238,41 +240,43 @@ fruits=(Apple Pear Plum)
 
 ## Array slice
 
-Besides, we can take part of array using _slice_:
+Besides, we can extract a slice of array using the _slice_ operators:
 
 ```bash
 echo ${fruits[*]:0:2} # Apple Pear
 ```
 
-In example above, `fruits[*]` returns the content of array, `:0:2` takes a slice length of 2, starting at index 0.
+In the example above, `fruits[*]` returns the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
 
-## Adding elements into array
+## Adding elements into an array
 
-If we wanna add new elements into array, we are happy, because it quite simple. Compound assignments come to help us here. We can use them such as:
+Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
 
 ```bash
 fruits=(Orange ${fruits[*]} Banana Cherry)
-echo ${fruits[*]} # Orange Apple Pear Plum Banana Charry
+echo ${fruits[*]} # Orange Apple Pear Plum Banana Cherry
 ```
 
-## Deleting elements from array
+The example above, `fruits[*]` the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
 
-The `unset` command, which we are already familiar, is used to destroy arrays or element of array:
+## Deleting elements from an array
+
+To delete an element from an array, use the `unset` command:
 
 ```bash
 unset fruits[0]
-echo ${fruits[*]} #
+echo ${fruits[*]} # Apple Pear Plum Banana Cherry
 ```
 
 # Shell expansions
 
-Expansion is performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
+_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
 
 If you are interested, you can read [more about shell expasions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
 
 ## Brace expansion
 
-Brace expansion give us opportunity to generate arbitrary strings. It's similar to _filename expansion_. For example:
+Brace expansion allow us to generate arbitrary strings. It's similar to _filename expansion_. For example:
 
 ```bash
 echo beg{i,a,u}n # begin began begun
@@ -287,7 +291,7 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allows the output of a command to replace the command itself. Command substitution works when a command is enclosed in `` `​` `` or `$()`.  For example, we can use it as follow:
+Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ` `` ` in ` `` ` or `$()`.  For example, we can use it as follows:
 
 ```bash
 now=`date +%T`
@@ -299,7 +303,7 @@ echo now # 19:08:26
 
 ## Arithmetic expansion
 
-In bash we can feel free to perform arithmetical operations. But expression that we need to perform should be enclosed in `$(( ))` The format for arithmetic expansion is:
+In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
 
 ```bash
 result=$(( ((10 + 5*3) - 7) / 2 ))
@@ -308,7 +312,7 @@ echo $result # 9
 
 ## Double and single quotes
 
-There is an important difference between double and single quotes. The expression is treated as if it were within double quotes, but a double quote inside the parentheses is not treated specially. Just look at this:
+There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
 
 ```bash
 echo "Your home: $HOME" # Your home: /Users/<username>
@@ -317,12 +321,11 @@ echo 'Your home: $HOME' # Your home: $HOME
 
 # Streams, pipes and lists
 
-Bash has powerful tools for working with other programs and theirs outputs. Thanks for streams we can send outputs of programs into files and thereby write log or whatever you want.
+Bash has powerful tools for working with other programs and their outputs. Using streams we can send the output of a program into another program or file and thereby write logs or whatever we want.
 
 Pipes give us opportunity to create conveyors and control the execution of commands.
 
-Undoubtedly, we should know how to use this high-powered
-tool.
+It is paramount we understand how to use this powerful and sophisticated tool.
 
 ## Streams
 
@@ -351,30 +354,30 @@ Redirection makes it possible to control where the output of a command goes to, 
 Here are few examples of using redirections:
 
 ```bash
-# output of ls will be written to a file
+# output of ls will be written to list.txt
 ls -l > list.txt
 
-# append output to a file
+# append output to list.txt
 ls -a >> list.txt
 
-# all errors will be written to a file
+# all errors will be written to errors.txt
 grep da * 2> errors.txt
 
-# read from file
+# read from errors.txt
 less < errors.txt
 ```
 
 ## Pipes
 
-We could redirect standard streams not only in files, but also to other programs. **Pipes** let us use the output of a program as the input of another one.
+We could redirect standard streams not only in files, but also to other programs. **Pipes** let us use the output of a program as the input of another.
 
-Below, `command1` send its output to `command2`, which send its output to the input of `command3`:
+In the example below, `command1` sends its output to `command2`, which then passes it on to the input of `command3`:
 
     command1 | command2 | command3
 
 Constructions like this are called **pipelines**.
 
-In real world it can be used for processing data through few programs. For example, here the output of `ls -l` is sent to the `grep` program, which will print only files with `.md` extension, and after all, output will be sent to the `less` program:
+In practice, this can be used to process data through several programs. For example, here the output of `ls -l` is sent to the `grep` program, which  prints only files with a `.md` extension, and this output is finally sent to the `less` program:
 
     ls -l | grep .md$ | less
 
@@ -382,13 +385,17 @@ In real world it can be used for processing data through few programs. For examp
 
 A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
 
-If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executing in background.
+If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executing in the background.
 
 Commands separated by a `;` are executed sequentially: one after another. The shell waits for finish of each command.
 
 ```bash
 # command2 will be executed after command1
 command1 ; command2
+
+# which is the same as
+command1
+command2
 ```
 
 Lists separated by `&&` and `||` are called _AND_ and _OR_ lists, respectively.
@@ -481,7 +488,7 @@ if [[ 1 -eq 1 ]]; then
 fi;
 ```
 
-At the same time, we could use `if..else` statement such as:
+Likewise, we could use `if..else` statement such as:
 
 ```bash
 # Single-line
@@ -495,7 +502,9 @@ else
 fi;
 ```
 
-Sometimes `if..else` statements is not enough to do what we wanna do. In this case we shouldn't forget about existence of `if..elif..else` statement, which may be very handy. Look at the example below:
+Sometimes `if..else` statements are not enough to do what we want to do. In this case we shouldn't forget about the existence of `if..elif..else` statements, which always come in handy.
+
+Look at the example below:
 
 ```bash
 if [[ `uname` == "Adam" ]]; then
@@ -563,7 +572,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-`for` is handy when we wanna do the same operation over each file in directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
+`for` is handy when we want to do the same operation over each file in directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
 
 ```bash
 #!/bin/bash
@@ -576,7 +585,7 @@ done
 
 ## `while` loop
 
-The `while` loop tests a condition and looping till that condition is _true_. Condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
+The `while` loop tests a condition and loops a sequence of commands until that condition is _true_. A condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
 
 ```bash
 while [[ condition ]]
@@ -585,9 +594,9 @@ do
 done
 ```
 
-As in the same case with `for`, if we want to write `do` and condition in the same line, then should be a semicolon before `do`.
+Just like in the case of the `for` loop, if we want to write `do` and condition in the same line, then we must use a semicolon before `do`.
 
-Working example might be look such as:
+A working example might look like this:
 
 ```bash
 #!/bin/bash
@@ -602,7 +611,7 @@ done
 
 ## `until` loop
 
-The `until` loop is opposite to `while` loop. Like a `while` it check test condition, but it keeps looping as long as this condition is _false_:
+The `until` loop is the exact opposite of the `while` loop. Like a `while` it checks a test condition, but it keeps looping as long as this condition is _false_:
 
 ```bash
 until [[ conditions ]]; do
@@ -621,9 +630,9 @@ do
 done
 ```
 
-The `select` print all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `#?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
+The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `#?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
 
-The working example might look like this:
+A working example might look like this:
 
 ```bash
 #!/bin/bash
@@ -642,9 +651,9 @@ do
 done
 ```
 
-This example, as user what package manager would he/she like to use. After that it will ask what package we want to install and finally install it.
+This example, asks the user what package manager {s,he} would like to use. Then, it will ask what package we want to install and finally proceeed to install it.
 
-If we run, we will have:
+If we run this, we will get:
 
 ```
 $ ./my_script
@@ -654,12 +663,12 @@ $ ./my_script
 4) pip
 Choose the package manager: 2
 Enter the package name: bash-handbook
-<installing of bash-handbook>
+<installing bash-handbook>
 ```
 
 ## Loop control
 
-There are situation when we need to stop loop before its normal ending or step over iteration For these cases there are built-in **break** and **continue** statements and both of them work with every kind of loops as well.
+There are situation when we need to stop a loop before its normal ending or step over iteration. In cases like those, we can use the shell built-in **break** and **continue** statements. Both of these work with every kind of loop.
 
 The **break** statement is used to exit the current loop before its ending. We have already met with it.
 
@@ -676,11 +685,11 @@ If we run example above, it will print all odd numbers from 0 to 10.
 
 # Functions
 
-In scripts we have ability to define and call functions. As in any programming language, functions in bash it's a pieces of code, but there are differences.
+In scripts we have ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are other differences.
 
-In bash functions it's a named group of commands. Calling a function is just like calling another program, you just write its name.
+In bash, functions are a sequence of commands grouped under a single name, that is the _name_ of the function. Calling a function is the same as calling any other program, you just write the name and the function will be _invoked_.
 
-We can declare our own function looks like below:
+We can declare our own function this way:
 
 ```bash
 my_func () {
@@ -690,11 +699,11 @@ my_func () {
 my_func # call my_func
 ```
 
-Declaring of a function should be before the first call.
+We must declare functions before we can execute them.
 
-Functions can take on arguments and return result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). Result can be returned using `return` command.
+Functions can take on arguments and return a result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). A result code can be _returned_ using the `return` command.
 
-So below is an function that takes name and return code of success:
+Below is a function that takes a name and returns `0`, indicating successful execution.
 
 ```bash
 # function with params
@@ -711,11 +720,11 @@ greeting Denys  # Hello, Denys!
 greeting        # Hello, unknown!
 ```
 
-We've already mentioned about [exit codes](#exit-codes). The `return` command returns the exit code of the last executed command. Above, `return 0` will return successful exit code.
+We already discussed [exit codes](#exit-codes). The `return` command returns the exit code of the last executed command. Above, `return 0` will return a successful exit code. `0`.
 
 ## Debugging
 
-The shell give us tools for debugging scripts. If we want to run script in debug mode, script's shebang should have a special option:
+The shell give us tools for debugging scripts. If we want to run script in debug mode, we use a special option in our script's shebang:
 
 ```bash
 #!/bin/bash options
@@ -742,7 +751,7 @@ for (( i = 0; i < 3; i++ )); do
 done
 ```
 
-It will print to `stdout` value of variables and other useful information:
+This will print the value of the variables to `stdout` along with other useful information:
 
 ```
 $ ./my_script
@@ -762,7 +771,7 @@ $ ./my_script
 + (( i < 3 ))
 ```
 
-Sometimes we need to debug part of script. Here the `set` command comes to help us. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
+Sometimes we need to debug a part of a script. In this case using the `set` is convenient. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
 
 ```bash
 #!/bin/bash
@@ -776,13 +785,13 @@ echo "xtrace is turned off again"
 
 # Afterwords
 
-I hope this small handbook is really interesting for you. In general, I wrote this handbook for myself to not forget the basic of Bash. I tried to write concisely but meaningfully, so I believe you appreciate it.
+I hope this small handbook was interesting and helpful. To be honest, I wrote this handbook for myself so as to not forget the bash basics. I tried to write concisely but meaningfully, and I hope you will appreciate that.
 
-This handbook consists of my own experience with Bash. It does not purport to be comprehensive, so if you want more, please use `man bash`.
+This handbook narrates my own experience with Bash. It does not purport to be comprehensive, so if you still want more, please run `man bash` and start there.
 
-I am trying be open to any thoughts. I will be very grateful for any adjustments, corrections or question. Please, send them to [Issues](https://github.com/denysdovhan/bash-handbook/issues).
+Contributions are absolutely welcome and I will be grateful for any corrections or questions you can send my way. For all of that create a new [issue](https://github.com/denysdovhan/bash-handbook/issues).
 
-Thanks for reading!
+Thanks for reading this handbook!
 
 # License
 
