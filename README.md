@@ -126,7 +126,7 @@ Every command returns an **exit code** (**return status** or **exit status**). A
 
 Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
 
-When a program terminates, the shell assigns its **exit code** to the `#?` environment variable. The `#?` variable is how we usually test whether a script has a succeeded or not in its execution.
+When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has a succeeded or not in its execution.
 
 In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
 
@@ -629,7 +629,7 @@ do
 done
 ```
 
-The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `#?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
+The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `$?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
 
 A working example might look like this:
 
