@@ -24,8 +24,11 @@
   },
   "homepage": "https://github.com/denysdovhan/bash-handbook#readme",
   "dependencies": {
+    "boxen": "^0.2.0",
+    "chalk": "^1.1.1",
     "default-pager": "^1.0.2",
     "msee": "^0.2.0",
-    "through2": "^2.0.0"
+    "through2": "^2.0.0",
+    "update-notifier": "^0.6.0"
   }
 }
