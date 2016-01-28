@@ -650,7 +650,7 @@ do
 done
 ```
 
-This example, asks the user what package manager {s,he} would like to use. Then, it will ask what package we want to install and finally proceeed to install it.
+This example, asks the user what package manager {s,he} would like to use. Then, it will ask what package we want to install and finally proceed to install it.
 
 If we run this, we will get:
 
