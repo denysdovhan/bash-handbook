@@ -298,7 +298,7 @@ now=`date +%T`
 # or
 now=$(date +%T)
 
-echo now # 19:08:26
+echo $now # 19:08:26
 ```
 
 ## Arithmetic expansion
