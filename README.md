@@ -83,7 +83,7 @@ We call this shell interactive because it interacts directly with the user.
 
 The desktop environment takes place in the seventh virtual terminal, so you can return to friendly GUI using the `Ctrl-Alt-F7` keybinding.
 
-Using a virtual terminal it's not really convenient. For example, if you want to edit a document and execute another command at the same you are better off using a virtual terminal emulators like:
+Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same you are better off using a virtual terminal emulators like:
 
 - [GNOME Terminal](https://ru.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
