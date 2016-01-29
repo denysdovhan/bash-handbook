@@ -57,7 +57,7 @@ You should be able to run `bash-handbook` at the command line now. This will ope
 
 If you are a developer, then you know the value of time. Optimizing your work process is one of the most important aspects of the job.
 
-In that path towards efficiency and productivity, we are often posed with actions that must be repeated over and over again, like taking a screenshot and uploading them to a server, processing text that may come in many shapes and forms, converting files between different formats, parsing a program's output and the list goes on. Enter bash, our savior.
+In that path towards efficiency and productivity, we are often posed with actions that must be repeated over and over again, like taking a screenshot and uploading it to a server, processing text that may come in many shapes and forms, converting files between different formats, parsing a program's output and the list goes on. Enter bash, our savior.
 
 **Bash** is a Unix shell written by [Brian Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as the Linux and OS X default shell for a long time.
 
@@ -81,9 +81,9 @@ Here you can enter a variety of Unix commands, such as `ls`, `grep`, `cd`, `mkdi
 
 We call this shell interactive because it interacts directly with the user.
 
-The desktop environment takes place in the seventh virtual terminal, so you can return to friendly GUI using the `Ctrl-Alt-F7` keybinding.
+The desktop environment takes place in the seventh virtual terminal, so you can return to a friendly GUI using the `Ctrl-Alt-F7` keybinding.
 
-Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same you are better off using a virtual terminal emulators like:
+Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same time, you are better off using virtual terminal emulators like:
 
 - [GNOME Terminal](https://ru.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
@@ -106,7 +106,7 @@ You can also simplify invoking the script by making it an executable file using 
 
     chmod +x /path/to/script.sh
 
-Additionally, the first line in the script must indicate the system which program it should use to run the file, like so:
+Additionally, the first line in the script must indicate which program it should use to run the file, like so:
 
 ```bash
 #!/bin/bash
@@ -122,11 +122,11 @@ Another handy thing we learned above is using the `echo` to print something to t
 
 ## Exit codes
 
-Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns non-zero value (error code). Failure codes must be positive integers between 1 and 255.
+Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns a non-zero value (error code). Failure codes must be positive integers between 1 and 255.
 
-Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
+Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running an `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
 
-When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has a succeeded or not in its execution.
+When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has succeeded or not in its execution.
 
 In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
 
@@ -386,7 +386,7 @@ A **list of commands** is a sequence of one or more pipelines separated by `;`, 
 
 If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executing in the background.
 
-Commands separated by a `;` are executed sequentially: one after another. The shell waits for finish of each command.
+Commands separated by a `;` are executed sequentially: one after another. The shell waits for the finish of each command.
 
 ```bash
 # command2 will be executed after command1
@@ -413,11 +413,11 @@ The _OR-list_ has the form:
 command1 || command2
 ```
 
-The return code of _AND_ and _OR_ lists is the exit status of the last executed command.
+The return code of _AND_ and _OR_ lists the exit status of the last executed command.
 
 # Conditional statements
 
-Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]`.
+Like in other languages, Bash conditionals let us decide to perform an action or not.  The result is determined by evaluating an expression, which should be enclosed in `[[ ]]`.
 
 Conditional expression may contain `&&` and `||` operator, which are _AND_ and _OR_ accordingly. Beside this, there many [other handy expression](#primary-and-combining-expressions).
 
@@ -425,7 +425,7 @@ There are two different conditional statements: `if` statement and `case` statem
 
 ## Primary and combining expressions
 
-Expressions enclosed inside `[[ ]]` are called **test commands** or **primaries**. These expressions help us to indicate result of an conditional.
+Expressions enclosed inside `[[ ]]` are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional.
 
 **Working with file system:**
 
@@ -473,9 +473,9 @@ Conditions may be combined using these **combining expressions:**
 
 Sure, there is more useful primaries and you can easily find it in [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
 
-## Using of `if` statement
+## Using an `if` statement
 
-`if` statement works completely at the same way as it works in other programming languages. If the expression within braces is true, the code between `then` and `fi`, which indicates the end of the conditionally executed code.
+`if` statements work the same as in other programming languages. If the expression within the braces is true, the code between `then` and `fi` is executed.  `fi` indicates the end of the conditionally executed code.
 
 ```bash
 # Single-line
@@ -515,9 +515,9 @@ else
 fi;
 ```
 
-## Using of `case` statement
+## Using a `case` statement
 
-If you are confronted with a couple of different possible actions to take, then using of `case` statement may more useful than nested `if` statement. For more complex conditions use `case` like below:
+If you are confronted with a couple of different possible actions to take, then using a `case` statement may more useful than nested `if` statements. For more complex conditions use `case` like below:
 
 ```bash
 case "$extension" in
@@ -536,7 +536,7 @@ case "$extension" in
 esac;
 ```
 
-Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` it's pattern for anything else, than doesn't match with defined patterns. Each block of command should be divided with `;;` operator.
+Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with `;;` operator.
 
 # Loops
 
@@ -555,15 +555,15 @@ do
 done
 ```
 
-During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Instead of these value may be wildcards or [brace expansion](#bracelexpansion).
+During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansion](#bracelexpansion).
 
-Also, we can write `for` loop in one line, but in this case there needs to be semicolon before `do`, like below:
+Also, we can write `for` loop in one line, but in this case there needs to be a semicolon before `do`, like below:
 
 ```bash
 for i in {1..5}; do echo $i; done
 ```
 
-By the way, if `for..in..do` seems a little bit weird for you, as well you can write `for` in C-like style such as:
+By the way, if `for..in..do` seems a little bit weird to you, you can also write `for` in C-like style such as:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -571,7 +571,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-`for` is handy when we want to do the same operation over each file in directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
+`for` is handy when we want to do the same operation over each file in a directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
 
 ```bash
 #!/bin/bash
@@ -620,7 +620,7 @@ done
 
 ## `select` loop
 
-The `select` loop help us to organize a user menu. It has almost the same syntax as `for` loop:
+The `select` loop helps us to organize a user menu. It has almost the same syntax as `for` loop:
 
 ```bash
 select answer in elem1 elem2 ... elemN
@@ -667,11 +667,11 @@ Enter the package name: bash-handbook
 
 ## Loop control
 
-There are situation when we need to stop a loop before its normal ending or step over iteration. In cases like those, we can use the shell built-in **break** and **continue** statements. Both of these work with every kind of loop.
+There are situations when we need to stop a loop before its normal ending or step over an iteration. In these cases, we can use the shell built-in **break** and **continue** statements. Both of these work with every kind of loop.
 
 The **break** statement is used to exit the current loop before its ending. We have already met with it.
 
-The **continue** statement steps over one iteration. We can use it such as:
+The **continue** statement steps over one iteration. We can use it as such:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -680,11 +680,11 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-If we run example above, it will print all odd numbers from 0 to 10.
+If we run the example above, it will print all odd numbers from 0 to 10.
 
 # Functions
 
-In scripts we have ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are other differences.
+In scripts we have the ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are other differences.
 
 In bash, functions are a sequence of commands grouped under a single name, that is the _name_ of the function. Calling a function is the same as calling any other program, you just write the name and the function will be _invoked_.
 
@@ -723,13 +723,13 @@ We already discussed [exit codes](#exit-codes). The `return` command returns the
 
 ## Debugging
 
-The shell give us tools for debugging scripts. If we want to run script in debug mode, we use a special option in our script's shebang:
+The shell give us tools for debugging scripts. If we want to run a script in debug mode, we use a special option in our script's shebang:
 
 ```bash
 #!/bin/bash options
 ```
 
-These options are settings that change shell behavior. The following table is a list of options which might be useful for you:
+These options are settings that change shell behavior. The following table is a list of options which might be useful to you:
 
 | Short | Name        | Description                                            |
 | :---: | :---------- | :----------------------------------------------------- |
