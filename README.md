@@ -30,7 +30,7 @@ You should be able to run `bash-handbook` at the command line now. This will ope
   - [Adding elements into an array](#adding-elements-into-an-array)
   - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Shell expansions](#shell-expansions)
-  - [Brace expansion](#brace-Expansion)
+  - [Brace expansion](#brace-expansion)
   - [Command substitution](#command-substitution)
   - [Arithmetic expansion](#arithmetic-expansion)
   - [Double and single quotes](#double-and-single-quotes)
