@@ -23,7 +23,7 @@ You should be able to run `bash-handbook` at the command line now. This will ope
 - [Variables](#variables)
   - [Local variables](#local-variables)
   - [Environment variables](#environment-variables)
-  - [Positional arguments](#positional-arguments)
+  - [Positional parameters](#positional-parameters)
 - [Arrays](#arrays)
   - [Array declaration](#array-declaration)
   - [Array slice](#array-slice)
@@ -190,7 +190,7 @@ There are _a lot_ of global variables in bash. You will meet these variables fai
 
 Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) to see an extended list of environment variables in Bash.
 
-## Positional arguments
+## Positional parameters
 
 **Positional arguments** are variables allocated when a function is evaluated and are given positionally. The following table lists positional argument variables and other special variables and their meanings when you are inside a function.
 
