@@ -613,7 +613,7 @@ done
 The `until` loop is the exact opposite of the `while` loop. Like a `while` it checks a test condition, but it keeps looping as long as this condition is _false_:
 
 ```bash
-until [[ conditions ]]; do
+until [[ condition ]]; do
   #statements
 done
 ```
