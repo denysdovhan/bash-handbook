@@ -567,7 +567,7 @@ do
 done
 ```
 
-During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansion](#bracelexpansion).
+During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansion](#brace-expansion).
 
 Also, we can write `for` loop in one line, but in this case there needs to be a semicolon before `do`, like below:
 
