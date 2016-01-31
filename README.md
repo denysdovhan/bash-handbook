@@ -600,7 +600,7 @@ A working example might look like this:
 ```bash
 #!/bin/bash
 
-# Squares of numbers from 1 to 10
+# Squares of numbers from 0 through 9
 x=0
 while [[ $x -lt 10 ]]; do # value of x is less than 10
   echo $(($x*$x))
@@ -680,7 +680,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-If we run the example above, it will print all odd numbers from 0 to 10.
+If we run the example above, it will print all odd numbers from 0 through 9.
 
 # Functions
 
