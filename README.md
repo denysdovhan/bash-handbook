@@ -431,7 +431,7 @@ Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test comman
 
 | Primary       | Meaning                                                      |
 | :-----------: | :----------------------------------------------------------- |
-| `[ -e FILE ]` | True if `FILE` **e**xists and is a directory or regular file.|
+| `[ -e FILE ]` | True if `FILE` **e**xists.                                   |
 | `[ -f FILE ]` | True if `FILE` exists and is a regular **f**ile.             |
 | `[ -d FILE ]` | True if `FILE` exists and is a **d**irectory.                |
 | `[ -s FILE ]` | True if `FILE` exists and not empty (**s**ize more than 0).  |
