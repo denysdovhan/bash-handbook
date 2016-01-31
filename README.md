@@ -53,7 +53,7 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
   - [Loop control](#loop-control)
 - [Functions](#functions)
 - [Debugging](#debugging)
-- [Afterwords](#afterwords)
+- [Afterword](#afterword)
 - [License](#license)
 
 # Introduction
@@ -225,7 +225,7 @@ In the example below, the positional parameters will be `$0='./script.sh'`,  `$1
 Variables may also have _default_ values. We can define as such using the following syntax:
 
 ```bash
- # if variables are empty, assign then default values
+ # if variables are empty, assign them default values
 : ${VAR:='default'}
 : ${$1:='first'}
 # or
@@ -234,13 +234,13 @@ FOO=${FOO:-'default'}
 
 # Shell expansions
 
-_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
+_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are a mechanism to calculate arithmetical operations, to save results of commands' executions and so on.
 
 If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
 
 ## Brace expansion
 
-Brace expansion allow us to generate arbitrary strings. It's similar to _filename expansion_. For example:
+Brace expansion allows us to generate arbitrary strings. It's similar to _filename expansion_. For example:
 
 ```bash
 echo beg{i,a,u}n # begin began begun
@@ -305,9 +305,9 @@ While the issue in this example could be resolved by renaming FILE to `Favorite-
 
 # Arrays
 
-Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
+Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, that is, the first element in an array has index 0.
 
-When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS** or **Input Field Separator** — is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
+When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS**, or **Input Field Separator**, is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
 
 ## Array declaration
 
@@ -471,7 +471,7 @@ In practice, this can be used to process data through several programs. For exam
 
 A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
 
-If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executing in the background.
+If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executed in the background.
 
 Commands separated by a `;` are executed sequentially: one after another. The shell waits for the finish of each command.
 
@@ -500,21 +500,21 @@ The _OR-list_ has the form:
 command1 || command2
 ```
 
-The return code of _AND_ and _OR_ lists the exit status of the last executed command.
+The return code of an _AND_ or _OR_ list is the exit status of the last executed command.
 
 # Conditional statements
 
 Like in other languages, Bash conditionals let us decide to perform an action or not.  The result is determined by evaluating an expression, which should be enclosed in `[[ ]]`.
 
-Conditional expression may contain `&&` and `||` operator, which are _AND_ and _OR_ accordingly. Beside this, there many [other handy expression](#primary-and-combining-expressions).
+Conditional expression may contain `&&` and `||` operators, which are _AND_ and _OR_ accordingly. Besides this, there many [other handy expressions](#primary-and-combining-expressions).
 
 There are two different conditional statements: `if` statement and `case` statement.
 
 ## Primary and combining expressions
 
-Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In tables bellow, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
+Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
 
-**Working with file system:**
+**Working with the file system:**
 
 | Primary       | Meaning                                                      |
 | :-----------: | :----------------------------------------------------------- |
@@ -547,7 +547,7 @@ Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test comman
 | `[ ARG1 -lt ARG2 ]` | `ARG1` is **l**ess **t**han `ARG2`.                    |
 | `[ ARG1 -le ARG2 ]` | `ARG1` is **l**ess than or **e**qual to `ARG2`.        |
 | `[ ARG1 -gt ARG2 ]` | `ARG1` is **g**reater **t**han `ARG2`.                 |
-| `[ ARG1 -ge ARG2 ]` | `ARG1` is **g**reater or **e**qual to `ARG2`.          |
+| `[ ARG1 -ge ARG2 ]` | `ARG1` is **g**reater than or **e**qual to `ARG2`.     |
 
 Conditions may be combined using these **combining expressions:**
 
@@ -558,7 +558,7 @@ Conditions may be combined using these **combining expressions:**
 | `[ EXPR1 -a EXPR2 ]` | Logical _AND_. True if `EXPR1` **a**nd `EXPR2` are true. |
 | `[ EXPR1 -o EXPR2 ]` | Logical _OR_. True if `EXPR1` **o**r `EXPR2` are true.|
 
-Sure, there is more useful primaries and you can easily find it in [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
+Sure, there are more useful primaries and you can easily find them in the [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
 
 ## Using an `if` statement
 
@@ -574,7 +574,7 @@ if [[ 1 -eq 1 ]]; then
 fi
 ```
 
-Likewise, we could use `if..else` statement such as:
+Likewise, we could use an `if..else` statement such as:
 
 ```bash
 # Single-line
@@ -604,7 +604,7 @@ fi
 
 ## Using a `case` statement
 
-If you are confronted with a couple of different possible actions to take, then using a `case` statement may more useful than nested `if` statements. For more complex conditions use `case` like below:
+If you are confronted with a couple of different possible actions to take, then using a `case` statement may be more useful than nested `if` statements. For more complex conditions use `case` like below:
 
 ```bash
 case "$extension" in
@@ -623,7 +623,7 @@ case "$extension" in
 esac
 ```
 
-Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with `;;` operator.
+Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with the `;;` operator.
 
 # Loops
 
@@ -642,7 +642,7 @@ do
 done
 ```
 
-During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansion](#brace-expansion).
+During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansions](#brace-expansion).
 
 Also, we can write `for` loop in one line, but in this case there needs to be a semicolon before `do`, like below:
 
@@ -658,7 +658,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-`for` is handy when we want to do the same operation over each file in a directory. For example, if we need to move all `.bash` files into `script` folder and then give them execute permissions, our script would look like this:
+`for` is handy when we want to do the same operation over each file in a directory. For example, if we need to move all `.bash` files into the `script` folder and then give them execute permissions, our script would look like this:
 
 ```bash
 #!/bin/bash
@@ -671,7 +671,7 @@ done
 
 ## `while` loop
 
-The `while` loop tests a condition and loops a sequence of commands until that condition is _true_. A condition is nothing more than [primary](#primary-and-combining-expressions) is used in `if..then` conditions. So `while` loop looks like this:
+The `while` loop tests a condition and loops over a sequence of commands so long as that condition is _true_. A condition is nothing more than a [primary](#primary-and-combining-expressions) as used in `if..then` conditions. So a `while` loop looks like this:
 
 ```bash
 while [[ condition ]]
@@ -707,7 +707,7 @@ done
 
 ## `select` loop
 
-The `select` loop helps us to organize a user menu. It has almost the same syntax as `for` loop:
+The `select` loop helps us to organize a user menu. It has almost the same syntax as the `for` loop:
 
 ```bash
 select answer in elem1 elem2 ... elemN
@@ -716,7 +716,7 @@ do
 done
 ```
 
-The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `$?` (`PS3` variable). The answer will save in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use `break` statement.
+The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `$?` (`PS3` variable). The answer will be saved in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use the `break` statement.
 
 A working example might look like this:
 
@@ -771,7 +771,7 @@ If we run the example above, it will print all odd numbers from 0 through 9.
 
 # Functions
 
-In scripts we have the ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are other differences.
+In scripts we have the ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are differences.
 
 In bash, functions are a sequence of commands grouped under a single name, that is the _name_ of the function. Calling a function is the same as calling any other program, you just write the name and the function will be _invoked_.
 
@@ -810,7 +810,7 @@ We already discussed [exit codes](#exit-codes). The `return` command without any
 
 ## Debugging
 
-The shell give us tools for debugging scripts. If we want to run a script in debug mode, we use a special option in our script's shebang:
+The shell gives us tools for debugging scripts. If we want to run a script in debug mode, we use a special option in our script's shebang:
 
 ```bash
 #!/bin/bash options
@@ -822,10 +822,10 @@ These options are settings that change shell behavior. The following table is a 
 | :---: | :---------- | :----------------------------------------------------- |
 | `-f`  | noglob      | Disable filename expansion (globbing).                 |
 | `-i`  | interactive | Script runs in _interactive_ mode.                     |
-| `-n`  | noexec      | Read command, but don't execute them (syntax check).   |
+| `-n`  | noexec      | Read commands, but don't execute them (syntax check).  |
 | `-t`  | —           | Exit after first command.                              |
 | `-v`  | verbose     | Print each command to `stderr` before executing it.    |
-| `-x`  | xtrace      | Print each command to `stderr` before executing it and expands commands. |
+| `-x`  | xtrace      | Print each command and its expanded arguments to `stderr` before executing it. |
 
 For example, we have script with `-x` option such as:
 
@@ -857,7 +857,7 @@ $ ./my_script
 + (( i < 3 ))
 ```
 
-Sometimes we need to debug a part of a script. In this case using the `set` is convenient. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
+Sometimes we need to debug a part of a script. In this case using the `set` command is convenient. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
 
 ```bash
 #!/bin/bash
@@ -869,7 +869,7 @@ set +x
 echo "xtrace is turned off again"
 ```
 
-# Afterwords
+# Afterword
 
 I hope this small handbook was interesting and helpful. To be honest, I wrote this handbook for myself so as to not forget the bash basics. I tried to write concisely but meaningfully, and I hope you will appreciate that.
 
