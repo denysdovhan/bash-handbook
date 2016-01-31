@@ -409,7 +409,7 @@ command1 && command2
 The _OR-list_ has the form:
 
 ```bash
-# command2 will be executed if, and only if, command finishes unsuccessfully (returns code of error)
+# command2 will be executed if, and only if, command1 finishes unsuccessfully (returns code of error)
 command1 || command2
 ```
 
