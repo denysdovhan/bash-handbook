@@ -667,11 +667,11 @@ Enter the package name: bash-handbook
 
 ## Loop control
 
-There are situations when we need to stop a loop before its normal ending or step over an iteration. In these cases, we can use the shell built-in **break** and **continue** statements. Both of these work with every kind of loop.
+There are situations when we need to stop a loop before its normal ending or step over an iteration. In these cases, we can use the shell built-in `break` and `continue` statements. Both of these work with every kind of loop.
 
-The **break** statement is used to exit the current loop before its ending. We have already met with it.
+The `break` statement is used to exit the current loop before its ending. We have already met with it.
 
-The **continue** statement steps over one iteration. We can use it as such:
+The `continue` statement steps over one iteration. We can use it as such:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
