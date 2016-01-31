@@ -483,8 +483,8 @@ if [[ 1 -eq 1 ]]; then echo "true"; fi;
 
 # Multi-line
 if [[ 1 -eq 1 ]]; then
-  echo "true";
-fi;
+  echo "true"
+fi
 ```
 
 Likewise, we could use `if..else` statement such as:
@@ -495,10 +495,10 @@ if [[ 2 -ne 1 ]]; then echo "true"; else echo "false"; fi;
 
 # Multi-line
 if [[ 2 -ne 1 ]]; then
-  echo "true";
+  echo "true"
 else
-  echo "false";
-fi;
+  echo "false"
+fi
 ```
 
 Sometimes `if..else` statements are not enough to do what we want to do. In this case we shouldn't forget about the existence of `if..elif..else` statements, which always come in handy.
@@ -507,12 +507,12 @@ Look at the example below:
 
 ```bash
 if [[ `uname` == "Adam" ]]; then
-  echo "Do not eat an apple!";
+  echo "Do not eat an apple!"
 elif [[ `uname` == "Eva" ]]; then
-  echo "Do not take an apple!";
+  echo "Do not take an apple!"
 else
-  echo "Apples are delicious!";
-fi;
+  echo "Apples are delicious!"
+fi
 ```
 
 ## Using a `case` statement
@@ -533,7 +533,7 @@ case "$extension" in
   *)
     echo "Woops! It's not image!"
   ;;
-esac;
+esac
 ```
 
 Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with `;;` operator.
