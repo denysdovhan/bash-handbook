@@ -192,18 +192,18 @@ Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html
 
 ## Positional parameters
 
-**Positional arguments** are variables allocated when a function is evaluated and are given positionally. The following table lists positional argument variables and other special variables and their meanings when you are inside a function.
+**Positional parameters** are variables allocated when a function is evaluated and are given positionally. The following table lists positional parameter variables and other special variables and their meanings when you are inside a function.
 
 | Parameter      | Description                                                 |
 | :------------- | :---------------------------------------------------------- |
 | `$0`           | Script's name.                                              |
-| `$1 … $9`      | The argument list elements from 1 to 9.                     |
-| `${10} … ${N}` | The argument list elements from 10 to N.                    |
+| `$1 … $9`      | The parameter list elements from 1 to 9.                     |
+| `${10} … ${N}` | The parameter list elements from 10 to N.                    |
 | `$*` or `$@`   | All positional parameters except `$0`.                      |
-| `$#`           | The number of arguments, not counting `$0`.                 |
+| `$#`           | The number of parameters, not counting `$0`.                 |
 | `$FUNCNAME`    | The function name (has a value only inside a function).     |
 
-In the example below, the positional arguments will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+In the example below, the positional parameters will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
 
     ./script.sh foo bar
 
