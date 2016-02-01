@@ -97,7 +97,7 @@ The desktop environment takes place in the seventh virtual terminal, so you can 
 
 Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same time, you are better off using virtual terminal emulators like:
 
-- [GNOME Terminal](https://ru.wikipedia.org/wiki/GNOME_Terminal)
+- [GNOME Terminal](https://en.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
 - [iTerm2](https://en.wikipedia.org/wiki/ITerm2)
 - [ConEmu](https://en.wikipedia.org/wiki/ConEmu)
