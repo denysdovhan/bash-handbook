@@ -29,10 +29,10 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
 - [Arrays](#arrays)
   - [Array declaration](#array-declaration)
   - [Array slice](#array-slice)
-  - [Adding elements into array](#adding-elements-into-array)
-  - [Deleting elements from array](#deleting-elements-from-array)
+  - [Adding elements into an array](#adding-elements-into-an-array)
+  - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Shell expansions](#shell-expansions)
-  - [Brace expansion](#brace-Expansion)
+  - [Brace expansion](#brace-expansion)
   - [Command substitution](#command-substitution)
   - [Arithmetic expansion](#arithmetic-expansion)
   - [Double and single quotes](#double-and-single-quotes)
@@ -42,8 +42,8 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
   - [Lists of commands](#lists-of-commands)
 - [Conditional statements](#conditional-statements)
   - [Primary and combining expressions](#primary-and-combining-expressions)
-  - [Using of `if` statement](#using-of-if-statement)
-  - [Using of `case` statement](#using-of-case-statement)
+  - [Using an `if` statement](#using-an-if-statement)
+  - [Using a `case` statement](#using-a-case-statement)
 - [Loops](#loops)
   - [`for` loop](#for-loop)
   - [`while` loop](#while-loop)
@@ -202,20 +202,20 @@ There are _a lot_ of global variables in bash. You will meet these variables fai
 
 Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) to see an extended list of environment variables in Bash.
 
-## Positional arguments
+## Positional parameters
 
-**Positional arguments** are variables allocated when a function is evaluated and are given positionally. The following table lists positional argument variables and other special variables and their meanings when you are inside a function.
+**Positional parameters** are variables allocated when a function is evaluated and are given positionally. The following table lists positional parameter variables and other special variables and their meanings when you are inside a function.
 
 | Parameter      | Description                                                 |
 | :------------- | :---------------------------------------------------------- |
 | `$0`           | Script's name.                                              |
-| `$1 … $9`      | The argument list elements from 1 to 9.                     |
-| `${10} … ${N}` | The argument list elements from 10 to N.                    |
+| `$1 … $9`      | The parameter list elements from 1 to 9.                     |
+| `${10} … ${N}` | The parameter list elements from 10 to N.                    |
 | `$*` or `$@`   | All positional parameters except `$0`.                      |
-| `$#`           | The number of arguments, not counting `$0`.                 |
+| `$#`           | The number of parameters, not counting `$0`.                 |
 | `$FUNCNAME`    | The function name (has a value only inside a function).     |
 
-In the example below, the positional arguments will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+In the example below, the positional parameters will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
 
     ./script.sh foo bar
 
