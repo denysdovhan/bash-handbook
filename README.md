@@ -225,6 +225,8 @@ Variables may also have _default_ values. We can define as such using the follow
  # if variables are empty, assign then default values
 : ${VAR:='default'}
 : ${$1:='first'}
+# or
+FOO=${FOO:-'default'}
 ```
 
 # Arrays
