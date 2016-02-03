@@ -554,7 +554,7 @@ Each case is an expression matching a pattern. The `|` sign is used for separati
 
 Here we won't be surprised. As in any programming language, a loop in bash is a block of code that iterates as long as the control conditional is true.
 
-There are three types of loops in Bash: `for`, `while`, `until` and `select`.
+There are four types of loops in Bash: `for`, `while`, `until` and `select`.
 
 ## `for` loop
 
