@@ -1,6 +1,6 @@
 {
   "name": "bash-handbook",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "description": "For those who wanna learn Bash",
   "bin": {
     "bash-handbook": "bin/cmd.js"
