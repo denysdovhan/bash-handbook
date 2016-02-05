@@ -467,7 +467,7 @@ In practice, this can be used to process data through several programs. For exam
 
     ls -l | grep .md$ | less
 
-# Lists of commands
+## Lists of commands
 
 A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
 
