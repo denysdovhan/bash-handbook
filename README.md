@@ -566,7 +566,7 @@ Sure, there is more useful primaries and you can easily find it in [Bash man pag
 
 ```bash
 # Single-line
-if [[ 1 -eq 1 ]]; then echo "true"; fi;
+if [[ 1 -eq 1 ]]; then echo "true"; fi
 
 # Multi-line
 if [[ 1 -eq 1 ]]; then
@@ -578,7 +578,7 @@ Likewise, we could use `if..else` statement such as:
 
 ```bash
 # Single-line
-if [[ 2 -ne 1 ]]; then echo "true"; else echo "false"; fi;
+if [[ 2 -ne 1 ]]; then echo "true"; else echo "false"; fi
 
 # Multi-line
 if [[ 2 -ne 1 ]]; then
@@ -732,7 +732,7 @@ do
     npm)   npm   install $PACKAGE ;;
     gem)   gem   install $PACKAGE ;;
     pip)   pip   install $PACKAGE ;;
-  esac;
+  esac
   break # avoid infinite loop
 done
 ```
@@ -762,7 +762,7 @@ The `continue` statement steps over one iteration. We can use it as such:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
-  if [[ $(($i % 2)) == 0 ]]; then continue; fi;
+  if [[ $(($i % 2)) == 0 ]]; then continue; fi
   echo $i
 done
 ```
