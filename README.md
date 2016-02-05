@@ -282,6 +282,26 @@ echo "Your home: $HOME" # Your home: /Users/<username>
 echo 'Your home: $HOME' # Your home: $HOME
 ```
 
+Take care to expand local variables and environment variables within quotes if they could contain whitespace. As an innocuous example, consider using `echo` to print some user input:
+
+```bash
+INPUT="A string  with   strange    whitespace."
+echo $INPUT   # A string with strange whitespace.
+echo "$INPUT" # A string  with   strange    whitespace.
+```
+
+The first `echo` is invoked with 5 separate arguments — $INPUT is split into separate words, `echo` prints a single space character between each. In the second case, `echo` is invoked with a single argument (the entire $INPUT value, including whitespace).
+
+Now consider a more serious example:
+
+```bash
+FILE="Favorite Things.txt"
+cat $FILE   # attempts to print 2 files: `Favorite` and `Things.txt`
+cat "$FILE" # prints 1 file: `Favorite Things.txt`
+```
+
+While the issue in this example could be resolved by renaming FILE to `Favorite-Things.txt`, consider input coming from an environment variable, a positional parameter, or the output of another command (`find`, `cat`, etc). If the input *might* contain whitespace, take care to wrap the expansion in quotes.
+
 # Arrays
 
 Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
