@@ -83,7 +83,11 @@ The user bash shell can work in two modes - interactive and non-interactive.
 
 ## Interactive mode
 
-If you are working on Ubuntu, you can open the shell using the `Ctrl-Alt-F1` keybinding. After that, the familiar GUI will disappear and one of the seven virtual terminals available in Ubuntu will be shown.
+If you are working on Ubuntu, you have seven virtual terminals available to you.
+The desktop environment takes place in the seventh virtual terminal, so you can return to a friendly GUI
+using the `Ctrl-Alt-F7` keybinding.
+
+You can open the shell using the `Ctrl-Alt-F1` keybinding. After that, the familiar GUI will disappear and one of the virtual terminals will be shown.
 
 If you see something like this, then you are working in interactive mode:
 
@@ -92,8 +96,6 @@ If you see something like this, then you are working in interactive mode:
 Here you can enter a variety of Unix commands, such as `ls`, `grep`, `cd`, `mkdir`, `rm` and see the result of their execution.
 
 We call this shell interactive because it interacts directly with the user.
-
-The desktop environment takes place in the seventh virtual terminal, so you can return to a friendly GUI using the `Ctrl-Alt-F7` keybinding.
 
 Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same time, you are better off using virtual terminal emulators like:
 
