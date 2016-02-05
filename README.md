@@ -26,16 +26,17 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
   - [Local variables](#local-variables)
   - [Environment variables](#environment-variables)
   - [Positional parameters](#positional-parameters)
-- [Arrays](#arrays)
-  - [Array declaration](#array-declaration)
-  - [Array slice](#array-slice)
-  - [Adding elements into an array](#adding-elements-into-an-array)
-  - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Shell expansions](#shell-expansions)
   - [Brace expansion](#brace-expansion)
   - [Command substitution](#command-substitution)
   - [Arithmetic expansion](#arithmetic-expansion)
   - [Double and single quotes](#double-and-single-quotes)
+- [Arrays](#arrays)
+  - [Array declaration](#array-declaration)
+  - [Array expansion](#array-expansion)
+  - [Array slice](#array-slice)
+  - [Adding elements into an array](#adding-elements-into-an-array)
+  - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Streams, pipes and lists](#streams-pipes-and-lists)
   - [Streams](#streams)
   - [Pipes](#pipes)
@@ -231,59 +232,6 @@ Variables may also have _default_ values. We can define as such using the follow
 FOO=${FOO:-'default'}
 ```
 
-# Arrays
-
-Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
-
-When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS** or **Input Field Separator** — is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
-
-## Array declaration
-
-In bash you create an array by simply assigning a value to an index in the array variable:
-
-```bash
-fruits[0]=Apple
-fruits[1]=Pear
-fruits[2]=Plum
-echo ${fruits[*]} # echo ${fruits[@]} may be used as well
-```
-
-Array variables can also be created using compound assignments such as:
-
-```bash
-fruits=(Apple Pear Plum)
-```
-
-## Array slice
-
-Besides, we can extract a slice of array using the _slice_ operators:
-
-```bash
-echo ${fruits[*]:0:2} # Apple Pear
-```
-
-In the example above, `fruits[*]` returns the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
-
-## Adding elements into an array
-
-Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
-
-```bash
-fruits=(Orange ${fruits[*]} Banana Cherry)
-echo ${fruits[*]} # Orange Apple Pear Plum Banana Cherry
-```
-
-The example above, `fruits[*]` the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
-
-## Deleting elements from an array
-
-To delete an element from an array, use the `unset` command:
-
-```bash
-unset fruits[0]
-echo ${fruits[*]} # Apple Pear Plum Banana Cherry
-```
-
 # Shell expansions
 
 _Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
@@ -307,7 +255,7 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by `` `​` `` or `$()`.  For example, we can use it as follows:
+Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
 
 ```bash
 now=`date +%T`
@@ -333,6 +281,129 @@ There is an important difference between double and single quotes. Inside double
 ```bash
 echo "Your home: $HOME" # Your home: /Users/<username>
 echo 'Your home: $HOME' # Your home: $HOME
+```
+
+Take care to expand local variables and environment variables within quotes if they could contain whitespace. As an innocuous example, consider using `echo` to print some user input:
+
+```bash
+INPUT="A string  with   strange    whitespace."
+echo $INPUT   # A string with strange whitespace.
+echo "$INPUT" # A string  with   strange    whitespace.
+```
+
+The first `echo` is invoked with 5 separate arguments — $INPUT is split into separate words, `echo` prints a single space character between each. In the second case, `echo` is invoked with a single argument (the entire $INPUT value, including whitespace).
+
+Now consider a more serious example:
+
+```bash
+FILE="Favorite Things.txt"
+cat $FILE   # attempts to print 2 files: `Favorite` and `Things.txt`
+cat "$FILE" # prints 1 file: `Favorite Things.txt`
+```
+
+While the issue in this example could be resolved by renaming FILE to `Favorite-Things.txt`, consider input coming from an environment variable, a positional parameter, or the output of another command (`find`, `cat`, etc). If the input *might* contain whitespace, take care to wrap the expansion in quotes.
+
+# Arrays
+
+Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
+
+When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS** or **Input Field Separator** — is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
+
+## Array declaration
+
+In bash you create an array by simply assigning a value to an index in the array variable:
+
+```bash
+fruits[0]=Apple
+fruits[1]=Pear
+fruits[2]=Plum
+```
+
+Array variables can also be created using compound assignments such as:
+
+```bash
+fruits=(Apple Pear Plum)
+```
+
+## Array expansion
+
+Individual array elements are expanded similar to other variables:
+
+```bash
+echo ${fruits[1]} # Pear
+```
+
+The entire array can be expanded by using `*` or `@` in place of the numeric index:
+
+```bash
+echo ${fruits[*]} # Apple Pear Plum
+echo ${fruits[@]} # Apple Pear Plum
+```
+
+There is an important (and subtle) difference between the two lines above: consider an array element containing whitespace:
+
+```bash
+fruits[0]=Apple
+fruits[1]="Desert fig"
+fruits[2]=Plum
+```
+
+We want to print each element of the array on a separate line, so we try to use the `printf` builtin:
+
+```bash
+printf "+ %s\n" ${fruits[*]}
+# + Apple
+# + Desert
+# + fig
+# + Plum
+```
+
+Why were `Desert` and `fig` printed on separate lines? Let's try to use quoting:
+
+```bash
+printf "+ %s\n" "${fruits[*]}"
+# + Apple Desert fig Plum
+```
+
+Now everything is on one line — that's not what we wanted! Here's where `${fruits[@]}` comes into play:
+
+```bash
+printf "+ %s\n" "${fruits[@]}"
+# + Apple
+# + Desert fig
+# + Plum
+```
+
+Within double quotes, `${fruits[@]}` expands to a separate argument for each element in the array; whitespace in the array elements is preserved.
+
+## Array slice
+
+Besides, we can extract a slice of array using the _slice_ operators:
+
+```bash
+echo ${fruits[@]:0:2} # Apple Desert fig
+```
+
+In the example above, `${fruits[@]}` expands to the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
+
+## Adding elements into an array
+
+Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
+
+```bash
+fruits=(Orange "${fruits[@]}" Banana Cherry)
+echo ${fruits[@]} # Orange Apple Desert fig Plum Banana Cherry
+```
+
+The example above, `${fruits[@]}` expands to the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
+
+## Deleting elements from an array
+
+To delete an element from an array, use the `unset` command:
+
+```bash
+unset fruits[0]
+echo ${fruits[@]} # Apple Desert fig Plum Banana Cherry
 ```
 
 # Streams, pipes and lists
@@ -593,8 +664,8 @@ done
 #!/bin/bash
 
 for FILE in $HOME/*.bash; do
-  mv $FILE ${HOME}/scripts
-  chmod +x ${HOME}/scripts/${FILE}
+  mv "$FILE" "${HOME}/scripts"
+  chmod +x "${HOME}/scripts/${FILE}"
 done
 ```
 
