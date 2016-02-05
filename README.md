@@ -785,7 +785,7 @@ my_func () {
 my_func # call my_func
 ```
 
-We must declare functions before we can execute them.
+We must declare functions before we can invoke them.
 
 Functions can take on arguments and return a result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). A result code can be _returned_ using the `return` command.
 
