@@ -26,16 +26,16 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
   - [Local variables](#local-variables)
   - [Environment variables](#environment-variables)
   - [Positional parameters](#positional-parameters)
-- [Arrays](#arrays)
-  - [Array declaration](#array-declaration)
-  - [Array slice](#array-slice)
-  - [Adding elements into an array](#adding-elements-into-an-array)
-  - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Shell expansions](#shell-expansions)
   - [Brace expansion](#brace-expansion)
   - [Command substitution](#command-substitution)
   - [Arithmetic expansion](#arithmetic-expansion)
   - [Double and single quotes](#double-and-single-quotes)
+- [Arrays](#arrays)
+  - [Array declaration](#array-declaration)
+  - [Array slice](#array-slice)
+  - [Adding elements into an array](#adding-elements-into-an-array)
+  - [Deleting elements from an array](#deleting-elements-from-an-array)
 - [Streams, pipes and lists](#streams-pipes-and-lists)
   - [Streams](#streams)
   - [Pipes](#pipes)
@@ -231,6 +231,57 @@ Variables may also have _default_ values. We can define as such using the follow
 FOO=${FOO:-'default'}
 ```
 
+# Shell expansions
+
+_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
+
+If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
+
+## Brace expansion
+
+Brace expansion allow us to generate arbitrary strings. It's similar to _filename expansion_. For example:
+
+```bash
+echo beg{i,a,u}n # begin began begun
+```
+
+Also brace expansions may be used for creating ranges, which are iterated over in loops.
+
+```bash
+echo {0..5} # 0 1 2 3 4 5
+echo {00..8..2} # 00 02 04 06 08
+```
+
+## Command substitution
+
+Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
+
+```bash
+now=`date +%T`
+# or
+now=$(date +%T)
+
+echo $now # 19:08:26
+```
+
+## Arithmetic expansion
+
+In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
+
+```bash
+result=$(( ((10 + 5*3) - 7) / 2 ))
+echo $result # 9
+```
+
+## Double and single quotes
+
+There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
+
+```bash
+echo "Your home: $HOME" # Your home: /Users/<username>
+echo 'Your home: $HOME' # Your home: $HOME
+```
+
 # Arrays
 
 Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, this is, the first element in an array has index 0.
@@ -282,57 +333,6 @@ To delete an element from an array, use the `unset` command:
 ```bash
 unset fruits[0]
 echo ${fruits[*]} # Apple Pear Plum Banana Cherry
-```
-
-# Shell expansions
-
-_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are mechanism to calculate arithmetical operations, to save results of command's executions and so on.
-
-If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
-
-## Brace expansion
-
-Brace expansion allow us to generate arbitrary strings. It's similar to _filename expansion_. For example:
-
-```bash
-echo beg{i,a,u}n # begin began begun
-```
-
-Also brace expansions may be used for creating ranges, which are iterated over in loops.
-
-```bash
-echo {0..5} # 0 1 2 3 4 5
-echo {00..8..2} # 00 02 04 06 08
-```
-
-## Command substitution
-
-Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
-
-```bash
-now=`date +%T`
-# or
-now=$(date +%T)
-
-echo $now # 19:08:26
-```
-
-## Arithmetic expansion
-
-In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
-
-```bash
-result=$(( ((10 + 5*3) - 7) / 2 ))
-echo $result # 9
-```
-
-## Double and single quotes
-
-There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
-
-```bash
-echo "Your home: $HOME" # Your home: /Users/<username>
-echo 'Your home: $HOME' # Your home: $HOME
 ```
 
 # Streams, pipes and lists
