@@ -806,7 +806,7 @@ greeting Denys  # Hello, Denys!
 greeting        # Hello, unknown!
 ```
 
-We already discussed [exit codes](#exit-codes). The `return` command returns the exit code of the last executed command. Above, `return 0` will return a successful exit code. `0`.
+We already discussed [exit codes](#exit-codes). The `return` command without any arguments returns the exit code of the last executed command. Above, `return 0` will return a successful exit code. `0`.
 
 ## Debugging
 
