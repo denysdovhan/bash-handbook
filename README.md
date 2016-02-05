@@ -33,6 +33,7 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
   - [Double and single quotes](#double-and-single-quotes)
 - [Arrays](#arrays)
   - [Array declaration](#array-declaration)
+  - [Array expansion](#array-expansion)
   - [Array slice](#array-slice)
   - [Adding elements into an array](#adding-elements-into-an-array)
   - [Deleting elements from an array](#deleting-elements-from-an-array)
@@ -316,7 +317,6 @@ In bash you create an array by simply assigning a value to an index in the array
 fruits[0]=Apple
 fruits[1]=Pear
 fruits[2]=Plum
-echo ${fruits[*]} # echo ${fruits[@]} may be used as well
 ```
 
 Array variables can also be created using compound assignments such as:
@@ -325,26 +325,77 @@ Array variables can also be created using compound assignments such as:
 fruits=(Apple Pear Plum)
 ```
 
+## Array expansion
+
+Individual array elements are expanded similar to other variables:
+
+```bash
+echo ${fruits[1]} # Pear
+```
+
+The entire array can be expanded by using `*` or `@` in place of the numeric index:
+
+```bash
+echo ${fruits[*]} # Apple Pear Plum
+echo ${fruits[@]} # Apple Pear Plum
+```
+
+There is an important (and subtle) difference between the two lines above: consider an array element containing whitespace:
+
+```bash
+fruits[0]=Apple
+fruits[1]="Desert fig"
+fruits[2]=Plum
+```
+
+We want to print each element of the array on a separate line, so we try to use the `printf` builtin:
+
+```bash
+printf "+ %s\n" ${fruits[*]}
+# + Apple
+# + Desert
+# + fig
+# + Plum
+```
+
+Why were `Desert` and `fig` printed on separate lines? Let's try to use quoting:
+
+```bash
+printf "+ %s\n" "${fruits[*]}"
+# + Apple Desert fig Plum
+```
+
+Now everything is on one line — that's not what we wanted! Here's where `${fruits[@]}` comes into play:
+
+```bash
+printf "+ %s\n" "${fruits[@]}"
+# + Apple
+# + Desert fig
+# + Plum
+```
+
+Within double quotes, `${fruits[@]}` expands to a separate argument for each element in the array; whitespace in the array elements is preserved.
+
 ## Array slice
 
 Besides, we can extract a slice of array using the _slice_ operators:
 
 ```bash
-echo ${fruits[*]:0:2} # Apple Pear
+echo ${fruits[@]:0:2} # Apple Desert fig
 ```
 
-In the example above, `fruits[*]` returns the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
+In the example above, `${fruits[@]}` expands to the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
 
 ## Adding elements into an array
 
 Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
 
 ```bash
-fruits=(Orange ${fruits[*]} Banana Cherry)
-echo ${fruits[*]} # Orange Apple Pear Plum Banana Cherry
+fruits=(Orange "${fruits[@]}" Banana Cherry)
+echo ${fruits[@]} # Orange Apple Desert fig Plum Banana Cherry
 ```
 
-The example above, `fruits[*]` the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
+The example above, `${fruits[@]}` expands to the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
 
 ## Deleting elements from an array
 
@@ -352,7 +403,7 @@ To delete an element from an array, use the `unset` command:
 
 ```bash
 unset fruits[0]
-echo ${fruits[*]} # Apple Pear Plum Banana Cherry
+echo ${fruits[@]} # Apple Desert fig Plum Banana Cherry
 ```
 
 # Streams, pipes and lists
