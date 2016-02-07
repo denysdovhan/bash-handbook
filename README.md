@@ -274,6 +274,16 @@ result=$(( ((10 + 5*3) - 7) / 2 ))
 echo $result # 9
 ```
 
+Within arithmetic expansions, variables should generally be used without a `$` prefix:
+
+```bash
+x=4
+y=7
+echo $(( x + y ))     # 11
+echo $(( ++x + y++ )) # 12
+echo $(( x + y ))     # 13
+```
+
 ## Double and single quotes
 
 There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
@@ -690,8 +700,8 @@ A working example might look like this:
 # Squares of numbers from 0 through 9
 x=0
 while [[ $x -lt 10 ]]; do # value of x is less than 10
-  echo $(($x*$x))
-  x=$(( $x + 1 )) # increase x
+  echo $(( x * x ))
+  x=$(( x + 1 )) # increase x
 done
 ```
 
@@ -762,7 +772,7 @@ The `continue` statement steps over one iteration. We can use it as such:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
-  if [[ $(($i % 2)) -eq 0 ]]; then continue; fi
+  if [[ $(( i % 2 )) -eq 0 ]]; then continue; fi
   echo $i
 done
 ```
