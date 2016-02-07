@@ -884,9 +884,7 @@ Thanks for reading this handbook!
 Here's a list of other literature covering Bash:
 
 * Bash man page.  In many environments that you can run Bash, the help system `man` can display information about Bash, by running the command `man bash`.  For more information on the `man` command, see the web page ["The man Command"](http://www.linfo.org/man.html) hosted at [The Linux Information Project](http://www.linfo.org/).
-
 * ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
-
 * [Bash 3.2 Man page](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/bash.1.html) hosted at Apple's Mac Developer Library site.  As of 2016/01, this covers version 3.2, last updated 2006/09/28.
 
 
