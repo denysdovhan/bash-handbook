@@ -29,6 +29,9 @@ var notifier = updateNotifier({
   pkg: pkg
 });
 
+process.env.PAGER = process.env.PAGER || 'less';
+process.env.LESS  = process.env.LESS  || 'FRX';
+
 fs.createReadStream(join(__dirname, '../README.md'))
   .pipe(obj(function (chunk, enc, cb) {
     var message = [];
