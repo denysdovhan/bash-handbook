@@ -691,7 +691,7 @@ A working example might look like this:
 x=0
 while [[ $x -lt 10 ]]; do # value of x is less than 10
   echo $(($x*$x))
-  x=`expr $x + 1` # increase x
+  x=$(( $x + 1 )) # increase x
 done
 ```
 
