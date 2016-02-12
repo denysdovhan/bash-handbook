@@ -824,8 +824,8 @@ These options are settings that change shell behavior. The following table is a 
 | `-i`  | interactive | Script runs in _interactive_ mode.                     |
 | `-n`  | noexec      | Read command, but don't execute them (syntax check).   |
 | `-t`  | —           | Exit after first command.                              |
-| `-v`  | verbose     | Print each command to `stdout` before executing it.    |
-| `-x`  | xtrace      | Print each command to `stdout` before executing it and expands commands. |
+| `-v`  | verbose     | Print each command to `stderr` before executing it.    |
+| `-x`  | xtrace      | Print each command to `stderr` before executing it and expands commands. |
 
 For example, we have script with `-x` option such as:
 
