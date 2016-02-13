@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var obj = require('through2').obj;
-var pager = require('default-pager');
+var defaultPager = require('default-pager');
 var msee = require('msee');
 var join = require('path').join;
 var boxen = require('boxen');
@@ -29,6 +29,10 @@ var notifier = updateNotifier({
   pkg: pkg
 });
 
+var pager = defaultPager().on('error', function(e) {
+  if (!e.errno || e.errno !== 'EPIPE') { throw(e); }
+});
+
 fs.createReadStream(join(__dirname, '../README.md'))
   .pipe(obj(function (chunk, enc, cb) {
     var message = [];
@@ -42,4 +46,4 @@ fs.createReadStream(join(__dirname, '../README.md'))
     this.push(msee.parse(chunk.toString(), mseeOpts));
     cb();
   }))
-  .pipe(pager());
+  .pipe(pager);
