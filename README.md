@@ -2,6 +2,8 @@
 
 This document was written for those who want to learn Bash without diving in too deeply.
 
+> **Tip**: Try [**learnyoubash**](https://git.io/learnyoubash) — an interactive workshopper based on this handbook!
+
 # Node Packaged Manuscript
 
 You can install this handbook using `npm`. Just run:
