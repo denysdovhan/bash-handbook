@@ -130,11 +130,20 @@ Additionally, the first line in the script must indicate which program it should
 echo "Hello, world!"
 ```
 
-Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/sh`. This `#!` character sequence is known as the [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Now you can run script like this:
+Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/sh`. This `#!` character sequence is known as the [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Now you can run the script like this:
 
     /path/to/script.sh
 
-Another handy thing we learned above is using the `echo` to print something to the terminal screen.
+A handy trick we used above is using `echo` to print text to the terminal screen.
+
+Another way to use the shebang line is as follows:
+
+```bash
+#!/usr/bin/env bash
+echo "Hello, world!"
+```
+
+The advantage of this shebang line is it will search for the program (in this case `bash`) based on the `PATH` environment variable. This is often preferred over the first method shown above, as the location of a program on a filesystem cannot always be assumed. This is also useful if the `PATH` variable on a system has been configured to point to an alternate version of the program. For instance, one might install a newer version of `bash` while preserving the original version and insert the location of the newer version into the `PATH` variable. The use of `#!/bin/bash` would result in using the original `bash`, while `#!/usr/bin/env bash` would make use of the newer version.
 
 
 ## Exit codes
