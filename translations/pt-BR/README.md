@@ -1,10 +1,10 @@
-# bash-handbook [![CC 4.0][cc-image]][cc-url]
+# Guia de Bolso do Bash (inglês, bash-handbook)[![CC 4.0][cc-image]][cc-url]
 
 Este documento foi escrito para aqueles que querem aprender Bash sem mergulhar muito profundamente.
 
 > **Dica**: Dê uma olhada em [**learnyoubash**](https://git.io/learnyoubash) — são exercícios interativos baseados nesse documento!
 
-# Instalando bash-handbook via Node
+# Instalando o guia através do Node
 
 Você pode instalar esse documento usando `npm`. Execute:
 
@@ -29,7 +29,7 @@ O código fonte está disponível aqui: <https://github.com/denysdovhan/bash-han
   - [Variáveis de ambiente](#variáveis-de-ambiente)
   - [Parâmetros de posição](#parâmetros-de-posição)
 - [Expansões do shell](#expansões-do-shell)
-  - [Expansões de suporte](#epansões-de-suporte)
+  - [Expansões de suporte](#expansões-de-suporte)
   - [Substituição de comandos](#substituição-de-comandos)
   - [Expansões aritiméticas](#expansões-aritiméticas)
   - [Aspas simples e duplas](#aspas-simples-e-duplas)
@@ -60,47 +60,45 @@ O código fonte está disponível aqui: <https://github.com/denysdovhan/bash-han
 
 # Introdução
 
-If you are a developer, then you know the value of time. Optimizing your work process is one of the most important aspects of the job.
+Se você é um desenvolvedor, então você sabe o valor que o tempo tem. Otimizar seu processo de trabalho é um dos mais importantes aspectos do seu dia-a-dia.
 
-In that path towards efficiency and productivity, we are often posed with actions that must be repeated over and over again, like:
+E, se entrarmos no caminho em direção à eficiência e produtividade, sempre esbarramos em ações que serão repetidas uma vez ou outra, como:
 
-* taking a screenshot and uploading it to a server
-* processing text that may come in many shapes and forms
-* converting files between different formats
-* parsing a program's output
+* tirar um *screenshot* e fazer o upload para um servidor
+* processar texto em vários fortamos
+* converter arquivos entre diferentes formatos
+* analisar o resultado da execução de um programa
 
-Enter **Bash**, our savior.
+Entra em cena, o **Bash**, nosso salvador.
 
-Bash is a Unix shell written by [Brian Fox][] for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as the Linux and OS X default shell for a long time.
+Bash é um shell Unix escrito por [Brian Fox][] no formato de software livre para o projeto GNU, com a intenção de substituir o [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). Ele foi lançado em 1989 e tem sido distribuído como shell padrão no Linux e OS X a um longo tempo.
 
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- link this format, because some MD processors handle '()' in URLs poorly -->
 
-So why do we need to learn something that was written more than 30 years ago? The answer is simple: this _something_ is today one of the most powerful and portable tools for writing efficient scripts for all Unix-based systems. And that's why you should learn bash. Period.
+E porque nós precisamos aprender algo que foi escrito a mais de 30 anos atrás? A resposta é simples: essa _coisa_, hoje em dia, é uma das mais poderosas e portáveis ferramentas para escrever scripts para todos os sitemas baseados em Unix. E isso é a razão pela qual você deve aprender bash. Ponto.
 
-In this handbook, I'm going to describe the most important concepts in bash with examples. I hope this compendium will be helpful to you.
+Nesse manual, eu vou descrever os conceitos mais importantes do bash através de exemplos. Eu espero que seja útil para você e que você possa aprender algo através deles.
 
 # Estilos do shell
 
-The user bash shell can work in two modes - interactive and non-interactive.
+O usuário do shel bash pode trabalhar em dois modos - interativo e não-interativo.
 
 ## Modo Interativo
 
-If you are working on Ubuntu, you have seven virtual terminals available to you.
-The desktop environment takes place in the seventh virtual terminal, so you can return to a friendly GUI
-using the `Ctrl-Alt-F7` keybinding.
+Se você estiver trabalhando no Ubuntu, você tem sete terminais virtuais disponíveis para você. O ambiente de trabalho se posiciona no sétimo terminal virtual. Você pode voltar para uma GUI mais amigável usando o atalho `Ctrl-Alt-F7`.
 
-You can open the shell using the `Ctrl-Alt-F1` keybinding. After that, the familiar GUI will disappear and one of the virtual terminals will be shown.
+Você pode abrir o shell usando o atalho `Ctrl-Alt-F1`. Depois disso, a familiar GUI irá desaparecer e um dos terminais virtuais será mostrado.
 
-If you see something like this, then you are working in interactive mode:
+Se você ver algo parecido com isso, então, você está trabalhando no modo interativo:
 
     user@host:~$
 
-Here you can enter a variety of Unix commands, such as `ls`, `grep`, `cd`, `mkdir`, `rm` and see the result of their execution.
+Aqui você pode digitar uma variedade de comandos Unix, como `ls`, `grep`, `cd`, `mkdir`, `rm` e ver o resultado das suas execuções.
 
-We call this shell interactive because it interacts directly with the user.
+Nós chamados isso de shell interativo porque ele interage diretamente com o usuário.
 
-Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same time, you are better off using virtual terminal emulators like:
+Usar um terminal virtual, nem sempre é conveniente. Por exemplo, se você quiser editar um documento e executar um comando ao mesmo tempo, é melhor você usar um emulador de terminais virtuais, como:
 
 - [GNOME Terminal](https://en.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
@@ -109,155 +107,153 @@ Using a virtual terminal is not really convenient. For example, if you want to e
 
 ## Modo não-interativo
 
-In non-interactive mode, the shell reads commands from a file or a pipe and executes them. When the interpreter reaches the end of the file, the shell process terminates the session and returns to the parent process.
+No modo não-interativo, o shell recebe comandos de um arquivo ou um _pipe_ e executa eles. Quando o interpretador chega no final do arquivo, a sessão de processamento do shell é terminada e o processo anterior é retornado.
 
-Use the following commands for running the shell in non-interactive mode:
+Use os seguintes comandos para executar o shell em modo não-interativo:
 
     sh /path/to/script.sh
     bash /path/to/script.sh
 
-In the example above, `script.sh` is just a regular text file that consists of commands the shell interpreter can evaluate and `sh` or `bash` is the shell's interpreter program. You can create `script.sh` using your preferred text editor (e.g. vim, nano, Sublime Text, Atom, etc).
+No exemplo acima, `script.sh` é apenas um arquivo de texto comum, contendo comandos, que o interpretador shell pode executar. `sh` ou `bash` são interpretadores utilizados pelo shell. Você pode criar um `script.sh` usando seu editor de texto preferido (e.g. vim, nano, Sublime Text, Atom, etc).
 
-You can also simplify invoking the script by making it an executable file using the `chmod` command:
-
+Você também pode simplificar a invocação do script transformando o arquivo em um executável usando o comando `chmod`:
 
     chmod +x /path/to/script.sh
 
-Additionally, the first line in the script must indicate which program it should use to run the file, like so:
+Além disso, a primeira linha do script deve indicar qual programa deve ser usado para executar o arquivo, como:
 
 ```bash
 #!/bin/bash
 echo "Hello, world!"
 ```
 
-Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/sh`. This `#!` character sequence is known as the [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Now you can run the script like this:
+Ou, se você preferir usar `sh` ao invés do `bash`, mude `#!/bin/bash` para `#!/bin/sh`. Essa sequência de carácteres `#!`, é conhecida como [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Agora você pode executar scripts da seguinte maneira:
 
     /path/to/script.sh
 
-A handy trick we used above is using `echo` to print text to the terminal screen.
+Um truque útil que usamos acima, é usar o comando `echo` para imprimir o texto na tela do terminal.
 
-Another way to use the shebang line is as follows:
+Uma outra maneira de usar o _shebang_ é:
 
 ```bash
 #!/usr/bin/env bash
 echo "Hello, world!"
 ```
 
-The advantage of this shebang line is it will search for the program (in this case `bash`) based on the `PATH` environment variable. This is often preferred over the first method shown above, as the location of a program on a filesystem cannot always be assumed. This is also useful if the `PATH` variable on a system has been configured to point to an alternate version of the program. For instance, one might install a newer version of `bash` while preserving the original version and insert the location of the newer version into the `PATH` variable. The use of `#!/bin/bash` would result in using the original `bash`, while `#!/usr/bin/env bash` would make use of the newer version.
-
+A vantagem desse modo de uso do _shebang_ é que ele irá programar o programa (nesse caso o `bash`) baseado no caminho `PATH` do seu ambiente. Esse modo é, muitas vezes, preferido, ao invés de usar o primeiro método mostrado acima, onde a localização do programa no seu ambiente, pode não ser a mesmo. Isso também é útil se a variável `PATH`, em um sistema, estiver configurada para uma versão diferente do programa. Um exemplo, seria a instalação de uma nova versão do `bash`, enquanto preservamos a versão original e inserimos a localização da nova versão na variável `PATH` do sistema. O uso do `#!/bin/bash` pode resultar no uso da versão original do `bash`, enquanto, `#!/usr/bin/env bash`, fará uso da nova versão.
 
 ## Códigos de saída
 
-Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns a non-zero value (error code). Failure codes must be positive integers between 1 and 255.
+Todo comando retorna um **código de sáida** (**retornando o estado** ou o **estado de saída**). Um comando executado com sucesso, sempre retorna `0` (código-zero), e um comando executado com falha, sempre retorna um valor não-zero (código de erro). Códigos de falhas devem conter um número inteiro positivo entre 1 e 255.
 
-Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running an `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
+Outro comando útil que nós podemos usar quando escrevemos scripts é o `exit`. Esse omando é usado para finalizar a execução atual e retornar um código de saída para o shell. Executando o `exit`, sem nenhum argumento, irá terminar o script que está em processamento e retornar o código de saída do último comando executado antes do `exit`.
 
-When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has succeeded or not in its execution.
+Quando um programa é finalizado, o shell atribui ao seu **código de saída** há variável `$?`. A variável `$?`, é o que normalmente usamos para testar se um script foi executado com sucesso ou não.
 
-In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
+Do mesmo modo que podemos usar `exit` para terminar um script, nós podemos usar o comando `return` para sair de uma função e retornar o **código de saída** para quem invocou essa função. Você também pode usar `exit` dentro de uma função, isso irá resultar na saída da função _e_ na finalização do programa.
 
 # Comentários
 
-Scripts may contain _comments_. Comments are special statements ignored by the `shell` interpreter. They begin with a `#` symbol and continue on to the end of the line.
+Scripts podem conter _comentários_. Comentários são declarações especiais ignoradas pelo interpretador do `shell`. O início de um comentário deve conter o símbolo `#` e continuar até o final da linha.
 
-For example:
+Por exemplo:
 
 ```bash
 #!/bin/bash
-# This script will print your username.
+# Esse script irá imprimir seu nome de usuário.
 whoami
 ```
 
-> **Tip**: Use comments to explain what your script does and _why_.
+> **Dica**: Use comentários para explicar o que seu script faz e _porque_.
 
 # Variáveis
 
-Like in most programming languages, you can also create variables in bash.
+Como na maioria das linguages de programas, você pode criar variáveis no bash.
 
-Bash knows no data types. Variables can contain only numbers or a string of one or more characters. There are three kinds of variables you can create: local variables, environment variables and variables as _positional arguments_.
+Bash não conhece nenhum tipo de dados. Variáveis podem conter apenas números ou _strings_. Existem três tipos de variáveis que você pode criar: variáveis locais, variáveis de ambiente e variáveis de _parâmetros posicionados_.
 
 ## Variáveis locais
 
-**Variáveis locais** are variables that exist only within a single script. They are inaccessible to other programs and scripts.
+**Variáveis locais** são variáveis que existem apenas no contido script. Elas são inacessíveis para outros programas ou scripts.
 
-A local variable can be declared using `=` sign (as a rule, there **should not** be any spaces between a variable's name, `=` and its value) and its value can be retrieved using the `$` sign. For example:
+Uma variável local pode ser declarada usando o sinal `=` (como regra, **não deve** conter nenhum espaço entre o nome da variável, `=` e o seu valor) e seu valor pode ser acessado usando o sinal `$`. Por exemplo:
 
 ```bash
-username="denysdovhan"  # declare variable
-echo $username          # display value
-unset username          # delete variable
+username="oieduardorabelo"  # declarando a variável
+echo $username          # imprimindo seu valor
+unset username          # deletando a variável
 ```
 
-We can also declare a variable local to a single function using the `local` keyword. Doing so causes the variable to disappear when the function exits.
+Nós podemos declarar uma variável local para uma única função usando a declaração `local`. Com isso, a variável será automaticamente deletada quando a função terminar de ser executada.
 
 ```bash
-local local_var="I'm a local value"
+local local_var="Sou uma variável local"
 ```
 
 ## Variáveis de ambiente
 
-**Variáveis de ambiente** are variables accessible to any program or script running in current shell session. They are created just like local variables, but using the keyword `export` instead.
+**Variáveis de ambiente** são variáveis que podem ser acessadas por qualquer programa ou script sendo executado na sessão atual do shell. Elas são criadas como variáveis locais, mas usando a declaração `export` no início delas.
 
 ```bash
-export GLOBAL_VAR="I'm a global variable"
+export GLOBAL_VAR="Sou uma variável global"
 ```
 
-There are _a lot_ of global variables in bash. You will meet these variables fairly often, so here is a quick lookup table with the most practical ones:
+Existem _muitas_ variáveis globais no bash. Você vai conhecer elas no decorrer do seu dia-a-dia, mas aqui você encontra uma tabela com as mais utilizadas:
 
-| Variable     | Description                                                   |
+| Variáveis     | Descrição                                                   |
 | :----------- | :------------------------------------------------------------ |
-| `$HOME`      | The current user's home directory.                            |
-| `$PATH`      | A colon-separated list of directories in which the shell looks for commands. |
-| `$PWD`       | The current working directory.                                |
-| `$RANDOM`    | Random integer between 0 and 32767.                           |
-| `$UID`       | The numeric, real user ID of the current user.                |
-| `$PS1`       | The primary prompt string.                                    |
-| `$PS2`       | The secondary prompt string.                                  |
+| `$HOME`      | O diretório inicial do usuário atual.                            |
+| `$PATH`      | Uma lista separada por ponto e vírgula dos diretários que o shell irá procurar por comandos. |
+| `$PWD`       | O diretório atual.                                |
+| `$RANDOM`    | Número inteiro randômico entre 0 e 32767.                           |
+| `$UID`       | Versão numérica do ID do usuário atual.                |
+| `$PS1`       | Sequência primária do seu prompt de comando.                                    |
+| `$PS2`       | Sequência secundária do seu prompt de comando.                                  |
 
-Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) to see an extended list of environment variables in Bash.
+Entre [nesse link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) para ver uma lista extendida de variáveis de ambiente do Bash.
 
 ## Parâmetros de posição
 
-**Parâmetros de posição** are variables allocated when a function is evaluated and are given positionally. The following table lists positional parameter variables and other special variables and their meanings when you are inside a function.
+**Parâmetros de posição** são variáveis alocadas aos parâmetros de uma função quando ela é executada. A seguinte tabela mostra os parâmetros de posição e outras variáveis especiais e quais os seus significados dentro da função.
 
-| Parameter      | Description                                                 |
+| Parâmetro      | Descrição                                                 |
 | :------------- | :---------------------------------------------------------- |
-| `$0`           | Script's name.                                              |
-| `$1 … $9`      | The parameter list elements from 1 to 9.                     |
-| `${10} … ${N}` | The parameter list elements from 10 to N.                    |
-| `$*` or `$@`   | All positional parameters except `$0`.                      |
-| `$#`           | The number of parameters, not counting `$0`.                 |
-| `$FUNCNAME`    | The function name (has a value only inside a function).     |
+| `$0`           | Nome do script.                                              |
+| `$1 … $9`      | Os parâmetros passados de 1 há 9.                     |
+| `${10} … ${N}` | Os parâmetros passados de 10 há N.                    |
+| `$*` or `$@`   | Todos os parâmetros passados, exceto `$0`.                      |
+| `$#`           | A soma da quantidade de parâmetros foi passada, não contando `$0`.                 |
+| `$FUNCNAME`    | O nome da função (retornada como valor, apenas dentro da função).     |
 
-In the example below, the positional parameters will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+No exemplo abaixo, os parâmetros posicinais serão `$0='./script.sh'`,  `$1='foo'` e `$2='bar'`:
 
     ./script.sh foo bar
 
-Variables may also have _default_ values. We can define as such using the following syntax:
+Variáveis também podem ter um valor _padrão_. Nós podemos definir isso usando a sintaxe:
 
 ```bash
- # if variables are empty, assign them default values
+ # se a variável estiver vazia, atribua o valor padrão
 : ${VAR:='default'}
 : ${$1:='first'}
-# or
+# ou
 FOO=${FOO:-'default'}
 ```
 
 # Expansões do shell
 
-_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are a mechanism to calculate arithmetical operations, to save results of commands' executions and so on.
+_Expansões_ são realizadas na linha de comando após ela ser separada em _símbolos_. Em outras palavras, expansões são mecânismos para calcular operações aritméticas, salvar resultados de execuções de comandos e assim por diante.
 
-If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
+Se você estiver interessado, você pode ler [mais sobre expansões do shell](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
 
 ## Expansões de suporte
 
-Expansões de suporte allows us to generate arbitrary strings. It's similar to _filename expansion_. For example:
+Expansões de suporte nos permite criar _strings_ arbitrárias. É parecido com _expansão de nomes de arquivos_. Por exemplo:
 
 ```bash
-echo beg{i,a,u}n # begin began begun
+echo bat{i,a,u}ta # batita batata batuta
 ```
 
-Also brace expansions may be used for creating ranges, which are iterated over in loops.
+Expansões também podem ser usadas para criar extensões numéricas, que podem ser iterados em um _loop_.
 
 ```bash
 echo {0..5} # 0 1 2 3 4 5
@@ -266,26 +262,26 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Substituição de comandos
 
-Substituição de comandos allow us to evaluate a command and substitute its value into another command or variable assignment. Substituição de comandos is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
+Substituição de comandos nos permite avaliar um comando e substituir seus valores em outro comando ou atribuição de variável. Substituição de comandos é realizado quando um comando é anexado por ``` `` ``` ou `$()`.  Por exemplo, podemos usar isso da seguinte maneira:
 
 ```bash
-now=`date +%T`
-# or
-now=$(date +%T)
+now=`date +%T` # horário atual
+# ou
+now=$(date +%T) # horário atual
 
 echo $now # 19:08:26
 ```
 
 ## Expansões aritiméticas
 
-In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
+No bash, somos livres para fazer qualquer operação aritmética. Mas, expressões devem ser anexadas por `$(( ))`. O formato da operação aritmética é:
 
 ```bash
 result=$(( ((10 + 5*3) - 7) / 2 ))
 echo $result # 9
 ```
 
-Within arithmetic expansions, variables should generally be used without a `$` prefix:
+Dentro de expressões aritméticas, variáveis geralmente deverm ser usadas sem o prefixo `$`:
 
 ```bash
 x=4
@@ -297,311 +293,311 @@ echo $(( x + y ))     # 13
 
 ## Aspas simples e duplas
 
-There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
+Existe uma importante diferença entre aspas simples e duplas. Dentro das aspas duplas, variáveis ou comandos podem ser expandidos. Dentro de aspas simples não. Por exemplo:
 
 ```bash
-echo "Your home: $HOME" # Your home: /Users/<username>
-echo 'Your home: $HOME' # Your home: $HOME
+echo "Seu diretório inicial: $HOME" # Seu diretório inicial: /Users/<username>
+echo 'Seu diretório inicial: $HOME' # Seu diretório inicial: $HOME
 ```
 
-Take care to expand local variables and environment variables within quotes if they could contain whitespace. As an innocuous example, consider using `echo` to print some user input:
+Tome cuidado ao expandir variáveis locais ou de ambiente dentro de aspas se eles contiverem espaços em branco. Um exemplo disso, considere o uso do `echo` para imprimir algo:
 
 ```bash
-INPUT="A string  with   strange    whitespace."
-echo $INPUT   # A string with strange whitespace.
-echo "$INPUT" # A string  with   strange    whitespace.
+INPUT="Uma frase  com   estranhos    espaços em branco."
+echo $INPUT   # Uma frase com estranhos espaços em branco.
+echo "$INPUT" # Uma frase  com   estranhos    espaços em branco.
 ```
 
-The first `echo` is invoked with 5 separate arguments — $INPUT is split into separate words, `echo` prints a single space character between each. In the second case, `echo` is invoked with a single argument (the entire $INPUT value, including whitespace).
+O primeiro `echo` será invocado com 7 argumentos separados - $INPUT é separado em cada palavra, `echo` imprimi um único espaço em branco entre cada palavra. No segundo caso, `echo` é invocado com um único argumento (todo o valor do $INPUT, includingo seus espaços em branco).
 
-Now consider a more serious example:
+Agora, considere um exemplo mais sério:
 
 ```bash
-FILE="Favorite Things.txt"
-cat $FILE   # attempts to print 2 files: `Favorite` and `Things.txt`
-cat "$FILE" # prints 1 file: `Favorite Things.txt`
+FILE="Minhas coisas favoritas.txt"
+cat $FILE   # tentará imprimir 3 arquivos: `Minhas`, `coisas` e `favoritas.txt`
+cat "$FILE" # imprimi 1 arquivo: `Minhas coisas favoritas.txt`
 ```
 
-While the issue in this example could be resolved by renaming FILE to `Favorite-Things.txt`, consider input coming from an environment variable, a positional parameter, or the output of another command (`find`, `cat`, etc). If the input *might* contain whitespace, take care to wrap the expansion in quotes.
+Enquanto o problema desse exemplo pode ser resolvido apenas renomeando FILE para `Minhas-coisas-favoritas.txt`, considere a entrada do nome vindo de uma variável de ambiente, um parâmetro posicional ou o resultado de outro comando (`find`, `cat`, etc). Se a entrada *puder* conter espaços em branco, tome o cuidado de envolver a expansão em aspas.
 
 # Arrays
 
-Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, that is, the first element in an array has index 0.
+Como em qualquer outra linguagem de programação, um array no bash é uma variável que permite o armazenamento de múltiplos valores. No bash, arrays também são de base zero, ou seja, o primeiro elemento do array tem o íncide 0.
 
-When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS**, or **Input Field Separator**, is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
+Ao lidar com arrays, nós devemos tomar um cuidado especial com as variáveis de ambiente `IFS`. **IFS**, que significa **Input Field Separator**, em português, algo como, **Separador dos campos de entrada**, são os carácteres que separam os elementos dentro de um array. O valor padrão desses campos é um espaço em braco, `IFS=' '`.
 
 ## Declarando array
 
-In bash you create an array by simply assigning a value to an index in the array variable:
+Para criar um array no bash, você pode simplesmente atribuir o valor ao index da variável do array:
 
 ```bash
-fruits[0]=Apple
-fruits[1]=Pear
-fruits[2]=Plum
+frutas[0]=Maça
+frutas[1]=Pera
+frutas[2]=Banana
 ```
 
-Array variables can also be created using compound assignments such as:
+As variáveis de arrays também podem ser criadas a partir de uma atribuição composta, como:
 
 ```bash
-fruits=(Apple Pear Plum)
+frutas=(Maça Pera Banana)
 ```
 
 ## Expansões de Array
 
-Individual array elements are expanded similar to other variables:
+Elementos individuais do array, são igualmente expansíveis como qualquer outra variável:
 
 ```bash
-echo ${fruits[1]} # Pear
+echo ${frutas[1]} # Pera
 ```
 
-The entire array can be expanded by using `*` or `@` in place of the numeric index:
+Todo o array pode ser expansível usando `*` ou `@` no lugar do índice numérico:
 
 ```bash
-echo ${fruits[*]} # Apple Pear Plum
-echo ${fruits[@]} # Apple Pear Plum
+echo ${frutas[*]} # Maça Pera Banana
+echo ${frutas[@]} # Maça Pera Banana
 ```
 
-There is an important (and subtle) difference between the two lines above: consider an array element containing whitespace:
+Tem uma importante (e súbita) diferença entre as duas linhas acima: considere que um elemento do array tenha espaços em branco:
 
 ```bash
-fruits[0]=Apple
-fruits[1]="Desert fig"
-fruits[2]=Plum
+fruta[0]=Maça
+fruta[1]="Mamão papaia"
+fruta[2]=Banana
 ```
 
-We want to print each element of the array on a separate line, so we try to use the `printf` builtin:
+Nós queremos imprimir cada elemento do array separadamente em uma nova linha, então, vamos tentar usar a função nativa `printf`:
 
 ```bash
-printf "+ %s\n" ${fruits[*]}
-# + Apple
-# + Desert
-# + fig
-# + Plum
+printf "+ %s\n" ${frutas[*]}
+# + Maça
+# + Mamão
+# + papaia
+# + Banana
 ```
 
-Why were `Desert` and `fig` printed on separate lines? Let's try to use quoting:
+Porque o `Mamão` e `papaia` foram imprimidos em linhas separadas? Vamos tentar usando aspas:
 
 ```bash
-printf "+ %s\n" "${fruits[*]}"
-# + Apple Desert fig Plum
+printf "+ %s\n" "${frutas[*]}"
+# + Maça Mamão papaia Banana
 ```
 
-Now everything is on one line — that's not what we wanted! Here's where `${fruits[@]}` comes into play:
+Agora, está tudo em uma linha só - isso não exatamente o que queremos! É aí que `${frutas[@]}` entra no jogo:
 
 ```bash
-printf "+ %s\n" "${fruits[@]}"
-# + Apple
-# + Desert fig
-# + Plum
+printf "+ %s\n" "${frutas[@]}"
+# + Maça
+# + Mamão papaia
+# + Banana
 ```
 
-Within double quotes, `${fruits[@]}` expands to a separate argument for each element in the array; whitespace in the array elements is preserved.
+Dentro das aspas duplas, `${frutas[@]}` é expandido separadamente para cada elemento do array, com seus espaços em branco preservados.
 
 ## Separando Array
 
-Besides, we can extract a slice of array using the _slice_ operators:
+Além disso, você pode extrair um pedaço do array usando os operadores:
 
 ```bash
-echo ${fruits[@]:0:2} # Apple Desert fig
+echo ${frutas[@]:0:2} # Maça Mamão papaia
 ```
 
-In the example above, `${fruits[@]}` expands to the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
+No exemplo acima, `${frutas[@]}` é expandido com todo o conteúdo do seu array, e `:0:2`, extraí o pedaço de tamanho 2, começando no índice 0.
 
 ## Adicionando elementos no Array
 
-Adicionando elementos no Array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
+Adicionar elementos no array é bem simples. Atribuições compostas são extremamente úteis nesse caso. Você pode fazer uso dessa maneira:
 
 ```bash
-fruits=(Orange "${fruits[@]}" Banana Cherry)
-echo ${fruits[@]} # Orange Apple Desert fig Plum Banana Cherry
+frutas=(Laranja "${frutas[@]}" Melão Ameixa)
+echo ${frutas[@]} # Laranja Maça Mamão papaia Banana Melão Ameixa
 ```
 
-The example above, `${fruits[@]}` expands to the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
+No exemplo acima, `${frutas[@]}` é expandido com todo o conteúdo do seu array e é atribuido ao novo valor dentro do array `frutas`, sendo assim, mutando seu valor original.
 
 ## Deletando elementos de um Array
 
-To delete an element from an array, use the `unset` command:
+Para deletar um elemento de um array, use o comando `unset`:
 
 ```bash
-unset fruits[0]
-echo ${fruits[@]} # Apple Desert fig Plum Banana Cherry
+unset frutas[0] # Deleta o item Laranja
+echo ${frutas[@]} # Maça Mamão papaia Banana Melão Ameixa
 ```
 
 # Streams, pipes e listas
 
-Bash has powerful tools for working with other programs and their outputs. Using streams we can send the output of a program into another program or file and thereby write logs or whatever we want.
+Bash tem uma poderosa ferramente para trabalhar com outros programas e seus resultados. Usando _streams_ nós podemos enviar o resultado de um programa para outro programa ou arquivo, e assim, gravar logs ou fazer qualquer coisa que quisermos.
 
-Pipes give us opportunity to create conveyors and control the execution of commands.
+_Pipes_ te dá a oportunidade de transportar e controlar a execução de comandos.
 
-It is paramount we understand how to use this powerful and sophisticated tool.
+É fundamental o entendimento de como usar essa poderosa e sofisticada ferramenta do Bash.
 
 ## Streams
 
-Bash receives input and sends output as sequences or **streams** of characters. These streams may be redirected into files or one into another.
+Ao executar qualquer comando no Bash, ele recebe esses dados como parâmetros e envia uma sequência ou _streams_ de caracteres. Esses _streams_ podem ser redirecionados em arquivos ou em outro _stream_.
 
-There are three descriptors:
+Existem três tipos de saídas de dados, conhecidos como _descritores_:
 
-| Code | Descriptor | Description          |
+| Código | Descritor | Descrição          |
 | :--: | :--------: | :------------------- |
-| `0`  | `stdin`    | The standard input.  |
-| `1`  | `stdout`   | The standard output. |
-| `2`  | `stderr`   | The errors output.   |
+| `0`  | `stdin`    | O padrão de entrada de dados.  |
+| `1`  | `stdout`   | O padrão de saída de dados. |
+| `2`  | `stderr`   | O padrão de saída de erros.   |
 
-Redirection makes it possible to control where the output of a command goes to, and where the input of a command comes from. For redirecting streams these operators are used:
+Redirecionamento torna possível o controle de onde a saída do comando vai parar, e, de onde a entrada de dados veem. Para redirecionar _streams_, você pode usar esses operadores:
 
-| Operator | Description                                  |
+| Operadores | Descrição                                  |
 | :------: | :------------------------------------------- |
-| `>`      | Redirecting output                           |
-| `&>`     | Redirecting output and error output          |
-| `&>>`    | Appending redirected output and error output |
-| `<`      | Redirecting input                            |
-| `<<`     | [Here documents](http://tldp.org/LDP/abs/html/here-docs.html) syntax |
-| `<<<`    | [Here strings](http://www.tldp.org/LDP/abs/html/x17837.html) |
+| `>`      | Redireciona a saída de dados                           |
+| `&>`     | Redireciona a saída de dados e de erros          |
+| `&>>`    | Anexa o redirecionamento de saída e erros |
+| `<`      | Redireciona a entrada de dados                            |
+| `<<`     | Sintaxe do comando ["Here documents"](http://tldp.org/LDP/abs/html/here-docs.html) |
+| `<<<`    | Sintaxe do comando ["Here strings"](http://www.tldp.org/LDP/abs/html/x17837.html) |
 
-Here are few examples of using redirections:
+Veja aqui alguns exemplos de redirecionamento:
 
 ```bash
-# output of ls will be written to list.txt
-ls -l > list.txt
+# a saída do comando `ls` será escrita no arquivo lista.txt
+ls -l > lista.txt
 
-# append output to list.txt
-ls -a >> list.txt
+# adiciona a saída do comando no final do arquivo lista.txt
+ls -a >> lista.txt
 
-# all errors will be written to errors.txt
-grep da * 2> errors.txt
+# todos os erros serão escritos no arquivo erros.txt
+grep da * 2> erros.txt
 
-# read from errors.txt
+# lê o arquivo erros.txt
 less < errors.txt
 ```
 
 ## Pipes
 
-We could redirect standard streams not only in files, but also to other programs. **Pipes** let us use the output of a program as the input of another.
+Nós podemos redirecionar os _streams_ padrões não apenas para arquivos, mas também, para outros programas. **Pipes** nos permite usar a saída de um programa, como entrada de outro.
 
-In the example below, `command1` sends its output to `command2`, which then passes it on to the input of `command3`:
+No exemplo abaixo, `comando1` envia sua saída para `comando2`, que então passa sua saída como entrada para `comando3`:
 
-    command1 | command2 | command3
+    comando1 | comando2 | comando3
 
-Constructions like this are called **pipelines**.
+Construções como essa, são chamadas de **pipelines**.
 
-In practice, this can be used to process data through several programs. For example, here the output of `ls -l` is sent to the `grep` program, which  prints only files with a `.md` extension, and this output is finally sent to the `less` program:
+Na prática, isso pode ser usado para processar dados através de vários programas. Por exemplo, no exemplo a seguir, a saída do `ls -l` é enviada para o comando `grep`, que então imprimi apenas os arquivos que tenham a extensão `.md`, e sua saída, é finalmente enviada para o comando `less`:
 
     ls -l | grep .md$ | less
 
 ## Lista de comandos
 
-A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
+Uma **lista de comandos** é uma sequência de um ou mais _pipelines_ separados pelos operadores `;`, `&`, `&&` ou `||`.
 
-If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executed in the background.
+Se um comando termina com um operador `&`, o shell executará o comando asíncronamente através de um _subshell_. Em outras palavras, esse comando será executado em segundo plano (ou _background_).
 
-Commands separated by a `;` are executed sequentially: one after another. The shell waits for the finish of each command.
+Comandos separados por `;` serão executados em sequência: um após o outro. O shell esperada a finalização de cada comando para executar o próximo.
 
 ```bash
-# command2 will be executed after command1
-command1 ; command2
+# comando1 será executado após a finalização do comando1
+comando1 ; comando2
 
-# which is the same as
+# que é o mesmo que
 command1
 command2
 ```
 
-Lists separated by `&&` and `||` are called _AND_ and _OR_ lists, respectively.
+Uma lista separada por `&&` e `||` são conhecidos também como listas _AND_ e _OR_,
 
-The _AND-list_ looks like this:
-
-```bash
-# command2 will be executed if, and only if, command1 finishes successfully (returns 0 exit status)
-command1 && command2
-```
-
-The _OR-list_ has the form:
+Uma lista _AND_ é parecida com isso:
 
 ```bash
-# command2 will be executed if, and only if, command1 finishes unsuccessfully (returns code of error)
-command1 || command2
+# comando2 será executado se, e apenas se, o comando1 finalize seu processo com sucesso (retorando um estado de saída 0)
+comando1 && comando2
 ```
 
-The return code of an _AND_ or _OR_ list is the exit status of the last executed command.
+Uma lista _OR_  é parecida com isso:
+
+```bash
+# comando2 será executado se, e apenas se, o comando1 não finalize seu processo com sucesso (retornando um estado de saída não-zero)
+comando1 || comando2
+```
+
+O código retornado pelas listas _AND_ ou _OR_, são o estado do último comando executado.
 
 # Operadores condicionais
 
-Like in other languages, Bash conditionals let us decide to perform an action or not.  The result is determined by evaluating an expression, which should be enclosed in `[[ ]]`.
+Como em qualquer outra linguagem, as condicionais no Bash nos permitem decidir qual ação realizar. O resultado é determinado pela análise da expressão, que deverá ser conter `[[ ]]` em volta dela.
 
-Conditional expression may contain `&&` and `||` operators, which are _AND_ and _OR_ accordingly. Besides this, there many [other handy expressions](#primary-and-combining-expressions).
+Expressões condicionais podem conter os operadores `&&` e `||`, como vimos, _AND_ e _OR_. Além disso, existem [várias outras expressões](#expressões-primárias-e-combinação-de-expressões) que podem ser utilizadas.
 
-There are two different conditional statements: `if` statement and `case` statement.
+Existem duas condicionais diferentes: a condicional `if`, e a condicional `case`.
 
 ## Expressões primárias e combinação de expressões
 
-Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
+Expressões dentro do `[[ ]]` (ou `[ ]` para `sh`), são chamados de **comandos de teste** ou **primários**. Essas expressões ajudam a indicar o resultado de uma operação condicional. Nas tabelas abaixos, estamos usando `[ ]`, porque ele também funciona para `sh`. Para saber mais, [veja aqui a diferença entre aspas simples e aspas duplas dentro dos colchetes no Bash.](http://serverfault.com/a/52050).
 
-**Working with the file system:**
+**Trabalhando com o sistema de arquivos:**
 
-| Primary       | Meaning                                                      |
+| Primários       | Quer dizer                                                      |
 | :-----------: | :----------------------------------------------------------- |
-| `[ -e FILE ]` | True if `FILE` **e**xists.                                   |
-| `[ -f FILE ]` | True if `FILE` exists and is a regular **f**ile.             |
-| `[ -d FILE ]` | True if `FILE` exists and is a **d**irectory.                |
-| `[ -s FILE ]` | True if `FILE` exists and not empty (**s**ize more than 0).  |
-| `[ -r FILE ]` | True if `FILE` exists and is **r**eadable.                   |
-| `[ -w FILE ]` | True if `FILE` exists and is **w**ritable.                   |
-| `[ -x FILE ]` | True if `FILE` exists and is e**x**ecutable.                 |
-| `[ -L FILE ]` | True if `FILE` exists and is symbolic **l**ink.              |
-| `[ FILE1 -nt FILE2 ]` | FILE1 is **n**ewer **t**han FILE2.                   |
-| `[ FILE1 -ot FILE2 ]` | FILE1 is **o**lder **t**han FILE2.                   |
+| `[ -e FILE ]` | _true_ se `FILE` existir, do inglês _**e**xists_.                                   |
+| `[ -f FILE ]` | _true_ se `FILE` existir e for um arquivo normal, do inglês _**f**ile_.             |
+| `[ -d FILE ]` | _true_ se `FILE` existir e for executável, do inglês _**d**irectory_.                |
+| `[ -s FILE ]` | _true_ se `FILE` existir e não for vazio, seu tamanho é maior que 0, do inglês _**s**ize_.  |
+| `[ -r FILE ]` | _true_ se `FILE` existir e for possível a leitura, do inglês _**r**eadable_. |
+| `[ -w FILE ]` | _true_ se `FILE` existir e for possível a escrita, do inglês _**w**ritable_. |
+| `[ -x FILE ]` | _true_ se `FILE` existir e for possíve executá-lo, do inglês _e**x**ecutable_. |
+| `[ -L FILE ]` | _true_ se `FILE` existir e for um link simbólico, do inglês _symbolic **l**ink_. |
+| `[ FILE1 -nt FILE2 ]` | FILE1 é mais novo que FILE2, do inglês _**n**ewer **t**han_. |
+| `[ FILE1 -ot FILE2 ]` | FILE1 é mais velho que FILE2, do inglês _**o**lder **t**han_. |
 
-**Working with strings:**
+**Trabalhando com _strings_:**
 
-| Primary        | Meaning                                                     |
+| Primários        | Quer dizer                                                     |
 | :------------: | :---------------------------------------------------------- |
-| `[ -z STR ]`   | `STR` is empty (the length is **z**ero).                    |
-| `[ -n STR ]`   |`STR` is not empty (the length is **n**on-zero).             |
-| `[ STR1 == STR2 ]` | `STR1` and `STR2` are equal.                            |
-| `[ STR1 != STR2 ]` | `STR1` and `STR2` are not equal.                        |
+| `[ -z STR ]`   | `STR` é vazio, seu tamanho é zero, do inglês _**z**ero_. |
+| `[ -n STR ]`   |`STR` não é vazio, seu tamanho não é zero, do inglês _**n**on-zero_. |
+| `[ STR1 == STR2 ]` | `STR1` e `STR2` são iguais.                            |
+| `[ STR1 != STR2 ]` | `STR1` e `STR2` não são iguais.                        |
 
-**Arithmetic binary operators:**
+**Operadores aritiméticos binários:**
 
-| Primary             | Meaning                                                |
+| Primários             | Quer dizer                                                |
 | :-----------------: | :----------------------------------------------------- |
-| `[ ARG1 -eq ARG2 ]` | `ARG1` is **eq**ual to `ARG2`.                         |
-| `[ ARG1 -ne ARG2 ]` | `ARG1` is **n**ot **e**qual to `ARG2`.                 |
-| `[ ARG1 -lt ARG2 ]` | `ARG1` is **l**ess **t**han `ARG2`.                    |
-| `[ ARG1 -le ARG2 ]` | `ARG1` is **l**ess than or **e**qual to `ARG2`.        |
-| `[ ARG1 -gt ARG2 ]` | `ARG1` is **g**reater **t**han `ARG2`.                 |
-| `[ ARG1 -ge ARG2 ]` | `ARG1` is **g**reater than or **e**qual to `ARG2`.     |
+| `[ ARG1 -eq ARG2 ]` | `ARG1` é igual ao `ARG2`, do inglês _**eq**ual_. |
+| `[ ARG1 -ne ARG2 ]` | `ARG1` não é igual ao `ARG2`, do inglês _**n**ot **e**qual_. |
+| `[ ARG1 -lt ARG2 ]` | `ARG1` é menor que `ARG2`, do inglês _**l**ess **t**han_. |
+| `[ ARG1 -le ARG2 ]` | `ARG1` é menor ou igual que `ARG2`, do inglês _**l**ess than or **e**qual_. |
+| `[ ARG1 -gt ARG2 ]` | `ARG1` é maior que `ARG2`, do inglês _**g**reater **t**han_. |
+| `[ ARG1 -ge ARG2 ]` | `ARG1` é maior ou igual que `ARG2` _**g**reater than or **e**qual_. |
 
-Conditions may be combined using these **combining expressions:**
+Condicionais podem ser combinadas usando as **expressões de combinação:**
 
-| Operation      | Effect                                                      |
+| Expressão      | Efeito                                                      |
 | :------------: | :---------------------------------------------------------- |
-| `[ ! EXPR ]`   | True if `EXPR` is false.                                    |
-| `[ (EXPR) ]`   | Returns the value of `EXPR`.                                |
-| `[ EXPR1 -a EXPR2 ]` | Logical _AND_. True if `EXPR1` **a**nd `EXPR2` are true. |
-| `[ EXPR1 -o EXPR2 ]` | Logical _OR_. True if `EXPR1` **o**r `EXPR2` are true.|
+| `[ ! EXPR ]`   | _true_ se `EXPR` é falso.                                    |
+| `[ (EXPR) ]`   | Retorna o valor da `EXPR`.                                |
+| `[ EXPR1 -a EXPR2 ]` | Operador lógico _AND_. _true_ se `EXPR1` e `EXPR2` são verdadeiros, do inglês _**a**nd_. |
+| `[ EXPR1 -o EXPR2 ]` | Operador lógico _OR_. _true_ se `EXPR1` ou `EXPR2` são verdadeiros, do inglês _**o**r_. |
 
-Sure, there are more useful primaries and you can easily find them in the [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
+Com certeza existem muitos outros comandos e expressões úteis para seu caso, você fácilmente encontra-los na [página de manual do Bash](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
 
 ## Usando a condicional `if`
 
-`if` statements work the same as in other programming languages. If the expression within the braces is true, the code between `then` and `fi` is executed.  `fi` indicates the end of the conditionally executed code.
+Declarações `if` funcionam da mesma maneira como em outras linguagens de programação. Se a expressão dentro dos colchetes for verdadeira, o codógio dentro do bloco `then` e até o `fi` será executado. `fi` indica o final de uma condicional a ser executada.
 
 ```bash
-# Single-line
+# única linha
 if [[ 1 -eq 1 ]]; then echo "true"; fi
 
-# Multi-line
+# múltipla linha
 if [[ 1 -eq 1 ]]; then
   echo "true"
 fi
 ```
 
-Likewise, we could use an `if..else` statement such as:
+Da mesma forma, podemos usar uma declaração `if..else`, como:
 
 ```bash
-# Single-line
+# única linha
 if [[ 2 -ne 1 ]]; then echo "true"; else echo "false"; fi
 
-# Multi-line
+# múltipla linha
 if [[ 2 -ne 1 ]]; then
   echo "true"
 else
@@ -609,69 +605,69 @@ else
 fi
 ```
 
-Sometimes `if..else` statements are not enough to do what we want to do. In this case we shouldn't forget about the existence of `if..elif..else` statements, which always come in handy.
+As vezes, condicionais `if..else` não são suficientes para o que queremos fazer. Nesse caso, não devemos esquecer da existência da condicional `if..elif..else`, que sempre vêm a calhar.
 
-Look at the example below:
+Veja o exemplo abaixo:
 
 ```bash
-if [[ `uname` == "Adam" ]]; then
-  echo "Do not eat an apple!"
+if [[ `uname` == "Adão" ]]; then
+  echo "Não coma a maça!"
 elif [[ `uname` == "Eva" ]]; then
-  echo "Do not take an apple!"
+  echo "Não pegue a maça!"
 else
-  echo "Apples are delicious!"
+  echo "Maças são deliciosas!"
 fi
 ```
 
 ## Usando a condicional `case`
 
-If you are confronted with a couple of different possible actions to take, then using a `case` statement may be more useful than nested `if` statements. For more complex conditions use `case` like below:
+Se você estiver analisando várias possibilidades diferentes para ter ações diferentes, usar a condicional `case` pode ser mais útil do que várias condicionais `if` aninhadas. Veja abaixo um exemplo complexo de usando a condicional `case`:
 
 ```bash
-case "$extension" in
+case "$ext" in
   "jpg"|"jpeg")
-    echo "It's image with jpeg extension."
+    echo "É uma imagem com extensão jpg"
   ;;
   "png")
-    echo "It's image with png extension."
+    echo "É uma imagem com extensão png"
   ;;
   "gif")
-    echo "Oh, it's a giphy!"
+    echo "É uma imagem com extensão gif"
   ;;
   *)
-    echo "Woops! It's not image!"
+    echo "Oops! Não é uma imagem!"
   ;;
 esac
 ```
 
-Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with the `;;` operator.
+A condicional `case` verifica a expressão que corresponde a um padrão. O sinal `|` é usado para separar múltiplos padrões e o operador `)` finaliza a lista de padrões. A expressão `*` é o padrão para todo o restante que não corresponder a nenhum item das suas listas. Cada bloco de comandos deve ser separado pelo operador `;;`.
 
 # Loops
 
-Here we won't be surprised. As in any programming language, a loop in bash is a block of code that iterates as long as the control conditional is true.
+Aqui não teremos nenhuma surpresa. Assim como qualquer linguagem de programação, um loop no bash é um bloco de código que se repete enquanto a condição em controle for verdadeira.
 
-There are four types of loops in Bash: `for`, `while`, `until` and `select`.
+Existem quatro tipos de loops no Bash: `for`, `while`, `until` e `select`.
 
 ## `for` loop
 
-The `for` is very similar to its sibling in C. It looks like this:
+O `for` é bem similar ao seu irmão em C. Ele se parece com:
 
 ```bash
 for arg in elem1 elem2 ... elemN
 do
-  # statements
+  # código
 done
 ```
 
-During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansions](#brace-expansion).
+Durante cada etapa do loop, `arg` assume os valores de `elem1` até `elemN`. Valores também podem ser espaços reservados ou [expansões de suporte](#expansões-de-suporte).
 
-Also, we can write `for` loop in one line, but in this case there needs to be a semicolon before `do`, like below:
+E também podemos escrever o loop `for` em apenas uma linha, mas nesse caso, é preciso colocar um ponto e vírgula antes do `do`, como no exemplo:
 
 ```bash
 for i in {1..5}; do echo $i; done
 ```
 
-By the way, if `for..in..do` seems a little bit weird to you, you can also write `for` in C-like style such as:
+A propósito, se `for..in..do` parece um pouco estranho para você, você também pode escrever o `for` em estilo C, como a seguir:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -679,7 +675,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-`for` is handy when we want to do the same operation over each file in a directory. For example, if we need to move all `.bash` files into the `script` folder and then give them execute permissions, our script would look like this:
+`for` é útil quando nós queremos fazer a mesma operação em cada arquivo em um diretório. Por exemplo, se precisamos mover todos os arquivos `.bash` dentro da pasta `script` e dar aos arquivos permissões de execução, nosso script será parecido com isso:
 
 ```bash
 #!/bin/bash
@@ -692,75 +688,75 @@ done
 
 ## `while` loop
 
-The `while` loop tests a condition and loops over a sequence of commands so long as that condition is _true_. A condition is nothing more than a [primary](#primary-and-combining-expressions) as used in `if..then` conditions. So a `while` loop looks like this:
+O loop `while` testa uma condição e executa a sequência de comandos desde que a condição seja verdadeira. A condição não é nada mais que uma [expressão primária](#expressões-primárias-e-combinação-de-expressões) usada também em `if..then`. Então, um loop `while` se parece com:
 
 ```bash
 while [[ condition ]]
 do
-  # statements
+  # código
 done
 ```
 
-Just like in the case of the `for` loop, if we want to write `do` and condition in the same line, then we must use a semicolon before `do`.
+Tal como no caso do loop `for`, se quisermos escrever uma condição `do` na mesma linha, temos que usar um ponto e vírgula antes.
 
-A working example might look like this:
+Um exemplo prático seria:
 
 ```bash
 #!/bin/bash
 
-# Squares of numbers from 0 through 9
+  # Retorna o quadrado dos números de 0 à 9
 x=0
-while [[ $x -lt 10 ]]; do # value of x is less than 10
+while [[ $x -lt 10 ]]; do # valor de x é menor que 10
   echo $(( x * x ))
-  x=$(( x + 1 )) # increase x
+  x=$(( x + 1 )) # aumenta o x
 done
 ```
 
 ## `until` loop
 
-The `until` loop is the exact opposite of the `while` loop. Like a `while` it checks a test condition, but it keeps looping as long as this condition is _false_:
+O loop `until` é exatamente o oposto do loop `while`. Assim como o `while`, ele recebe uma condição teste, mas, só continua executando enquanto a condição for falsa:
 
 ```bash
-until [[ condition ]]; do
-  #statements
+until [[ cond ]]; do
+  # código
 done
 ```
 
 ## `select` loop
 
-The `select` loop helps us to organize a user menu. It has almost the same syntax as the `for` loop:
+O loop `select` nos ajuda a organizar um menu para o usuário. Ele tem quase a mesma sintaxe que o loop `for`:
 
 ```bash
-select answer in elem1 elem2 ... elemN
+select respostas in elem1 elem2 ... elemN
 do
-  # statements
+  # código
 done
 ```
 
-The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `$?` (`PS3` variable). The answer will be saved in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use the `break` statement.
+O `select` imprimi todos os `elem1..elemN` na tela, junto de suas sequências numéricas, e depois disso, pergunta ao usuário. Normalmente, isso se parece com `$?` (a variável `PS3`). A resposta será salva em `respotas`. Se `respostas` for um número entre `1..N`, então o código será executado e `select` vai para a próxima iteração - isso porquê nós devemos usar a declaração `break`.
 
-A working example might look like this:
+Um exemplo prático se parece com esse:
 
 ```bash
 #!/bin/bash
 
-PS3="Choose the package manager: "
+PS3="Escolha uma gerenciador de pacotes: "
 select ITEM in bower npm gem pip
 do
-  echo -n "Enter the package name: " && read PACKAGE
+  echo -n "Digite o nome de um de pacote: " && read PACKAGE
   case $ITEM in
     bower) bower install $PACKAGE ;;
     npm)   npm   install $PACKAGE ;;
     gem)   gem   install $PACKAGE ;;
     pip)   pip   install $PACKAGE ;;
   esac
-  break # avoid infinite loop
+  break # evita loops infinitos
 done
 ```
 
-This example, asks the user what package manager {s,he} would like to use. Then, it will ask what package we want to install and finally proceed to install it.
+Esse example pergunta ao usuário qual gerenciador de pacote ele deseja usar. E em seguida, quais pacotes gostaríamos de instalar e finalmente, executa o processo de instalação.
 
-If we run this, we will get:
+Se rodarmos isso, teremos:
 
 ```
 $ ./my_script
@@ -768,17 +764,20 @@ $ ./my_script
 2) npm
 3) gem
 4) pip
-Choose the package manager: 2
-Enter the package name: bash-handbook
+Escolha uma gerenciador de pacotes: 2
+Digite o nome de um de pacote: bash-handbook
 <installing bash-handbook>
 ```
 
 ## Controlando o loop
 
+Existem situações onde precisamos parar o loop antes da sua finalização normal ou pular uma iteração. Nesses casos, nós podemos usar as declarações `break` e `continue`, que são nativas do shell. Ambos funcionam com qualquer tipo de loop.
 There are situations when we need to stop a loop before its normal ending or step over an iteration. In these cases, we can use the shell built-in `break` and `continue` statements. Both of these work with every kind of loop.
 
+A declaração `break` é usada para sair do loop atual antes da sua finalização. Nós já o conhecemos.
 The `break` statement is used to exit the current loop before its ending. We have already met with it.
 
+A delcaração `continue` pula uma iteração. Podemos usa-la desse modo:
 The `continue` statement steps over one iteration. We can use it as such:
 
 ```bash
@@ -788,67 +787,68 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
+Se você rodar o exemplo acima, ele vai imprimir os números ímpares de 0 à 9.
 If we run the example above, it will print all odd numbers from 0 through 9.
 
 # Funções
 
-In scripts we have the ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are differences.
+Em scripts, nós temos a habilidade de definir e chamar funções. Assim como em qualquer linguagem de programação, funções no bash são pedaços de códigos, mas elas são tratadas um pouquinho diferentes.
 
-In bash, functions are a sequence of commands grouped under a single name, that is the _name_ of the function. Calling a function is the same as calling any other program, you just write the name and the function will be _invoked_.
+No bash, funções são sequências de comandos agrupados sob um mesmo nome, e esse nome, é o nome da função. Chamar uma função é o mesmo que chamar qualquer outro programa, você escreve o nome da função e ela será invocada.
 
-We can declare our own function this way:
+Podemos declarar funções dessa maneira:
 
 ```bash
 my_func () {
-  # statements
+  # código
 }
 
-my_func # call my_func
+my_func # invoca função
 ```
 
-We must declare functions before we can invoke them.
+Devemos declarar a função antes de invoca-la.
 
-Funções can take on arguments and return a result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). A result code can be _returned_ using the `return` command.
+Funções podem receber argumentos e retornar um resultado - o código de saída. Argumentos, em funções, são tratados da mesma maneira que os argumentos dados ao script no [modo não-interativo](#modo-não-interativo) - usando os [parâmetros de posição](#parâmetros-de-posição). O resultado pode ser retornado usando o comando `return`.
 
-Below is a function that takes a name and returns `0`, indicating successful execution.
+Abaixo é uma função que recebe um nome e retorna `0`, indicando que foi executado com sucesso.
 
 ```bash
 # function with params
-greeting () {
+bemVindo () {
   if [[ -n $1 ]]; then
-    echo "Hello, $1!"
+    echo "Bem-vindo, $1!"
   else
-    echo "Hello, unknown!"
+    echo "Bem-vindo, desconhecido!"
   fi
   return 0
 }
 
-greeting Denys  # Hello, Denys!
-greeting        # Hello, unknown!
+bemVindo Eduardo  # Hello, Eduardo!
+bemVindo        # Hello, desconhecido!
 ```
 
-We already discussed [exit codes](#exit-codes). The `return` command without any arguments returns the exit code of the last executed command. Above, `return 0` will return a successful exit code. `0`.
+Nós já falamos sobre [códigos de saída](#códigos-de-saída). O comando `return` sem argumentos retorna o código de saída do último comando executado. Acima, `return 0` vai retornar o código bem sucedido, `0`.
 
 ## Depurando
 
-The shell gives us tools for debugging scripts. If we want to run a script in debug mode, we use a special option in our script's shebang:
+O shell nós dá ferramentas para depurar nossos scripts. Se você quer rodar um script em modo de depuração, nós usamos um modo especial em nosso _shebang_:
 
 ```bash
 #!/bin/bash options
 ```
 
-These options are settings that change shell behavior. The following table is a list of options which might be useful to you:
+Esse `options` é a configuração que muda o comportamento do shell. A tabela abaixo mostra uma lista de opções que podem ser úteis para você:
 
-| Short | Name        | Description                                            |
+| Atalho | Nome        | Descrição                                            |
 | :---: | :---------- | :----------------------------------------------------- |
-| `-f`  | noglob      | Disable filename expansion (globbing).                 |
-| `-i`  | interactive | Script runs in _interactive_ mode.                     |
-| `-n`  | noexec      | Read commands, but don't execute them (syntax check).  |
-| `-t`  | —           | Exit after first command.                              |
-| `-v`  | verbose     | Print each command to `stderr` before executing it.    |
-| `-x`  | xtrace      | Print each command and its expanded arguments to `stderr` before executing it. |
+| `-f`  | noglob      | Desativa expanção de nome de arquivos, em inglês, _globbing_. |
+| `-i`  | interactive | Script roda no modo _interativo_. |
+| `-n`  | noexec      | Lê comandos, mas não os executa (verifica a sintaxe).  |
+| `-t`  | —           | Saí da execução depois do primeiro comando. |
+| `-v`  | verbose     | Imprimi cada comando no `stderr` antes de executa-los.    |
+| `-x`  | xtrace      | Imprimi cada comando e expande seus argumentos e envia para o `stderr` antes de executa-los. |
 
-For example, we have script with `-x` option such as:
+Por exemplo, podemos ter scripts com `-x` como opção, assim como:
 
 ```bash
 #!/bin/bash -x
@@ -858,7 +858,7 @@ for (( i = 0; i < 3; i++ )); do
 done
 ```
 
-This will print the value of the variables to `stdout` along with other useful information:
+Isso vai imprimir o valor das variáveis para o `stdout` junto de outras informações úteis:
 
 ```
 $ ./my_script
@@ -878,31 +878,31 @@ $ ./my_script
 + (( i < 3 ))
 ```
 
-Sometimes we need to debug a part of a script. In this case using the `set` command is convenient. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
+As vezes nós precisamos depurar uma parte do script. Nesse caso, usar o comando `set` é mais conveniente. Esse comando habilita e desabilita opções. Opções são desabilitadas usando `-` e habilitadas usando `+`:
 
 ```bash
 #!/bin/bash
 
-echo "xtrace is turned off"
+echo "xtrace está desabilitado"
 set -x
-echo "xtrace is enabled"
+echo "xtrace está habilitado"
 set +x
-echo "xtrace is turned off again"
+echo "xtrace foi desabilitado novamente"
 ```
 
 # Posfácio
 
-I hope this small handbook was interesting and helpful. To be honest, I wrote this handbook for myself so as to not forget the bash basics. I tried to write concisely but meaningfully, and I hope you will appreciate that.
+Eu espero que esse pequeno guia tenha sido interação e tenha te ajudado a entender um pouco mais sobre o Bash. Para ser honesto, eu escrevi esse guia para mim mesmo, para assim, não esquecer o básico do bash. Eu tentei escrever de uma maneira concisa, mas significativamente útil e eu espero que você tenha gostado.
 
-This handbook narrates my own experience with Bash. It does not purport to be comprehensive, so if you still want more, please run `man bash` and start there.
+Esse guia narra minha própria experiência com o Bash. Ele não tem foco de abranger toda as funcionalidades, e, se você quiser saber mais, pode começar através do `man bash`.
 
-Contributions are absolutely welcome and I will be grateful for any corrections or questions you can send my way. For all of that create a new [issue](https://github.com/denysdovhan/bash-handbook/issues).
+Contribuições são absolutamente bem-vindas, e eu ficarei grato por qualquer correção ou perguntas que você vier a ter e me enviar. Para isso, crie uma [nova questão aqui](https://github.com/denysdovhan/bash-handbook/issues).
 
-Thanks for reading this handbook!
+Obrigado por ler esse guia de bolso!
 
 # Quer aprender mais?
 
-Here's a list of other literature covering Bash:
+Aqui tem uma lista de outros materiais, todos em inglês, sobre o Bash:
 
 * Bash man page.  In many environments that you can run Bash, the help system `man` can display information about Bash, by running the command `man bash`.  For more information on the `man` command, see the web page ["The man Command"](http://www.linfo.org/man.html) hosted at [The Linux Information Project](http://www.linfo.org/).
 * ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
