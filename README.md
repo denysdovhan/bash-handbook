@@ -488,6 +488,10 @@ In practice, this can be used to process data through several programs. For exam
 
     ls -l | grep .md$ | less
 
+The exit status of a pipeline is normally the exit status of the last command in the pipeline. The shell will not return a status until all the commands in the pipeline have completed. If you want your pipelines to be considered a failure if any of the commands in the pipeline fail, you should set the pipefail option with:
+
+    set -o pipefail
+
 ## Lists of commands
 
 A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
@@ -844,6 +848,7 @@ These options are settings that change shell behavior. The following table is a 
 | `-f`  | noglob      | Disable filename expansion (globbing).                 |
 | `-i`  | interactive | Script runs in _interactive_ mode.                     |
 | `-n`  | noexec      | Read commands, but don't execute them (syntax check).  |
+|       | pipefail    | Make pipelines fail if any commands fail, not just if the final command fail. |
 | `-t`  | —           | Exit after first command.                              |
 | `-v`  | verbose     | Print each command to `stderr` before executing it.    |
 | `-x`  | xtrace      | Print each command and its expanded arguments to `stderr` before executing it. |
