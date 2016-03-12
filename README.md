@@ -56,6 +56,7 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
 - [Functions](#functions)
 - [Debugging](#debugging)
 - [Afterword](#afterword)
+- [Other resources](#other-resources)
 - [License](#license)
 
 # Introduction
@@ -908,6 +909,9 @@ Here's a list of other literature covering Bash:
 * ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
 * [Bash 3.2 Man page](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/bash.1.html) hosted at Apple's Mac Developer Library site.  As of 2016/01, this covers version 3.2, last updated 2006/09/28.
 
+# Other resources
+
+* [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
 
 # License
 
