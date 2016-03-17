@@ -917,6 +917,8 @@ Here's a list of other literature covering Bash:
 
 * [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
 
+Finally, Stack Overflow has many questions that are [tagged as bash](https://stackoverflow.com/questions/tagged/bash) that you can learn from and is a good place to ask if you're stuck.
+
 # License
 
 [![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
