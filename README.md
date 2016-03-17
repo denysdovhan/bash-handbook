@@ -912,15 +912,10 @@ Here's a list of other literature covering Bash:
 # Other resources
 
 * [awesome-bash](https://github.com/awesome-lists/awesome-bash) is a curated list of Bash scripts and resources
-
 * [awesome-shell](https://github.com/alebcay/awesome-shell) is another curated list of shell resources
-
 * [bash-it](https://github.com/Bash-it/bash-it) provides a solid framework for using, developing and maintaining shell scripts and custom commands for your daily work.
-
 * [dotfiles.github.io](http://dotfiles.github.io/) is a good source of pointers to the various dotfiles collections and shell frameworks available for bash and other shells.
-
 * [learnyoubash](https://github.com/denysdovhan/learnyoubash) helps you write your first bash script
-
 * [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
 
 Finally, Stack Overflow has many questions that are [tagged as bash](https://stackoverflow.com/questions/tagged/bash) that you can learn from and is a good place to ask if you're stuck.
