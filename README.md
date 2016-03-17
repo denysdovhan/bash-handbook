@@ -56,6 +56,7 @@ The source is available here: <https://github.com/denysdovhan/bash-handbook>
 - [Functions](#functions)
 - [Debugging](#debugging)
 - [Afterword](#afterword)
+- [Other resources](#other-resources)
 - [License](#license)
 
 # Introduction
@@ -913,6 +914,16 @@ Here's a list of other literature covering Bash:
 * ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
 * [Bash 3.2 Man page](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/bash.1.html) hosted at Apple's Mac Developer Library site.  As of 2016/01, this covers version 3.2, last updated 2006/09/28.
 
+# Other resources
+
+* [awesome-bash](https://github.com/awesome-lists/awesome-bash) is a curated list of Bash scripts and resources
+* [awesome-shell](https://github.com/alebcay/awesome-shell) is another curated list of shell resources
+* [bash-it](https://github.com/Bash-it/bash-it) provides a solid framework for using, developing and maintaining shell scripts and custom commands for your daily work.
+* [dotfiles.github.io](http://dotfiles.github.io/) is a good source of pointers to the various dotfiles collections and shell frameworks available for bash and other shells.
+* [learnyoubash](https://github.com/denysdovhan/learnyoubash) helps you write your first bash script
+* [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
+
+Finally, Stack Overflow has many questions that are [tagged as bash](https://stackoverflow.com/questions/tagged/bash) that you can learn from and is a good place to ask if you're stuck.
 
 # License
 
