@@ -917,11 +917,9 @@ Here's a list of other literature covering Bash:
 
 * [bash-it](https://github.com/Bash-it/bash-it) provides a solid framework for using, developing and maintaining shell scripts and custom commands for your daily work.
 
+* [dotfiles.github.io](http://dotfiles.github.io/) is a good source of pointers to the various dotfiles collections and shell frameworks available for bash and other shells.
+
 * [learnyoubash](https://github.com/denysdovhan/learnyoubash) helps you write your first bash script
-
-* [liquidprompt](https://github.com/nojhan/liquidprompt) is a full-featured prompt for both bash and zsh
-
-* [sexy-bash-prompt](https://github.com/twolfson/sexy-bash-prompt) is a bash prompt with colors and git branch and status display.
 
 * [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
 
