@@ -65,7 +65,7 @@ Se você é um desenvolvedor, então você sabe o valor que o tempo tem. Otimiza
 E, se entrarmos no caminho em direção à eficiência e produtividade, sempre esbarramos em ações que serão repetidas uma vez ou outra, como:
 
 * tirar um *screenshot* e fazer o upload para um servidor
-* processar texto em vários fortamos
+* processar texto em vários formatos
 * converter arquivos entre diferentes formatos
 * analisar o resultado da execução de um programa
 
@@ -76,19 +76,19 @@ Bash é um shell Unix escrito por [Brian Fox][] no formato de software livre par
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- link this format, because some MD processors handle '()' in URLs poorly -->
 
-E porque nós precisamos aprender algo que foi escrito a mais de 30 anos atrás? A resposta é simples: essa _coisa_, hoje em dia, é uma das mais poderosas e portáveis ferramentas para escrever scripts para todos os sitemas baseados em Unix. E isso é a razão pela qual você deve aprender bash. Ponto.
+E porque nós precisamos aprender algo que foi escrito a mais de 30 anos? A resposta é simples: essa _coisa_, hoje em dia, é uma das mais poderosas e portáveis ferramentas para escrever scripts para todos os sitemas baseados em Unix. E isso é a razão pela qual você deve aprender bash. Ponto.
 
 Nesse manual, eu vou descrever os conceitos mais importantes do bash através de exemplos. Eu espero que seja útil para você e que você possa aprender algo através deles.
 
 # Estilos do shell
 
-O usuário do shel bash pode trabalhar em dois modos - interativo e não-interativo.
+O usuário do shell bash pode trabalhar em dois modos - interativo e não-interativo.
 
 ## Modo Interativo
 
 Se você estiver trabalhando no Ubuntu, você tem sete terminais virtuais disponíveis para você. O ambiente de trabalho se posiciona no sétimo terminal virtual. Você pode voltar para uma GUI mais amigável usando o atalho `Ctrl-Alt-F7`.
 
-Você pode abrir o shell usando o atalho `Ctrl-Alt-F1`. Depois disso, a familiar GUI irá desaparecer e um dos terminais virtuais será mostrado.
+Você pode abrir o shell usando o atalho `Ctrl-Alt-F1`. Depois disso, a GUI que você acostuma utilizar irá desaparecer e um dos terminais virtuais será mostrado.
 
 Se você ver algo parecido com isso, então, você está trabalhando no modo interativo:
 
@@ -96,7 +96,7 @@ Se você ver algo parecido com isso, então, você está trabalhando no modo int
 
 Aqui você pode digitar uma variedade de comandos Unix, como `ls`, `grep`, `cd`, `mkdir`, `rm` e ver o resultado das suas execuções.
 
-Nós chamados isso de shell interativo porque ele interage diretamente com o usuário.
+Chamamos isso de shell interativo porque ele interage diretamente com o usuário.
 
 Usar um terminal virtual, nem sempre é conveniente. Por exemplo, se você quiser editar um documento e executar um comando ao mesmo tempo, é melhor você usar um emulador de terminais virtuais, como:
 
@@ -111,7 +111,7 @@ No modo não-interativo, o shell recebe comandos de um arquivo ou um _pipe_ e ex
 
 Use os seguintes comandos para executar o shell em modo não-interativo:
 
-    sh /path/to/script.sh
+    . /path/to/script.sh
     bash /path/to/script.sh
 
 No exemplo acima, `script.sh` é apenas um arquivo de texto comum, contendo comandos, que o interpretador shell pode executar. `sh` ou `bash` são interpretadores utilizados pelo shell. Você pode criar um `script.sh` usando seu editor de texto preferido (e.g. vim, nano, Sublime Text, Atom, etc).
@@ -140,7 +140,7 @@ Uma outra maneira de usar o _shebang_ é:
 echo "Hello, world!"
 ```
 
-A vantagem desse modo de uso do _shebang_ é que ele irá programar o programa (nesse caso o `bash`) baseado no caminho `PATH` do seu ambiente. Esse modo é, muitas vezes, preferido, ao invés de usar o primeiro método mostrado acima, onde a localização do programa no seu ambiente, pode não ser a mesmo. Isso também é útil se a variável `PATH`, em um sistema, estiver configurada para uma versão diferente do programa. Um exemplo, seria a instalação de uma nova versão do `bash`, enquanto preservamos a versão original e inserimos a localização da nova versão na variável `PATH` do sistema. O uso do `#!/bin/bash` pode resultar no uso da versão original do `bash`, enquanto, `#!/usr/bin/env bash`, fará uso da nova versão.
+A vantagem desse modo de uso do _shebang_ é que ele irá utilizar o programa (nesse caso o `bash`) baseado no caminho `PATH` do seu ambiente. Esse modo é, muitas vezes, preferido, ao invés de usar o primeiro método mostrado acima, onde a localização do programa no seu ambiente, pode não ser a mesmo. Isso também é útil se a variável `PATH`, em um sistema, estiver configurada para uma versão diferente do programa. Um exemplo, seria a instalação de uma nova versão do `bash`, enquanto preservamos a versão original e inserimos a localização da nova versão na variável `PATH` do sistema. O uso do `#!/bin/bash` pode resultar no uso da versão original do `bash`, enquanto, `#!/usr/bin/env bash`, fará uso da nova versão.
 
 ## Códigos de saída
 
@@ -168,7 +168,7 @@ whoami
 
 # Variáveis
 
-Como na maioria das linguages de programas, você pode criar variáveis no bash.
+Como na maioria das linguages de programação, você pode criar variáveis no bash.
 
 Bash não conhece nenhum tipo de dados. Variáveis podem conter apenas números ou _strings_. Existem três tipos de variáveis que você pode criar: variáveis locais, variáveis de ambiente e variáveis de _parâmetros posicionados_.
 
@@ -203,7 +203,7 @@ Existem _muitas_ variáveis globais no bash. Você vai conhecer elas no decorrer
 | Variáveis     | Descrição                                                   |
 | :----------- | :------------------------------------------------------------ |
 | `$HOME`      | O diretório inicial do usuário atual.                            |
-| `$PATH`      | Uma lista separada por ponto e vírgula dos diretários que o shell irá procurar por comandos. |
+| `$PATH`      | Uma lista separada por dois pontos `[:]` dos diretários que o shell irá procurar por comandos. |
 | `$PWD`       | O diretório atual.                                |
 | `$RANDOM`    | Número inteiro randômico entre 0 e 32767.                           |
 | `$UID`       | Versão numérica do ID do usuário atual.                |
