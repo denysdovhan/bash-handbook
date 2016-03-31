@@ -16,6 +16,16 @@ You should be able to run `bash-handbook` at the command line now. This will ope
 
 The source is available here: <https://github.com/denysdovhan/bash-handbook>
 
+# Translations
+
+Currently, there are these translations of **bash-handbook**:
+
+- [Português (Brasil)](/translations/pt-BR/README.md)
+
+[**Request another translation**][tr-request]
+
+[tr-request]: https://github.com/denysdovhan/bash-handbook/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
+
 # Table of Contents
 
 - [Introduction](#introduction)
