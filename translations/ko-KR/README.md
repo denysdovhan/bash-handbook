@@ -83,25 +83,24 @@ Bash [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)을 대체할 GNU
 
 # Shells and modes
 
-The user bash shell can work in two modes - interactive and non-interactive.
+Bash 셸은 두가지모드로 작업이 가능합니다 - interactive mode와 non-interactive 모드.
 
 ## Interactive mode
 
-If you are working on Ubuntu, you have seven virtual terminals available to you.
-The desktop environment takes place in the seventh virtual terminal, so you can return to a friendly GUI
-using the `Ctrl-Alt-F7` keybinding.
+당신이 Ubuntu에서 작업을하고 있다면, 7개나되는 가상 터미널을 사용할 수 있습니다.
+데스크탑 환경은 7번째 가상 터미널로 GUI모드로 돌아오고 싶다면 `Ctrl-Alt-F7`을 이용하여 GUI를 사용할 수 있습니다.
 
-You can open the shell using the `Ctrl-Alt-F1` keybinding. After that, the familiar GUI will disappear and one of the virtual terminals will be shown.
+`Ctrl-Alt-F1`키를 이용하여 shell을 열 수 있습니다. 그런 다음, 친숙한 GUI는 사라지고 1번 가상 터미널이 보여집니다.
 
-If you see something like this, then you are working in interactive mode:
+Interactive 모드에서 작업중이라면 다음과 같이 보여집니다:
 
     user@host:~$
 
-Here you can enter a variety of Unix commands, such as `ls`, `grep`, `cd`, `mkdir`, `rm` and see the result of their execution.
+여기서 여러가지 Unix 명령어를 입력할 수 있습니다. `ls`, `grep`, `cd`, `mkdir`, `rm`과 같은 명령과 그것을 실결과 값을 확인할 수 있습니다.
 
-We call this shell interactive because it interacts directly with the user.
+셸이 사용자와 직접 상호 작용을 하기에 우리는 셸과 interactive가 가능합니다.
 
-Using a virtual terminal is not really convenient. For example, if you want to edit a document and execute another command at the same time, you are better off using virtual terminal emulators like:
+가상 터미널 사용은 불편합니다. 예를 들어, 한번에 문서를 수정하고, 다른 명령어를 사용하는 경우라면 다음의 가상 터미널 에뮬레이터를 사용하는 것이 좋습니다:
 
 - [GNOME Terminal](https://en.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
@@ -110,52 +109,51 @@ Using a virtual terminal is not really convenient. For example, if you want to e
 
 ## Non-interactive mode
 
-In non-interactive mode, the shell reads commands from a file or a pipe and executes them. When the interpreter reaches the end of the file, the shell process terminates the session and returns to the parent process.
+Non-interactive 모드에서는 셸에서 파일이나 pipe를 통하여 명령을 읽고 실행합니다. Interpreter는 파일이 끝나게되면 셸 프로세스는 세션을 종료하고 부모 프로세스로 돌아갑니다.
 
-Use the following commands for running the shell in non-interactive mode:
+다음 명령으로 non-interactive 모드로 셸을 실행시킬수 있습니다:
 
     sh /path/to/script.sh
     bash /path/to/script.sh
 
-In the example above, `script.sh` is just a regular text file that consists of commands the shell interpreter can evaluate and `sh` or `bash` is the shell's interpreter program. You can create `script.sh` using your preferred text editor (e.g. vim, nano, Sublime Text, Atom, etc).
+위 예제에서 `script.sh`는 셸 인터프리터가 알 수 있는 명령으로 구성된 일판 파일이고 `sh`, `bash`는 셸 인터프리터 프로그램입니다. 당신은 `script.sh` 파일을 편한 에디터로 작성할 수 있습니다. (예, vim, nano, Sublime Text, Atom 등)
 
-You can also simplify invoking the script by making it an executable file using the `chmod` command:
-
+`chmod` 명령을 통해 실행파일로 변경하야 스크립트를 쉽게 실행할 수 있습니다.
 
     chmod +x /path/to/script.sh
 
-Additionally, the first line in the script must indicate which program it should use to run the file, like so:
+또한 스크립트 첫줄은 파일에서 실행하는데 사용되는 프로그램을 다음과 같이 표시해야합니다:
 
 ```bash
 #!/bin/bash
 echo "Hello, world!"
 ```
 
-Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/sh`. This `#!` character sequence is known as the [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29). Now you can run the script like this:
+`bash`보다 `sh`가 더 좋다면, `#!/bin/bash` 구문을 `#!/bin/sh`로 변경하면된다. 이 `#!` 문자열은 [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29)로 알려져있다. 그럼 이제 다음처럼 스크립트를 실행할 수 있습니다:
 
     /path/to/script.sh
 
-A handy trick we used above is using `echo` to print text to the terminal screen.
+위에서 작성한 간단한 trick은 `echo` 명령을 이용하여 터미널에 텍스트를 출력합니다.
 
-Another way to use the shebang line is as follows:
+Shebang 라인에 다음과 같은 방법으로 입력할 수도 있습니다:
 
 ```bash
 #!/usr/bin/env bash
 echo "Hello, world!"
 ```
 
-The advantage of this shebang line is it will search for the program (in this case `bash`) based on the `PATH` environment variable. This is often preferred over the first method shown above, as the location of a program on a filesystem cannot always be assumed. This is also useful if the `PATH` variable on a system has been configured to point to an alternate version of the program. For instance, one might install a newer version of `bash` while preserving the original version and insert the location of the newer version into the `PATH` variable. The use of `#!/bin/bash` would result in using the original `bash`, while `#!/usr/bin/env bash` would make use of the newer version.
+이 shebang에서 좋은점은 시스템 `PATH` 환경 변수로 지정된 것을 기반으로 프로그램을 (여기서는 `bash`) 실행한다는 것입니다. 이것은 파일 시스템에서 프로그램 path가 동일하지 않을 수 있기에 첫번째 방법보다는 바람직합니다. 시스템 `PATH`가 다른 버전에대한 프로그램으로 표기하고 있을때 유용합니다. 예를 들어, 기존 버전인 `bash`를 유지하면서 새로운 버전으로 설치하고 `PATH` 변수에 새로운 위치를 입력하여 사용할 수 있습니다. 기존 `bash`를 사용하기위해서는 `#!/bin/bash`를 사용하고 새로운 버전을 사용하기위해 `#!/usr/bin/env bash`를 사용하면 됩니다.
 
 
 ## Exit codes
 
-Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns a non-zero value (error code). Failure codes must be positive integers between 1 and 255.
+모든 명령은 **exit code**를 반환합니다 (**return status** 또는 **exit status**). 정상 작동한 명령은 항상 `0` (zero-code)를, 정상 작동이 안된경우 0이 아닌 값(error code)을 반환합니다. 실패 코드는 1에서 255까지인 양의 정수이어야 합니다.
 
-Another handy command we can use when writing a script is `exit`. This command is used to terminate the current execution and deliver an exit code to the shell. Running an `exit` code without any arguments, will terminate the running script and return the exit code of the last command executed before `exit`.
+스크립트로 사용할때 우리가 사용할 수 있는 유용한 명령 중 하나는 `exit`입니다. 이 명령은 실행되고 있는 명령을 종료하고 셸에 종료 코드를 전달하는데 사용합니다. 인수없이 `exit` 코드를 실행하면 실행중인 스크립트가 종료되고나면 `exit` 전 마지막으로 실행한 명령이 반한환 종료 코드를 반환하게 됩니다.
 
-When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has succeeded or not in its execution.
+프로그램이 종료되면 셸은 `$?` 환경변수에 그 **exit code**가 할당됩니다. `$?` 변수는 스크립트가 실행되었는지 여부를 확인할 수 있는 기본 테스트 방법입니다.
 
-In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
+마찬가지로 우리는 스크립트를 종료하기위해 `exit`를 사용할 수 있고, `return` 명령을 사용하여 함수를 종료하고 caller에게 **exit code**를 반환합니다. 함수 내부에서 `exit`를 사용할 수 있으며, 함수를 종료_하고_ 프로그램을 프로그램을 죽입니다.
 
 # Comments
 
