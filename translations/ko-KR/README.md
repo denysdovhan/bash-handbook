@@ -157,9 +157,9 @@ echo "Hello, world!"
 
 # Comments
 
-Scripts may contain _comments_. Comments are special statements ignored by the `shell` interpreter. They begin with a `#` symbol and continue on to the end of the line.
+스크립트는 _주석_을 포함해도됩니다. 주석은 `shell` 인터프리터에서 무시되는 특별한 문장입니다. `#`으로 시작해며 줄바꿈이 있기전까지 작성된 내용은 주석처리됩니다.
 
-For example:
+예를 들어:
 
 ```bash
 #!/bin/bash
@@ -167,7 +167,7 @@ For example:
 whoami
 ```
 
-> **Tip**: Use comments to explain what your script does and _why_.
+> **Tip**: _왜_ 스크립트를 만들었는지에 대한 내용을 주석에 넣어야됩니다.
 
 # Variables
 
