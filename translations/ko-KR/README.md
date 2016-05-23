@@ -171,15 +171,15 @@ whoami
 
 # Variables
 
-Like in most programming languages, you can also create variables in bash.
+다른 프로그래밍 언어처럼 변수를 생성하여 사용할수 있습니다.
 
-Bash knows no data types. Variables can contain only numbers or a string of one or more characters. There are three kinds of variables you can create: local variables, environment variables and variables as _positional arguments_.
+Bash는 데이터 타입을 알 수 없습니다. 그래서 변수는 오직 숫자(numbers)나 하나 이상의 문자열(string)로 할당이 가능합니다. 변수는 3가지로 만들 수 있습니다: 지역 변수, 환경 변수, _positional arguments_ 변수입니다.
 
 ## Local variables
 
-**Local variables** are variables that exist only within a single script. They are inaccessible to other programs and scripts.
+**지역 변수 (Local variables)**는 단일 스크립트 내에 존재하는 변수입니다. 다른 프로그램이나 스크립트에서 접근할 수 없습니다.
 
-A local variable can be declared using `=` sign (as a rule, there **should not** be any spaces between a variable's name, `=` and its value) and its value can be retrieved using the `$` sign. For example:
+지역 변수는 `=` 기호를 이용하여 할당할 수 있습니다. 규칙상 `=`과 값사이에는 공백이 **있어서는 안됩니다**. 그리고 값을 부를때는 `$` 기호를 이용하여 부릅니다. 예를 들어:
 
 ```bash
 username="denysdovhan"  # declare variable
@@ -187,7 +187,7 @@ echo $username          # display value
 unset username          # delete variable
 ```
 
-We can also declare a variable local to a single function using the `local` keyword. Doing so causes the variable to disappear when the function exits.
+또한 `local` 키워드를 사용하여 단일 함수에 지역 변수를 선언 할 수 있습니다. 이렇게하면 함수가 종료할때 변수가 표시되지 않습니다.
 
 ```bash
 local local_var="I'm a local value"
@@ -195,44 +195,44 @@ local local_var="I'm a local value"
 
 ## Environment variables
 
-**Environment variables** are variables accessible to any program or script running in current shell session. They are created just like local variables, but using the keyword `export` instead.
+**환경 변수 (Environment variables)**는 현재 셸 섹션에서 실행되고 있는 프로그램이나 스크립트에서 접근할 수 있는 변수 입니다. 지역 변수와 같이하여 만들지만, `export` 키워드를 사용하여 생성합니다.
 
 ```bash
 export GLOBAL_VAR="I'm a global variable"
 ```
 
-There are _a lot_ of global variables in bash. You will meet these variables fairly often, so here is a quick lookup table with the most practical ones:
+Bash에서는 전역 변수가 _좀_ 있습니다. 자주 이런 변수를 확인하기 위해 순람표가 있습니다:
 
-| Variable     | Description                                                   |
+| 변수         | 설명                                                          |
 | :----------- | :------------------------------------------------------------ |
-| `$HOME`      | The current user's home directory.                            |
-| `$PATH`      | A colon-separated list of directories in which the shell looks for commands. |
-| `$PWD`       | The current working directory.                                |
-| `$RANDOM`    | Random integer between 0 and 32767.                           |
-| `$UID`       | The numeric, real user ID of the current user.                |
-| `$PS1`       | The primary prompt string.                                    |
-| `$PS2`       | The secondary prompt string.                                  |
+| `$HOME`      | 현재 사용자 홈 디렉토리.                                      |
+| `$PATH`      | 셸에서 사용하는 명령어를 찾기위한 위치. 콜론으로 목록을 구분함. |
+| `$PWD`       | 현재 작업중인 디렉토리.                                       |
+| `$RANDOM`    | 0 ~ 32767 사이의 렌덤 인트값.                                 |
+| `$UID`       | 현자 사용자의 실재 사용자 ID, 숫자로 표기됨.                  |
+| `$PS1`       | 첫번째 프롬프트 문자열.                                       |
+| `$PS2`       | 두번째 프롬프트 문자열.                                       |
 
-Follow [this link](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04) to see an extended list of environment variables in Bash.
+다음에 [링크](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04)에서 bash에 있는 환경 변수 확장 목록을 확인할 수 있습니다.
 
 ## Positional parameters
 
-**Positional parameters** are variables allocated when a function is evaluated and are given positionally. The following table lists positional parameter variables and other special variables and their meanings when you are inside a function.
+**위치 매개변수 (Positional parameters)**는 함수는 값을 구하고 할당된 위치에 대한 값을 할당합니다. 함수 내부에 있는 경우, 다음 표에 나열된 위치 매개 변수와 기타 특별한 변수에 대한 의미를 보여줍니다. (역자주: Argument라고 불리우는 매개변수들이다.)
 
-| Parameter      | Description                                                 |
+| 매개변수       | 설명                                                        |
 | :------------- | :---------------------------------------------------------- |
-| `$0`           | Script's name.                                              |
-| `$1 … $9`      | The parameter list elements from 1 to 9.                     |
-| `${10} … ${N}` | The parameter list elements from 10 to N.                    |
-| `$*` or `$@`   | All positional parameters except `$0`.                      |
-| `$#`           | The number of parameters, not counting `$0`.                 |
-| `$FUNCNAME`    | The function name (has a value only inside a function).     |
+| `$0`           | 스크립트 이름.                                              |
+| `$1 … $9`      | 1 ~ 9까지 매개변수 목록 요소.                               |
+| `${10} … ${N}` | 10 ~ N까지 매개변수 목록 요소.                              |
+| `$*` or `$@`   | `$0`을 제외한 모든 위치 매개변수.                           |
+| `$#`           | 매개변수에 대한 숫자, `$0`를 제외하고.                      |
+| `$FUNCNAME`    | 함수 이름 (함수 내에서만 값을 가집니다)                     |
 
-In the example below, the positional parameters will be `$0='./script.sh'`,  `$1='foo'` and `$2='bar'`:
+다음 예제를 위치 매개변수로 나타내면 `$0='./script.sh'`, `$1='foo'`, `$2='bar'`:
 
     ./script.sh foo bar
 
-Variables may also have _default_ values. We can define as such using the following syntax:
+변수에 _기본_ 값이 존재할 수 있습니다. 다음 구문으로 해당 값을 정의하면 가능합니다:
 
 ```bash
  # if variables are empty, assign them default values
