@@ -92,25 +92,25 @@ Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_
 
 # 關於Shell以及Shell的模式
 
-使用者 bash shell 可以工作在兩種模式 - 互動和非互動這兩種模式。
+使用者 bash shell 可以工作在兩種模式 - 互動模式及非互動模式。
 
 ## 互動模式
 
 如果你是在 Ubuntu 上工作，你有七個虛擬終端機可以讓你使用。
-桌面環境有七個虛擬終端機，
-所以你可以使用 `Ctrl-Alt-F7` 讓你進入友善的 GUI 介面。
+桌面環境是被放在第七個終端機中，
+所以你可以使用 `Ctrl-Alt-F7` 快捷鍵來回到友善的 GUI 介面。
 
-你可以使用 `Ctrl-Alt-F1` 來使用 shell。在那之後，熟悉的 GUI 介面將會消失，然後會顯示虛擬終端機。
+你可以使用 `Ctrl-Alt-F1` 來開始使用 shell。在那之後，熟悉的 GUI 介面將會消失，取而代之的則是虛擬終端機。
 
 如果你看到以下的東西，代表你處在互動模式：
 
     user@host:~$
 
-你可以輸入各種 Unix 的命令，像是 `ls`、`grep`、`cd`、`mkdir`、`rm`，然後你可以看到執行後的結果。
+你可以輸入各種 Unix 的命令，像是 `ls`、`grep`、`cd`、`mkdir`、`rm`，然後看看他們執行後的結果。
 
-我們稱這個 shell 叫做互動模式，因為它是直接與使用者作互動。
+我們稱這個為互動模式，因為 shell 是直接與使用者作互動。
 
-使用虛擬終端機實在不怎麼的方便，例如，假設你想要同時編輯文件和執行其他命令，在這樣的情況下，你最好使用虛擬終端模擬，像是：
+但使用虛擬終端機實在是不怎麼方便。例如，假設你想要同時編輯文件和執行其他命令，在這樣的情況下，使用虛擬終端機模擬器（virtual terminal emulators）會比較好，像是：
 
 - [GNOME Terminal](https://en.wikipedia.org/wiki/GNOME_Terminal)
 - [Terminator](https://en.wikipedia.org/wiki/Terminator_(terminal_emulator))
@@ -119,52 +119,52 @@ Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_
 
 ## 非互動模式
 
-在非互動模式中，shell 從檔案或是 pipe 讀取到命令然後執行。當直譯器到達檔案的末端時，shell 程式終止 session 並返回到父程式。
+在非互動模式中，shell 從檔案或是 pipe 讀取到命令然後執行他們。當直譯器到達檔案的末端（EOF, End Of Line）時，shell 程式終止 session 並返回到父程式。
 
-使用以下的命令來執行，讓 shell 處於非互動模式中：
+使用以下的命令來執行，使 shell 在非互動模式中執行：
 
     sh /path/to/script.sh
     bash /path/to/script.sh
 
-在上面的例子中，`script.sh` 只是一個普通的檔案，而 shell 直譯器可以判斷檔案中組成的命令；`sh` 和 `bash` 是 shell 的直譯程式。你可以使用你喜歡的文字編輯器來建立 `script.sh`（例如：vim、nano、Sublime Text、Atom 等等）。
+在上面的例子中，`script.sh` 其實只是一個普通的檔案，而 shell 直譯器可以解析檔案中的命令；`sh` 和 `bash` 是 shell 的直譯程式。你可以使用你喜歡的編輯器來建立 `script.sh`（例如：vim、nano、Sublime Text、Atom 等等）。
 
-除此之外，你還可以透過 `chmod` 命令將檔案加入可執行的權限，來執行 script：
+除此之外，你還可以透過 `chmod` 命令給予檔案執行權限，使檔案可以執行：
 
 
     chmod +x /path/to/script.sh
 
-另外，在這個 script 第一行必須說明執行這個檔案應該使用哪個程式，像是：
+另外，在這個 script 第一行必須指定應該使用哪個程式來執行這個檔案，像是：
 
 ```bash
 #!/bin/bash
 echo "Hello, world!"
 ```
 
-或者，如果你偏好使用 `sh` 而不是 `bash`，將 `#!/bin/bash` 改成 `#!/bin/sh`。這個 `#!` 字元序列被稱為 [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29)。現在你可以執行這個 script 了：
+或者，如果你偏好使用 `sh` 而不是 `bash`，將 `#!/bin/bash` 改成 `#!/bin/sh`。這個 `#!` 字元序列被稱為 [shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29)。現在你可以這樣執行這個 script：
 
     /path/to/script.sh
 
-我們使用上面簡單方便的技巧使用 `echo` 將文字列印到終端螢幕。
+我們使用上面簡單方便的技巧使用 `echo` 將文字印到螢幕終端。
 
-另一個方式使用 sheban 來顯示：
+另一個使用 sheban 的方式：
 
 ```bash
 #!/usr/bin/env bash
 echo "Hello, world!"
 ```
 
-使用 shebang 的好處是可以基於 `PATH` 環境變數來尋找程式（這個例子是 `bash`）。相較於上面的第一種方法，應該使用這個方法，因為本機的檔案系統的程式位置是不能假設的。這樣好處是，如果 `PATH` 變數在系統上可能被設定到其他不同版本的程式上。例如，安裝一個新版本的 `bash` 同時保留原來版本的 `bash`，然後新增新版本的 `PATH` 變數到本機。使用 `#!/bin/bash` 會導致使用到原來的 `bash`，而使用 `#!/usr/bin/env bash` 會使用到新的版本。
+使用 shebang 的好處是可以基於環境變數 `PATH` 來尋找程式（這個例子是 `bash`）。相較於上面的第一種方法，應該使用這個方法比較好，因為我們不知道程式被放在系統的什麼地方。這樣好處是，如果 `PATH` 變數在系統上可能被設定到其他不同版本的程式上。例如，安裝一個新版本的 `bash` 同時保留原來版本的 `bash`，然後把新版本的路徑加入環境變數 `PATH` 中。使用 `#!/bin/bash` 會導致使用到原來的 `bash`，而使用 `#!/usr/bin/env bash` 會使用到新的版本。
 
 
 ## Exit codes
 
-每個命令都會回傳一個 **exit code**（**回傳狀態**或**結束狀態**）。成功的命令始終回傳 `0`（零代碼），而失敗總是回傳非零值（錯誤代碼）。錯誤代碼必須介於 1 到 255 的正整數。
+每個命令都會回傳一個 **exit code**（**回傳狀態**或**結束狀態**）。一個成功的命令始終回傳 `0`（零代碼），而失敗總是回傳非零值（錯誤代碼）。錯誤代碼必須介於 1 到 255 的正整數。
 
 撰寫 script 時，我們可以使用另一個方便的 `exit` 命令。使用這個命令來終止目前的執行，並向 shell 提供一個 exit code。執行一個不帶有任何參數的 `exit` code，會終止執行目前的 script 並回傳在 `exit` 之前的最後一個命令的 exit code。
 
-當程式終止時，shell 分配一個 **exit code** 給 `$?` 環境變數。`$?` 變數是我們測試一個 script 是否成功執行。
+當程式終止時，shell 會把 **exit code** 指派給環境變數 `$?`。`$?` 變數是我們測試一個 script 是否成功執行。
 
-以同樣的方式我們可以使用 `exit` 來終止一個 script，我們可以使用 `return` 命令來離開一個 function _並_回傳一個 **exit code** 給 caller。
+用同樣的方式，我們可以使用 `exit` 來停止一個 script，我們能在函式中使用 `return` 來退出函式並回傳 **exit code** 給呼叫者，又或者你可以在函式中使用 `exit` ，這會退出函式 _並_結束程式。
 
 # 註解
 
