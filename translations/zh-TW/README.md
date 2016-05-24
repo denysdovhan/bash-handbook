@@ -1,20 +1,20 @@
 # bash-handbook [![CC 4.0][cc-image]][cc-url]
 
-這份文件是為想要學習 Bash 但是又不需要專研太深的人。
+這份文件是為想要學習 Bash 但是又不想要專研太深的人。
 
-> **Tip**：不妨嘗試 [**learnyoubash**](https://git.io/learnyoubash) — 一個基於本手冊的互動教學平台！
+> **Tip**：不妨嘗試 [**learnyoubash**](https://git.io/learnyoubash) — 一個基於本文件的互動教學平台！
 
 # Node 套件手稿
 
-你可以使用 `npm` 來安裝這個手冊。只要執行：
+你可以使用 `npm` 來安裝這份手冊。只要執行：
 
 ```
 $ npm install -g bash-handbook
 ```
 
-你現在可以在命令執行 `bash-handbook`。它會開啟你所選的 `$PAGER`。當然，你可以繼續在這裡閱讀。
+你現在可以在命令執行 `bash-handbook`。它會開啟你所選的 `$PAGER`。反之，你也可以繼續在這裡閱讀。
 
-這是可用的資源：<https://github.com/denysdovhan/bash-handbook>
+來源是這裡：<https://github.com/denysdovhan/bash-handbook>
 
 # 翻譯
 
@@ -31,7 +31,7 @@ $ npm install -g bash-handbook
 # 目錄
 
 - [簡介](#introduction)
-- [Shell 的模式](#shell-的模式)
+- [關於Shell以及Shell的模式](#關於Shell以及Shell的模式)
   - [互動模式](#互動模式)
   - [非互動模式](#非互動模式)
   - [Exit codes](#exit-codes)
@@ -39,7 +39,7 @@ $ npm install -g bash-handbook
 - [變數](#變數)
   - [區域變數](#區域變數)
   - [環境變數](#環境變數)
-  - [位置參數](#位置參數)
+  - [命令列引數](#命令列引數)
 - [Shell expansion](#shell-expansion)
   - [括號展開](#括號展開)
   - [命令替代](#命令替代)
@@ -73,27 +73,24 @@ $ npm install -g bash-handbook
 
 # 簡介
 
-如果你是一個開發者，你了解時間的價值，優化你的工作流程是這份工作的最重要之一。
+如果你是一個開發者，你一定知道時間的寶貴，那麼使工作流程更快速簡單便是一件很重要的事情。
 
-在通往高效和生產力的路上，我們經常不得不做出反覆的動作，像是︰
+為了讓工作更有效率及更高的產能，常常會有些重複繁瑣的事情，像是：
 
-* 截圖並上傳到伺服器。
-* 可能有許多形式的處理文件。
-* 在不同檔案格式件進行轉換。
+* 截圖並把圖片上傳到伺服器。
+* 需要處理各式各樣有著不同格式的文件。
+* 在不同檔案格式間進行轉換。
 * 解析程式的輸出。
 
-讓 **Bash** 來拯救我們吧！
+進入 **Bash** 的世界，coder 們的救星！
 
-Bash 是一個 Unix Shell，由 [Brian Fox][] 為 GNU 專案以自由軟體來取代 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell) 所撰寫的。Unix Shell 發佈於 1989，而且作為 Linux 和 OSX 的預設 shell 已經有很長一段時間。
+Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) 為 GNU 專案開發的 Unix Shell，這是一個為取代 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell) 而開發的自由軟體，最初在 1989 年被發布，並且 Bash 也作為 Linux 和 OSX 的 default shell 很長一段時間了。
 
-[Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
-<!-- link this format, because some MD processors handle '()' in URLs poorly -->
+那麼我們為什麼需要學習有著 30 年歷史的東西呢？答案很簡單：這個東西是當今最強大的且易於攜帶的工具，在所有 Unix-based 的作業系統撰寫有效率的的腳本程式。而這就是你需要學習 bash 的原因。
 
-那麼我們為什麼需要學習有著 30 年歷史的東西呢？答案很簡單：這個_東西_是當今最強大的而且是可攜的工具，為所有基於 Unix 系統撰寫高效的 script。這就是為什麼你需要學習 bash 的原因。
+在這個手冊中，我會透過範例去說明 bash 最重要的概念。而我也希望這篇概略性的文章對你會有幫助。
 
-在這個手冊中，我會透過範例，去描述 bash 最重要的概念。我希望這篇概略性的文章對你會有幫助。
-
-# Shell 的模式
+# 關於Shell以及Shell的模式
 
 使用者 bash shell 可以工作在兩種模式 - 互動和非互動這兩種模式。
 
@@ -228,9 +225,9 @@ bash 中有_許多_全域變數。你會經常遇到這些變數，所以這些�
 
 根據這個[連結](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04)，可以查看在 Bash 內的環境變數擴充列表。
 
-## 位置參數
+## 命令列引數
 
-**位置參數**是當 function 計算時，變數被分配到的位置。下面表格列出了當你在 function 內部時，位置參數變數和其他特殊變數它們所代表的意義。
+**命令列引數**是當 function 計算時，變數被分配到的位置。下面表格列出了當你在 function 內部時，位置參數變數和其他特殊變數它們所代表的意義。
 
 
 | 參數           | 描述                                                         |
