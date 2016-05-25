@@ -30,8 +30,8 @@ $ npm install -g bash-handbook
 
 # 目錄
 
-- [簡介](#introduction)
-- [關於Shell以及Shell的模式](#關於Shell以及Shell的模式)
+- [簡介](#簡介)
+- [關於 Shell 以及 Shell 的模式](#關於-shell-以及-shell-的模式)
   - [互動模式](#互動模式)
   - [非互動模式](#非互動模式)
   - [Exit codes](#exit-codes)
@@ -57,8 +57,8 @@ $ npm install -g bash-handbook
   - [命令序列](#命令序列)
 - [條件陳述式](#條件陳述式)
   - [Primary 和組合表達式](#primary-和組合表達式)
-  - [使用一個 `if` 陳述](#使用一個-if-陳述)
-  - [使用一個 `case` 陳述](#使用一個-case-陳述)
+  - [使用 `if` 陳述](#使用-if-陳述)
+  - [使用 `case` 陳述](#使用-case-陳述)
 - [迴圈](#迴圈)
   - [`for` 迴圈](#for-迴圈)
   - [`while` 迴圈](#while-迴圈)
@@ -90,7 +90,7 @@ Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_
 
 在這個手冊中，我會透過範例去說明 bash 最重要的概念。而我也希望這篇概略性的文章對你會有幫助。
 
-# 關於Shell以及Shell的模式
+# 關於 Shell 以及 Shell 的模式
 
 使用者 bash shell 可以工作在兩種模式 - 互動模式及非互動模式。
 
@@ -164,7 +164,7 @@ echo "Hello, world!"
 
 當程式終止時，shell 會把 **exit code** 指派給環境變數 `$?`。`$?` 變數是我們測試一個 script 是否成功執行。
 
-用同樣的方式，我們可以使用 `exit` 來停止一個 script，我們能在函式中使用 `return` 來退出函式並回傳 **exit code** 給呼叫者，又或者你可以在函式中使用 `exit` ，這會退出函式 _並_結束程式。
+用同樣的方式，我們可以使用 `exit` 來停止一個 script，我們能在函式中使用 `return` 來退出函式並回傳 **exit code** 給呼叫者，又或者你可以在函式中使用 `exit`，這會退出函式 _並_結束程式。
 
 # 註解
 
@@ -213,15 +213,15 @@ export GLOBAL_VAR="I'm a global variable"
 
 bash 中有_許多_全域變數。你會經常遇到這些全域變數，以下是最常使用到的變數查閱表︰
 
-| 變數          | 描述                                                          |
+| 變數         | 描述                                                          |
 | :----------- | :------------------------------------------------------------ |
-| `$HOME`      | 目前使用者的家目錄。                                          |
-| `$PATH`      | shell 以這些冒號分隔的目錄清單尋找命令。                      |
-| `$PWD`       | 目前的工作目錄。                                              |
-| `$RANDOM`    | 0 到 32767 之間的隨機整數。                                   |
-| `$UID`       | 數字類型，使用者的 ID。                                       |
-| `$PS1`       | 主要的提示字串。                                              |
-| `$PS2`       | 次要的提示字串。                                              |
+| `$HOME`      | 目前使用者的家目錄                                            |
+| `$PATH`      | shell 以這些冒號分隔的目錄清單尋找命令                        |
+| `$PWD`       | 目前的工作目錄                                                |
+| `$RANDOM`    | 0 到 32767 之間的隨機整數                                     |
+| `$UID`       | 數字類型，使用者的 ID                                         |
+| `$PS1`       | 主要的提示字串                                                |
+| `$PS2`       | 次要的提示字串                                                |
 
 根據這個[連結](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04)，可以查看更多在 Bash 內的環境變數列表。
 
@@ -230,14 +230,14 @@ bash 中有_許多_全域變數。你會經常遇到這些全域變數，以下�
 **命令列引數**是當程式執行時，變數根據執行程式時，程式名稱後所跟隨的參數而得。下面表格列出了當你在程式執行時，命令列引數和其他特殊變數它們所代表的意義。
 
 
-| 參數           | 描述                                                         |
-| :------------- | :----------------------------------------------------------- |
-| `$0`           | Script 的名稱                                                |
+| 參數           | 描述                                                          |
+| :------------- | :------------------------------------------------------------ |
+| `$0`           | Script 的名稱                                                 |
 | `$1 … $9`      | 從第 1 個到第 9 個參數                                        |
 | `${10} … ${N}` | 從第 10 個到第 N 個參數                                       |
 | `$*` 或 `$@`   | 除了 `$0` 以外的所有參數                                      |
 | `$#`           | 不包含 `$0`的參數數量                                         |
-| `$FUNCNAME`    | function 名稱（只有一個變數在 function 內部）。                 |
+| `$FUNCNAME`    | function 名稱（只有一個變數在 function 內部）                 |
 
 在下面的範例，命令列引數會是：`$0='./script.sh'`、`$1='foo'` 和 `$2='bar'`：
 
@@ -371,7 +371,7 @@ echo ${fruits[*]} # Apple Pear Plum
 echo ${fruits[@]} # Apple Pear Plum
 ```
 
-以上兩行有 **很重要且微妙** 的差別，假設陣列的元素值中包含空白：
+以上兩行有**很重要且微妙**的差別，假設陣列的元素值中包含空白：
 
 ```bash
 fruits[0]=Apple
@@ -555,45 +555,45 @@ command1 || command2
 
 | Primary       | 涵義                                                         |
 | :-----------: | :----------------------------------------------------------- |
-| `[ -e FILE ]` | 如果 `FILE` 存在（**e**xists），為 Ture。                    |
-| `[ -f FILE ]` | 如果 `FILE` 存在且為一個普通的文件（**f**ile），為 True。    |
-| `[ -d FILE ]` | 如果 `FILE` 存在且為一個目錄（**d**irectory），為 True。     |
-| `[ -s FILE ]` | 如果 `FILE` 存在且不為空（**s**ize 大於 0），為 True。       |
-| `[ -r FILE ]` | 如果 `FILE` 存在且有讀取權限（**r**eadable），為　True。     |
-| `[ -w FILE ]` | 如果 `FILE` 存在且有寫入權限（**w**ritable），為 True。    |
-| `[ -x FILE ]` | 如果 `FILE` 存在且有執行權限（e**x**ecutable），為 True 。 |
-| `[ -L FILE ]` | 如果 `FILE` 存在且為符號連結（**l**ink），為 True。          |
-| `[ FILE1 -nt FILE2 ]` | FILE1 比 FILE2 新（**n**ewer **t**han）。            |
-| `[ FILE1 -ot FILE2 ]` | FILE1 比 FILE2 舊（**o**lder **t**han）。            |
+| `[ -e FILE ]` | 如果 `FILE` 存在（**e**xists），為 Ture                      |
+| `[ -f FILE ]` | 如果 `FILE` 存在且為一個普通的文件（**f**ile），為 True      |
+| `[ -d FILE ]` | 如果 `FILE` 存在且為一個目錄（**d**irectory），為 True       |
+| `[ -s FILE ]` | 如果 `FILE` 存在且不為空（**s**ize 大於 0），為 True         |
+| `[ -r FILE ]` | 如果 `FILE` 存在且有讀取權限（**r**eadable），為　True       |
+| `[ -w FILE ]` | 如果 `FILE` 存在且有寫入權限（**w**ritable），為 True        |
+| `[ -x FILE ]` | 如果 `FILE` 存在且有執行權限（e**x**ecutable），為 True      |
+| `[ -L FILE ]` | 如果 `FILE` 存在且為符號連結（**l**ink），為 True            |
+| `[ FILE1 -nt FILE2 ]` | FILE1 比 FILE2 新（**n**ewer **t**han）              |
+| `[ FILE1 -ot FILE2 ]` | FILE1 比 FILE2 舊（**o**lder **t**han）              |
 
 **檢查字串狀態：**
 
 | Primary        | 涵義                                                        |
 | :------------: | :---------------------------------------------------------- |
-| `[ -z STR ]`   | `STR` 為空（長度為 0，**z**ero）。                          |
-| `[ -n STR ]`   |`STR` 不為空 (長度不為 0，**n**on-zero）。                   |
-| `[ STR1 == STR2 ]` | `STR1` 和 `STR2` 相等。                                 |
-| `[ STR1 != STR2 ]` | `STR1` 和 `STR2` 不相等。                               |
+| `[ -z STR ]`   | `STR` 為空（長度為 0，**z**ero）                            |
+| `[ -n STR ]`   | `STR` 不為空 (長度不為 0，**n**on-zero）                    |
+| `[ STR1 == STR2 ]` | `STR1` 和 `STR2` 相等                                   |
+| `[ STR1 != STR2 ]` | `STR1` 和 `STR2` 不相等                                 |
 
 **二進制的算術運算符：**
 
 | Primary             | 涵義                                                     |
 | :-----------------: | :------------------------------------------------------- |
-| `[ ARG1 -eq ARG2 ]` | `ARG1` 和 `ARG2` 相等（**eq**ual）。                     |
-| `[ ARG1 -ne ARG2 ]` | `ARG1` 和 `ARG2` 不相等（**n**ot **e**qual）。           |
-| `[ ARG1 -lt ARG2 ]` | `ARG1` 小於 `ARG2`（**l**ess **t**han）。                |
-| `[ ARG1 -le ARG2 ]` | `ARG1` 小於等於 `ARG2`（**l**ess than or **e**qual）。   |
-| `[ ARG1 -gt ARG2 ]` | `ARG1` 大於 `ARG2`（**g**reater **t**han）。             |
-| `[ ARG1 -ge ARG2 ]` | `ARG1` 大於等於 `ARG2`（**g**reater than or **e**qual）。|
+| `[ ARG1 -eq ARG2 ]` | `ARG1` 和 `ARG2` 相等（**eq**ual）                       |
+| `[ ARG1 -ne ARG2 ]` | `ARG1` 和 `ARG2` 不相等（**n**ot **e**qual）             |
+| `[ ARG1 -lt ARG2 ]` | `ARG1` 小於 `ARG2`（**l**ess **t**han）                  |
+| `[ ARG1 -le ARG2 ]` | `ARG1` 小於等於 `ARG2`（**l**ess than or **e**qual）     |
+| `[ ARG1 -gt ARG2 ]` | `ARG1` 大於 `ARG2`（**g**reater **t**han）               |
+| `[ ARG1 -ge ARG2 ]` | `ARG1` 大於等於 `ARG2`（**g**reater than or **e**qual）  |
 
 條件式也可以 **組合** 在一起使用：
 
 | 運算符         | 效果                                                               |
 | :------------: | :----------------------------------------------------------------- |
-| `[ ! EXPR ]`   | 如果 `EXPR` 為 false，則為 True。                                  |
-| `[ (EXPR) ]`   | 回傳 `EXPR` 的值。                                                 |
-| `[ EXPR1 -a EXPR2 ]` | _AND_ 邏輯。如果 `EXPR1` **a**nd `EXPR2` 為 Ture，則為 True。|
-| `[ EXPR1 -o EXPR2 ]` | _OR_ 邏輯。如果 `EXPR1` **o**r `EXPR2` 為 Ture，則為 True。  |
+| `[ ! EXPR ]`   | 如果 `EXPR` 為 false，則為 True                                    |
+| `[ (EXPR) ]`   | 回傳 `EXPR` 的值                                                   |
+| `[ EXPR1 -a EXPR2 ]` | _AND_ 邏輯。如果 `EXPR1` **a**nd `EXPR2` 為 Ture，則為 True  |
+| `[ EXPR1 -o EXPR2 ]` | _OR_ 邏輯。如果 `EXPR1` **o**r `EXPR2` 為 Ture，則為 True    |
 
 還有許多有用的 primariy 你可以在 [Bash man 網頁](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html)輕鬆的找到它們。
 
@@ -843,7 +843,7 @@ greeting Denys  # Hello, Denys!
 greeting        # Hello, unknown!
 ```
 
-我們已經討論過 [exit codes](#exit codes)。`return` 命令不帶任何最後一個執行命令 exit code 的回傳參數。上面的範例，`return 0` 會回傳一個成功的 exit code `0`。
+我們已經討論過 [exit codes](#exit-codes)。`return` 命令不帶任何最後一個執行命令 exit code 的回傳參數。上面的範例，`return 0` 會回傳一個成功的 exit code `0`。
 
 ## Debug
 
@@ -855,15 +855,15 @@ shell 提供了 debug script 的工具。如果我們想要在 debug 模式執�
 
 這個選項是改變 shell 行為的設定。下面是一些可能對你有幫助的選項清單：
 
-| 簡寫  | 名稱        | 描述                                                       |
+| 簡寫  | 名稱        | 描述                                                      |
 | :---: | :---------- | :-------------------------------------------------------- |
-| `-f`  | noglob      | 禁止檔案名 expansion（globbing）。　　　　　                 |
-| `-i`  | interactive | Script 執行在_互動_模式。                                   |
-| `-n`  | noexec      | 讀取命令，但不執行它們（確認語法是否正確）。                   |
-|       | pipefail    | 如果任何命令失敗使 pipeline 失敗，不只是最後一個命令失敗。     |
-| `-t`  | —           | 在第一個命令完成後退出。                                     |
-| `-v`  | verbose     | 在執行前，列印每個命令到 `stderr`。                          |
-| `-x`  | xtrace      | 在執行前，列印每個命令和他的參數到 `stderr`。                 |
+| `-f`  | noglob      | 禁止檔案名 expansion（globbing）　　　　　                |
+| `-i`  | interactive | Script 執行在_互動_模式                                   |
+| `-n`  | noexec      | 讀取命令，但不執行它們（確認語法是否正確）                |
+|       | pipefail    | 如果任何命令失敗使 pipeline 失敗，不只是最後一個命令失敗  |
+| `-t`  | —           | 在第一個命令完成後退出                                    |
+| `-v`  | verbose     | 在執行前，列印每個命令到 `stderr`                         |
+| `-x`  | xtrace      | 在執行前，列印每個命令和他的參數到 `stderr`               |
 
 例如，我們有個 script 有 `-x` 選項像是：
 
