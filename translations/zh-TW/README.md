@@ -664,7 +664,7 @@ esac
 
 # 迴圈
 
-這裡我們不會感到驚訝。與任何程式語言一樣，在 bash 如果控制條件為 true，就會迭代迴圈。
+這裡我們不必感到驚訝。與任何程式語言一樣，在 bash 之中，如果判斷式結果為 true，就會迭代迴圈。
 
 在 Bash 有四種類型的迴圈：`for`、`while`、`until` 和 `select`。
 
@@ -679,15 +679,15 @@ do
 done
 ```
 
-在每個迴圈中，`arg` 會從 `elem1` 到 `elemN` 依序被賦值。值可能是萬用字元或[括號展開](#括號展開)。
+在每個迴圈中，`arg` 會依序被賦予 `elem1` 到 `elemN` 的值。值可能是萬用字元或[括號展開](#括號展開)。
 
-當然，我們也可以將 `for` 迴圈寫成一行，但在這個情況需要一個分號在 `do` 之前，像是以下：
+當然，我們也可以將 `for` 迴圈寫成一行，但在這個情況我們需要在 `do` 之前放一個分號，像是這樣：
 
 ```bash
 for i in {1..5}; do echo $i; done
 ```
 
-還有，如果你覺得 `for..in..do` 看起來很奇怪，你也可以撰寫像是 C 語言風格的 `for` 迴圈，像是：
+順便一提，如果你覺得 `for..in..do` 看起來很奇怪，你也可以撰寫 C 語言風格的 `for` 迴圈，像是：
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -695,7 +695,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-當我們想要將目錄下每個文件做相同的操作時，`for` 是相當方便的。例如，如果我們需要移動所有的 `.bash` 檔案到 `script` 資料夾，並給予它們可執行的權限，我們的 script 可以像是這樣：
+當我們想要將目錄下每個文件做相同的操作時，`for` 是相當方便的。例如，如果我們需要移動所有的 `*.bash` 檔到 `script` 資料夾，並給予它們可執行的權限，我們的 script 可以像是這樣：
 
 ```bash
 #!/bin/bash
@@ -708,7 +708,7 @@ done
 
 ## `while` 迴圈
 
-只要該條件為 _true_，`while` 迴圈測試一個條件，並遍歷序列的命令。被檢測的條件跟 `if.. then` 中使用的 [primary](#primary-and-combining-expressions) 並沒有差別。所以 `while` 迴圈看起來會像是：
+只要該條件為 _true_，`while` 迴圈測試一個條件，並遍歷序列的命令。被檢測的條件跟 `if.. then` 中使用的 [primary](#primary-和組合表達式) 並沒有差別。所以 `while` 迴圈看起來會像是：
 
 ```bash
 while [[ condition ]]
@@ -717,7 +717,7 @@ do
 done
 ```
 
-就像 `for` 迴圈一樣，如果我們想要將 `do` 和條件寫成一行的話，我們必須在 `do` 前面加上分號。
+就像 `for` 迴圈一樣，如果我們想要將 `do` 和條件寫成一行的話，我們必須在 `do` 之前加上分號。
 
 一個處理範例如下所示：
 
@@ -734,7 +734,7 @@ done
 
 ## `until` 迴圈
 
-`until` 迴圈和 `while` 迴圈完全相反的。它會像 `while` 一樣檢查條件，只要狀態是 _false_ 迴圈就會繼續保持：
+`until` 迴圈和 `while` 迴圈完全相反的。它會像 `while` 一樣檢查條件，迴圈持續到表達式為 False 停止：
 
 ```bash
 until [[ condition ]]; do
@@ -753,7 +753,7 @@ do
 done
 ```
 
-`select` 會在螢幕上列印出 `elem1..elemN` 的序號，之後它會提醒使用者。通常看到的是 `$?`（`PS3` 變數）。答案將會儲存在 `answer`。如果 `answer` 是介於 `1..N` 的數字，`statements` 和 `select` 將會執行到下一個迭代— 所以我們應該使用 `break` 避免無窮迴圈。
+`select` 會將 `elem1..elemN` 跟隨著序號列印出來提示使用者。然後將選單的提示文字設定在 `PS3` 當中。在上面的例子當中，使用者的輸入會存於 `answer` 中。如果 `answer` 是介於 `1..N` 的數字，那敘述句就會被執行且 `select` 會因為 do-loop 的關係而循環，因此我們應該使用 `break` 來避免無窮迴圈。
 
 一個處理範例如下所示：
 
@@ -774,7 +774,7 @@ do
 done
 ```
 
-在這個範例中，詢問使用者想要使用哪些套件管理，然後詢問哪些我們需要套件，最後執行並安裝：
+在這個範例中，詢問使用者想要使用哪套 package manager 安裝套件，並詢問我們需要安裝什麼套件，最後會執行安裝：
 
 如果我們執行，我們可以得到：
 
@@ -791,7 +791,7 @@ Enter the package name: bash-handbook
 
 ## 迴圈控制
 
-在某些情況下，我們需要在正常結束前或跳過某次迭代來結束迴圈。在這個情況下，我們可以使用 shell 內建的 `break` 和 `continue` 語句。這兩種方式都可以在迴圈中執行。
+在某些情況下，我們需要在正常結束前或跳過某次迭代來結束迴圈。在這個情況下，我們可以使用 shell 內建的 `break` 和 `continue` 語句。這兩個語法都可以在前述的每一種迴圈執行。
 
 `break` 語句被用於在迴圈結束之前，退出目前迴圈。我們之前已經看過了。
 
@@ -808,9 +808,9 @@ done
 
 # 函式
 
-在 script 中，我們有能力定義和呼叫 function。就像任何其他程式語言一樣，在 Bash 中，function 是一個程式碼區塊，但是有些不同。
+在 script 中，就像任何其他程式語言一樣，我們有能力定義 function 和呼叫 function。在 Bash 中的 function 是一個程式碼區塊，但是有些不同。
 
-在 Bash 中，function 是一個被組織在單一名稱的命令序列，這就是 function 的 _名稱_。呼叫一個 function 就像在其他程式語言一樣，你只要撰寫 function 的名稱，function 就會被 _調用_。
+在 Bash 中的 function 就是將一堆指令包裝成一個 name，而這個 name 就是 function name，呼叫一個 function 就像在其他程式語言一樣，你只要執行 function 的名稱，function 就會被 _調用_。
 
 我們可以用這種方式宣告我們的 function：
 
@@ -853,17 +853,17 @@ shell 提供了 debug script 的工具。如果我們想要在 debug 模式執�
 #!/bin/bash options
 ```
 
-這個選項是改變 shell 行為的設定。下表是一些可能對你有幫助的選項清單：
+這個選項是改變 shell 行為的設定。下面是一些可能對你有幫助的選項清單：
 
-| 簡寫  | 名稱        | 描述                                                   |
-| :---: | :---------- | :----------------------------------------------------- |
+| 簡寫  | 名稱        | 描述                                                       |
+| :---: | :---------- | :-------------------------------------------------------- |
 | `-f`  | noglob      | 禁止檔案名 expansion（globbing）。　　　　　                 |
-| `-i`  | interactive | Script 執行在_互動_模式。                              |
-| `-n`  | noexec      | 讀取命令，但不執行它們（語法確認）。                   |
-|       | pipefail    | 如果任何命令失敗使 pipeline 失敗，不只是最後一個命令失敗。 |
-| `-t`  | —           | 在第一個命令完後退出。                                 |
-| `-v`  | verbose     | 在執行前，列印每個命令到 `stderr`。                    |
-| `-x`  | xtrace      | 在執行前，列印每個命令和 expansion 參數到 `stderr`。          |
+| `-i`  | interactive | Script 執行在_互動_模式。                                   |
+| `-n`  | noexec      | 讀取命令，但不執行它們（確認語法是否正確）。                   |
+|       | pipefail    | 如果任何命令失敗使 pipeline 失敗，不只是最後一個命令失敗。     |
+| `-t`  | —           | 在第一個命令完成後退出。                                     |
+| `-v`  | verbose     | 在執行前，列印每個命令到 `stderr`。                          |
+| `-x`  | xtrace      | 在執行前，列印每個命令和他的參數到 `stderr`。                 |
 
 例如，我們有個 script 有 `-x` 選項像是：
 
@@ -921,17 +921,17 @@ echo "xtrace is turned off again"
 
 這裡有一些涵蓋 Bash 的相關資料：
 
-* 在許多環境中，你可以執行 Bash 中的 `man bash`，藉由系統並顯示 Bash 相關的幫助資訊。有關更多 `man` 命令的相關資訊，請拜訪託管在 [The Linux Information Project](http://www.linfo.org/) 的 ["The man Command"](http://www.linfo.org/man.html) 網頁查看。
-* ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) 有許多格式，包含 HTML、Info、TeX、PDF、和 Texinfo。託管在 <https://www.gnu.org/>。在 2016/01，包括 4.3 版本，最後更新時間 2015/02/02。
+* 在許多環境中，你可以執行 Bash 中的 `man bash`，藉由系統並顯示 Bash 相關的幫助資訊。有關更多 `man` 命令的相關資訊，請拜訪在 [The Linux Information Project](http://www.linfo.org/) 的 ["The man Command"](http://www.linfo.org/man.html) 網頁查看。
+* ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) 有許多格式，包含 HTML、Info、TeX、PDF、和 Texinfo。在 <https://www.gnu.org/>。在 2016/01，包括 4.3 版本，最後更新時間 2015/02/02。
 
 # 其他資源
 
-* [awesome-bash](https://github.com/awesome-lists/awesome-bash) 是一個 Bash script 和其他資源的蒐集。
-* [awesome-shell](https://github.com/alebcay/awesome-shell) 是另一個 Bash script 和其他資源的蒐集。
+* [awesome-bash](https://github.com/awesome-lists/awesome-bash) 是一個 Bash script 和其他資源的列表。
+* [awesome-shell](https://github.com/alebcay/awesome-shell) 是另一個 Shell 及其他資源的列表。
 * [bash-it](https://github.com/Bash-it/bash-it) 為你日常工作使用、 開發和維護 shell script 和自訂命令提供了可靠的框架。
-* [dotfiles.github.io](http://dotfiles.github.io/) 是一個很棒的資源點，各種 dotfile 蒐集和可用於 bash 或其他 shell 的 shell 框架。
+* [dotfiles.github.io](http://dotfiles.github.io/) 是一個很棒的指南，蒐集了多個 dotfiles 及可用在 bash 及其他 shell 的開發框架。
 * [learnyoubash](https://github.com/denysdovhan/learnyoubash) 幫助你撰寫你的第一個 bash script。
-* [shellcheck](https://github.com/koalaman/shellcheck) 是一個 shell script 的靜態分析工具。你可以從在 [www.shellcheck.net](http://www.shellcheck.net/) 網頁上或從命令來執行它。安裝說明在 [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository 頁面。
+* [shellcheck](https://github.com/koalaman/shellcheck) 是一個 shell script 的靜態分析工具。你可以從在 [www.shellcheck.net](http://www.shellcheck.net/) 網頁上或從指令來執行。安裝說明在 [koalaman/shellcheck](https://github.com/koalaman/shellcheck) 的 Github repo 頁面。
 
 最後，Stack Overflow 有許多[標記為 bash](https://stackoverflow.com/questions/tagged/bash) 的問題，當你在卡住時，你可以從那些地方學習或是提問。
 
