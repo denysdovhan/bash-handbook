@@ -26,7 +26,8 @@ var cli = meow([
     'lang'
   ],
   alias: {
-    l: 'lang'
+    l: 'lang',
+    h: 'help'
   },
   default: {
     lang: ''
