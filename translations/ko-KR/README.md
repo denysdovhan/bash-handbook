@@ -203,15 +203,15 @@ export GLOBAL_VAR="I'm a global variable"
 
 Bash에서는 전역 변수가 _좀_ 있습니다. 자주 이런 변수를 확인하기 위해 순람표가 있습니다:
 
-| 변수         | 설명                                                          |
-| :----------- | :------------------------------------------------------------ |
-| `$HOME`      | 현재 사용자 홈 디렉토리.                                      |
+| 변수         | 설명                                                            |
+| :----------- | :-------------------------------------------------------------- |
+| `$HOME`      | 현재 사용자 홈 디렉토리.                                        |
 | `$PATH`      | 셸에서 사용하는 명령어를 찾기위한 위치. 콜론으로 목록을 구분함. |
-| `$PWD`       | 현재 작업중인 디렉토리.                                       |
-| `$RANDOM`    | 0 ~ 32767 사이의 렌덤 인트값.                                 |
-| `$UID`       | 현자 사용자의 실재 사용자 ID, 숫자로 표기됨.                  |
-| `$PS1`       | 첫번째 프롬프트 문자열.                                       |
-| `$PS2`       | 두번째 프롬프트 문자열.                                       |
+| `$PWD`       | 현재 작업중인 디렉토리.                                         |
+| `$RANDOM`    | 0 ~ 32767 사이의 렌덤 인트값.                                   |
+| `$UID`       | 현자 사용자의 실재 사용자 ID, 숫자로 표기됨.                    |
+| `$PS1`       | 첫번째 프롬프트 문자열.                                         |
+| `$PS2`       | 두번째 프롬프트 문자열.                                         |
 
 다음에 [링크](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html#sect_03_02_04)에서 bash에 있는 환경 변수 확장 목록을 확인할 수 있습니다.
 
@@ -222,8 +222,8 @@ Bash에서는 전역 변수가 _좀_ 있습니다. 자주 이런 변수를 확�
 | 매개변수       | 설명                                                        |
 | :------------- | :---------------------------------------------------------- |
 | `$0`           | 스크립트 이름.                                              |
-| `$1 … $9`      | 1 ~ 9까지 매개변수 목록 요소.                               |
-| `${10} … ${N}` | 10 ~ N까지 매개변수 목록 요소.                              |
+| `$1 … $9`      | 1 ~ 9까지 매개변수 목록 요소.                              |
+| `${10} … ${N}` | 10 ~ N까지 매개변수 목록 요소.                             |
 | `$*` or `$@`   | `$0`을 제외한 모든 위치 매개변수.                           |
 | `$#`           | 매개변수에 대한 숫자, `$0`를 제외하고.                      |
 | `$FUNCNAME`    | 함수 이름 (함수 내에서만 값을 가집니다)                     |
@@ -244,19 +244,19 @@ FOO=${FOO:-'default'}
 
 # Shell expansions
 
-_Expansions_ are performed on the command line after it has been split into _tokens_. In other words, these expansions are a mechanism to calculate arithmetical operations, to save results of commands' executions and so on.
+_Expansions(확장 or 전개식)_은 _token_으로 나눠진후 커멘드라인에서 실행됩니다. 계산 산술 연산 매커니즘에서 다른 단어들은 명령이 실행되고 값이 저장됩니다.
 
-If you are interested, you can read [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions).
+여기에 흥미가 있다면 [more about shell expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions)를 볼 것.
 
 ## Brace expansion
 
-Brace expansion allows us to generate arbitrary strings. It's similar to _filename expansion_. For example:
+중괄호 expansion은 임의의 문자열을 생성할 수 있습니다. _Filename expansion_과 비슷합니다. 예로:
 
 ```bash
 echo beg{i,a,u}n # begin began begun
 ```
 
-Also brace expansions may be used for creating ranges, which are iterated over in loops.
+또한 중괄호 expansion는 루프에서 반복할 범위를 생성할때 사용할 수 있습니다.
 
 ```bash
 echo {0..5} # 0 1 2 3 4 5
@@ -265,7 +265,7 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
+명령 치환은 우리가 명령에대한 값을 구하고 다른 명령이나 변수를 할당하는데 그 값을 할당할 수 있습니다. 명령은 ``` `` ``` 이나 `$()`로 묶였을때 명령어로 치환이됩니다. 예를 들어 다음과 같이 사용할 수 있습니다:
 
 ```bash
 now=`date +%T`
@@ -277,14 +277,14 @@ echo $now # 19:08:26
 
 ## Arithmetic expansion
 
-In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
+Bash에서의 산술 연산은 자유롭게 사용할 수 있습니다. 그러나 수식의 경우엔 `$(())`로 묶어 사용합니다. 산술 expansion 형식은:
 
 ```bash
 result=$(( ((10 + 5*3) - 7) / 2 ))
 echo $result # 9
 ```
 
-Within arithmetic expansions, variables should generally be used without a `$` prefix:
+산술 expansion에서 변수는 일반적으로  `$` 접두사 없이 사용합니다:
 
 ```bash
 x=4
@@ -296,14 +296,14 @@ echo $(( x + y ))     # 13
 
 ## Double and single quotes
 
-There is an important difference between double and single quotes. Inside double quotes variables or command substitutions are expanded. Inside single quotes they are not. For example:
+큰 따옴표와 작은 따옴표 사이에는 중요한 차이가 있습니다. 큰 따옴표 안에서 변수나 명령 치환이 진행됩니다. 작은 따옴표 안에서는 그렇지 않습니다. 예를 들면:
 
 ```bash
 echo "Your home: $HOME" # Your home: /Users/<username>
 echo 'Your home: $HOME' # Your home: $HOME
 ```
 
-Take care to expand local variables and environment variables within quotes if they could contain whitespace. As an innocuous example, consider using `echo` to print some user input:
+공백이 포함되어있는 경우, 따옴표 안에 지역 변수와 환경 변수 확장시 주의합니다. 지루한 예제로 `echo`를 이용하여 사용자가 입력한 값에 대하서 출력하는 것을 고려하십시오:
 
 ```bash
 INPUT="A string  with   strange    whitespace."
@@ -311,9 +311,9 @@ echo $INPUT   # A string with strange whitespace.
 echo "$INPUT" # A string  with   strange    whitespace.
 ```
 
-The first `echo` is invoked with 5 separate arguments — $INPUT is split into separate words, `echo` prints a single space character between each. In the second case, `echo` is invoked with a single argument (the entire $INPUT value, including whitespace).
+첫번째 `echo`는 $INPUT 변수에 있는 단어들을 5개인 변수로 인식하여 한칸씩 띄워 `echo`로 출력합니다. 두번째 `echo`는 공백을 포함한 $INPUT 변수 전체 값을 단일 인수로 받아 들여 출력합니다.
 
-Now consider a more serious example:
+이제 더 복잡한 경우를 봅시다:
 
 ```bash
 FILE="Favorite Things.txt"
@@ -321,7 +321,7 @@ cat $FILE   # attempts to print 2 files: `Favorite` and `Things.txt`
 cat "$FILE" # prints 1 file: `Favorite Things.txt`
 ```
 
-While the issue in this example could be resolved by renaming FILE to `Favorite-Things.txt`, consider input coming from an environment variable, a positional parameter, or the output of another command (`find`, `cat`, etc). If the input *might* contain whitespace, take care to wrap the expansion in quotes.
+이련 경우, `Favorite-Things.text`와 같은 이름을 파일 이름을 변경해서 해결 할 수 있지만, 환경 변수, 위치 매개변수, 다른 명령 (`find`, `cat` 등)을 이용하여 출력하는 것을 확인해야됩니다. 만약 입력값에 공백이 포함되어 *있을지도 모른다면* 따옴표로 감쌉니다.
 
 # Arrays
 
