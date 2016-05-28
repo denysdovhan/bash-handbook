@@ -325,13 +325,13 @@ cat "$FILE" # prints 1 file: `Favorite Things.txt`
 
 # Arrays
 
-Like in other programming languages, an array in bash is a variable that allows you to refer to multiple values. In bash, arrays are also zero-based, that is, the first element in an array has index 0.
+다른 프로그래밍 언어들처럼 bash에서 배열(array)는 여러 값을 참조할 수 있도록 해주는 변수입니다. Bash에서 배열은 zero-based입니다. 이건 배열 첫 요소 인덱스가 0이라는 것을 의미합니다.
 
-When dealing with arrays, we should be aware of the special environment variable `IFS`. **IFS**, or **Input Field Separator**, is the character that separates elements in an array. The default value is an empty space `IFS=' '`.
+배열를 사용할땐, 특별한 환경변수인 `IFS`를 조심해야합니다. **IFS**, **Input Field Separator** 라 불리우는 이 환경 변수는 배열 요소를 구별하는 문자입니다. 기본 값은 빈 스페이스 값입니다. `IFS=' '`.
 
 ## Array declaration
 
-In bash you create an array by simply assigning a value to an index in the array variable:
+Bash는 단순하게 배열 변수에 인덱스값을 할당하여 변수를 생성합니다:
 
 ```bash
 fruits[0]=Apple
@@ -339,7 +339,7 @@ fruits[1]=Pear
 fruits[2]=Plum
 ```
 
-Array variables can also be created using compound assignments such as:
+또한 배열 변수는 여러가지를 함께 할당하여 사용할 수 있습니다:
 
 ```bash
 fruits=(Apple Pear Plum)
@@ -347,20 +347,21 @@ fruits=(Apple Pear Plum)
 
 ## Array expansion
 
-Individual array elements are expanded similar to other variables:
+각 배열 요소는 다른 변수와 같이 사용할 수 있습니다:
 
 ```bash
 echo ${fruits[1]} # Pear
 ```
 
-The entire array can be expanded by using `*` or `@` in place of the numeric index:
+전체 배열에서 인덱스를 데신해서 `*`, `@`로 확장하여 사용할 수 있습니다:
 
 ```bash
 echo ${fruits[*]} # Apple Pear Plum
 echo ${fruits[@]} # Apple Pear Plum
 ```
 
-There is an important (and subtle) difference between the two lines above: consider an array element containing whitespace:
+이 두 예제에는 중요하고 미묘한 차이가 있습니다:
+공백을 가지고 있는 배열 요소가 있는 경우:
 
 ```bash
 fruits[0]=Apple
@@ -368,7 +369,7 @@ fruits[1]="Desert fig"
 fruits[2]=Plum
 ```
 
-We want to print each element of the array on a separate line, so we try to use the `printf` builtin:
+배열 각 요소를 다른 행에 출력하고 싶기에 `printf` 내장 함수를 사용합니다:
 
 ```bash
 printf "+ %s\n" ${fruits[*]}
@@ -378,14 +379,14 @@ printf "+ %s\n" ${fruits[*]}
 # + Plum
 ```
 
-Why were `Desert` and `fig` printed on separate lines? Let's try to use quoting:
+음... `Desert`와  `fig`가 왜 다른 행에 출력이 되는걸까요? 따옴표를 사용해봅시다:
 
 ```bash
 printf "+ %s\n" "${fruits[*]}"
 # + Apple Desert fig Plum
 ```
 
-Now everything is on one line — that's not what we wanted! Here's where `${fruits[@]}` comes into play:
+이제는 전부 한 행에 출력이 되는군요! 이제 `${fruits[@]}` 차례입니다:
 
 ```bash
 printf "+ %s\n" "${fruits[@]}"
@@ -394,32 +395,32 @@ printf "+ %s\n" "${fruits[@]}"
 # + Plum
 ```
 
-Within double quotes, `${fruits[@]}` expands to a separate argument for each element in the array; whitespace in the array elements is preserved.
+큰 따옴표 내에서 배열안에 있는 각 요소들은 다른 인수로 `${fruits[@]}` 출력됩니다. 여기서 배열 요소에 포함된 공백은 유지 됩니다.
 
 ## Array slice
 
-Besides, we can extract a slice of array using the _slice_ operators:
+또한 _slice_ 연산자를 사용하여 배열 슬라이스할 수 있습니다:
 
 ```bash
 echo ${fruits[@]:0:2} # Apple Desert fig
 ```
 
-In the example above, `${fruits[@]}` expands to the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
+이 예제는 `${fruits[@]}`는 배열 전체를 나타내고, `:0:2`는 인덱스 0에서 시작해서 2번째 값까지 슬라이스하여 출력하라는 의미입니다.
 
 ## Adding elements into an array
 
-Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
+배열에 요소를 추가하는 방법은 매우 간단합니다. 여러 값을 같이 할당하는 경우에는 더 유용합니다. 우리는 다음처럼 사용할 수 있습니다:
 
 ```bash
 fruits=(Orange "${fruits[@]}" Banana Cherry)
 echo ${fruits[@]} # Orange Apple Desert fig Plum Banana Cherry
 ```
 
-The example above, `${fruits[@]}` expands to the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
+위 예제는 `${fruits[@]}`로 모든 배열 값들을 불려오고, 추가된 내용들과 같이 새로운 배열을 생성한 다음 `fruits` 변수에 할당합니다.
 
 ## Deleting elements from an array
 
-To delete an element from an array, use the `unset` command:
+배열에서 요소를 제외하려면 `unset` 명령을 사용합니다:
 
 ```bash
 unset fruits[0]
