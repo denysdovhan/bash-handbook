@@ -529,65 +529,65 @@ _AND_ 또는 _OR_ 명령어 나열에서 반환 코드는 마지막으로 실행
 
 # Conditional statements
 
-Like in other languages, Bash conditionals let us decide to perform an action or not.  The result is determined by evaluating an expression, which should be enclosed in `[[ ]]`.
+다른 언어들과 마찬가지로 Bash 조건문은 어떤 작업을 수행할지에 대해서 결정합니다. 결과는 `[[ ]]`로 묶어야지만 표현을 평가하여 결정됩니다.
 
-Conditional expression may contain `&&` and `||` operators, which are _AND_ and _OR_ accordingly. Besides this, there many [other handy expressions](#primary-and-combining-expressions).
+조건식은 `&&`와 `||` 연산자를 이용하여 _AND_와 _OR_로 사용할 수 있습니다. 이외 [다양한 표현](#primary-and-combining-expressions)을 이용하여 확인할 수 있습니다.
 
-There are two different conditional statements: `if` statement and `case` statement.
+두가지 조건문이 있습니다: `if` 문과 `case`문.
 
 ## Primary and combining expressions
 
-Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
+`[[ ]]` (또는 `sh`에서는 `[ ]`) 안에 있는 식은 **테스트 명령**이나 **primaries**라 부릅니다. 이 수식들은 조건에대한 결과를 보여줄 수 있도록 도와줍니다. 다음 테이블에서는 `sh`에서 사용할 수 있도록 `[ ]`를 이용하여 나타냈습니다. 여기서 [bash에서 이중 대괄호와 대괄호의 차이](http://serverfault.com/a/52050)에대해서 이야기합니다.
 
-**Working with the file system:**
+**파일 시스템에서 작동:**
 
 | Primary       | Meaning                                                      |
 | :-----------: | :----------------------------------------------------------- |
-| `[ -e FILE ]` | True if `FILE` **e**xists.                                   |
-| `[ -f FILE ]` | True if `FILE` exists and is a regular **f**ile.             |
-| `[ -d FILE ]` | True if `FILE` exists and is a **d**irectory.                |
-| `[ -s FILE ]` | True if `FILE` exists and not empty (**s**ize more than 0).  |
-| `[ -r FILE ]` | True if `FILE` exists and is **r**eadable.                   |
-| `[ -w FILE ]` | True if `FILE` exists and is **w**ritable.                   |
-| `[ -x FILE ]` | True if `FILE` exists and is e**x**ecutable.                 |
-| `[ -L FILE ]` | True if `FILE` exists and is symbolic **l**ink.              |
-| `[ FILE1 -nt FILE2 ]` | FILE1 is **n**ewer **t**han FILE2.                   |
-| `[ FILE1 -ot FILE2 ]` | FILE1 is **o**lder **t**han FILE2.                   |
+| `[ -e FILE ]` | `FILE`이 존재하면(**e**xist), True                           |
+| `[ -f FILE ]` | `FILE`이 존재하고 일반 파일(regular **f**ile)이면, True.     |
+| `[ -d FILE ]` | `FILE`이 존재하고 디렉토리(**d**irectory)이면, True.         |
+| `[ -s FILE ]` | `FILE`이 존재하고 비어있다(**s**ize more than 0)면, True.    |
+| `[ -r FILE ]` | `FILE`이 존재하고 읽기가능하다(**r**eadable)면, True.        |
+| `[ -w FILE ]` | `FILE`이 존재하고 쓰기가능하다(**w**ritable)면, True.        |
+| `[ -x FILE ]` | `FILE`이 존재하고 실행가능하다(**x**ecutable)면, True.       |
+| `[ -L FILE ]` | `FILE`이 존재하고 싱볼릭 링크(symbolic **l**ink)이면, True.  |
+| `[ FILE1 -nt FILE2 ]` | FILE1이 FILE2 보다 새로운 파일입니다. (FILE1 is **n**ewer **t**han FILE2.) |
+| `[ FILE1 -ot FILE2 ]` | FILE1이 FILE2 보다 오래된 파일입니다. (FILE1 is **o**lder **t**han FILE2.) |
 
-**Working with strings:**
+**문자열에서 작동:**
 
 | Primary        | Meaning                                                     |
 | :------------: | :---------------------------------------------------------- |
-| `[ -z STR ]`   | `STR` is empty (the length is **z**ero).                    |
-| `[ -n STR ]`   |`STR` is not empty (the length is **n**on-zero).             |
-| `[ STR1 == STR2 ]` | `STR1` and `STR2` are equal.                            |
-| `[ STR1 != STR2 ]` | `STR1` and `STR2` are not equal.                        |
+| `[ -z STR ]`   | `STR`이 비었음 (길이가 0 (**z**ero)).                       |
+| `[ -n STR ]`   | `STR`이 비어있지 않음 (길이가 0 아님 (**n**on-zero))        |
+| `[ STR1 == STR2 ]` | `STR1`과 `STR2`가 같음.                                 |
+| `[ STR1 != STR2 ]` | `STR1`과 `STR2`가 같지 않음.                            |
 
-**Arithmetic binary operators:**
+**산술 이헝 연산자:**
 
 | Primary             | Meaning                                                |
 | :-----------------: | :----------------------------------------------------- |
-| `[ ARG1 -eq ARG2 ]` | `ARG1` is **eq**ual to `ARG2`.                         |
-| `[ ARG1 -ne ARG2 ]` | `ARG1` is **n**ot **e**qual to `ARG2`.                 |
-| `[ ARG1 -lt ARG2 ]` | `ARG1` is **l**ess **t**han `ARG2`.                    |
-| `[ ARG1 -le ARG2 ]` | `ARG1` is **l**ess than or **e**qual to `ARG2`.        |
-| `[ ARG1 -gt ARG2 ]` | `ARG1` is **g**reater **t**han `ARG2`.                 |
-| `[ ARG1 -ge ARG2 ]` | `ARG1` is **g**reater than or **e**qual to `ARG2`.     |
+| `[ ARG1 -eq ARG2 ]` | `ARG1`는 `ARG2`와 같다 (**eq**ual).                    |
+| `[ ARG1 -ne ARG2 ]` | `ARG1`는 `ARG2`와 같지 않다 (**n**ot **e**qual).       |
+| `[ ARG1 -lt ARG2 ]` | `ARG1`는 `ARG2`보다 작다 (**l**ess **t**hen).          |
+| `[ ARG1 -le ARG2 ]` | `ARG1`는 `ARG2`보다 작거나 같다 (**l**ess than or **e**qual). |
+| `[ ARG1 -gt ARG2 ]` | `ARG1`는 `ARG2`보다 크다 (**g**reater **t**han).       |
+| `[ ARG1 -ge ARG2 ]` | `ARG1`는 `ARG2`보다 크거나 같다 (**g**reater than or **e**qual). |
 
-Conditions may be combined using these **combining expressions:**
+조건을 **combining expressions**를 사용하여 결합할 수 있습니다:
 
 | Operation      | Effect                                                      |
 | :------------: | :---------------------------------------------------------- |
-| `[ ! EXPR ]`   | True if `EXPR` is false.                                    |
-| `[ (EXPR) ]`   | Returns the value of `EXPR`.                                |
-| `[ EXPR1 -a EXPR2 ]` | Logical _AND_. True if `EXPR1` **a**nd `EXPR2` are true. |
-| `[ EXPR1 -o EXPR2 ]` | Logical _OR_. True if `EXPR1` **o**r `EXPR2` are true.|
+| `[ ! EXPR ]`   | `EXPR`이 거짓이면 True.                                     |
+| `[ (EXPR) ]`   | `EXPR` 값 반환.                                             |
+| `[ EXPR1 -a EXPR2 ]` | 논리 _AND_. `EXPR1`와(**a**nd) `EXPR2` 조건이라면 True. |
+| `[ EXPR1 -o EXPR2 ]` | 논리 _OR_. `EXPR1`또는(**o**r) `EXPR2` 조건이라면 True. |
 
-Sure, there are more useful primaries and you can easily find them in the [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html).
+물론 더 유용한 primaries가 존재하며 [Bash man pages](http://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html)에서 더 쉽게 찾아볼 수 있습니다.
 
 ## Using an `if` statement
 
-`if` statements work the same as in other programming languages. If the expression within the braces is true, the code between `then` and `fi` is executed.  `fi` indicates the end of the conditionally executed code.
+`if` 문은 다른 프로그래밍 언어와 동일하게 작동합니다. 괄호 안에 있는 표현식이 참이면 `then`과 `fi` 사이 코드가 실행됩니다. `fi`는 조건부로 실행되는 코드 끝을 나타냅니다.
 
 ```bash
 # Single-line
@@ -599,7 +599,7 @@ if [[ 1 -eq 1 ]]; then
 fi
 ```
 
-Likewise, we could use an `if..else` statement such as:
+마찬가지로 `if..else` 문을 사용할 수 있습니다:
 
 ```bash
 # Single-line
@@ -613,9 +613,9 @@ else
 fi
 ```
 
-Sometimes `if..else` statements are not enough to do what we want to do. In this case we shouldn't forget about the existence of `if..elif..else` statements, which always come in handy.
+때로는 `if..else`문이 우리가 원하는 만큼 충분한 기능을 하지 못할 수 도 있습니다. 그럴 경우, `if..elif..else`문을 사용할 수 있습니다.
 
-Look at the example below:
+다음 예제를 봅시다:
 
 ```bash
 if [[ `uname` == "Adam" ]]; then
@@ -629,7 +629,7 @@ fi
 
 ## Using a `case` statement
 
-If you are confronted with a couple of different possible actions to take, then using a `case` statement may be more useful than nested `if` statements. For more complex conditions use `case` like below:
+들어온 값에 맞는 작업을 진행할때, 중첩된 `if`문보다 유용한 `case`문을 이용할 수 있습니다. 더 복잡한 조건일때, `case`문을 다음과 같이 사용합니다:
 
 ```bash
 case "$extension" in
@@ -648,7 +648,7 @@ case "$extension" in
 esac
 ```
 
-Each case is an expression matching a pattern. The `|` sign is used for separating multiple patterns, and the `)` operator terminates a pattern list. The commands for the first match are executed. `*` is the pattern for anything else that doesn't match the defined patterns. Each block of commands should be divided with the `;;` operator.
+각 case는 패턴과 일치하는 식입니다. `|` 기호는 여러 패턴을 분리하는데 사용되며, `)` 연산자는 패턴 목록 끝을 타나냅니다. 첫번째 명령과 맞다면 실행됩니다. `*`는 정의된 패턴에 일치하지 않는 것들을 나타내기 위한 패턴입니다. 명령에대한 각 블록은 `;;` 연산자를 이용하여 분리합니다.
 
 # Loops
 
