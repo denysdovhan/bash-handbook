@@ -429,36 +429,36 @@ echo ${fruits[@]} # Apple Desert fig Plum Banana Cherry
 
 # Streams, pipes and lists
 
-Bash has powerful tools for working with other programs and their outputs. Using streams we can send the output of a program into another program or file and thereby write logs or whatever we want.
+Bash는 다른 프로그램들과 출력을 조작하기위한 강력한 도구를 가지고 있습니다. Stream을 사용하여 다른 프로그램이나 파일에 프로그램 출력을 전송하여 로그를 작성하거나 원하는 어떤 작업이든 할 수 있습니다.
 
-Pipes give us opportunity to create conveyors and control the execution of commands.
+Pipe는 컨베이어를 만들어 명령 실행을 제어할 수 있도록 합니다.
 
-It is paramount we understand how to use this powerful and sophisticated tool.
+이 강력하고 정교한 도구를 사용하는 방법을 이해하는 것이 매우 중요합니다.
 
 ## Streams
 
-Bash receives input and sends output as sequences or **streams** of characters. These streams may be redirected into files or one into another.
+Bash는 입력을 받아 순차적으로 출력을 보내거나 문자을 **streams** 합니다. 이런 stream은 파일이나 다른 것으로 리다이렉션 될 수 있습니다.
 
-There are three descriptors:
+여기 3개 서술자가 있습니다:
 
-| Code | Descriptor | Description          |
+| Code | Descriptor | 설명                 |
 | :--: | :--------: | :------------------- |
-| `0`  | `stdin`    | The standard input.  |
-| `1`  | `stdout`   | The standard output. |
-| `2`  | `stderr`   | The errors output.   |
+| `0`  | `stdin`    | 표준 입력.           |
+| `1`  | `stdout`   | 준 출력.           |
+| `2`  | `stderr`   | 오류 출력.           |
 
-Redirection makes it possible to control where the output of a command goes to, and where the input of a command comes from. For redirecting streams these operators are used:
+리디렉션은 명령에대한 출력값이 어디로 갈 것인가, 명령에대한 입력값이 어디서 올 것인가에 대한 제어를 가능하게 해줍니다. Stream에서 리디렉션을위해 다음과 같은 연산자를 사용하고 있습니다:
 
-| Operator | Description                                  |
+| 연산자   | 설명                                         |
 | :------: | :------------------------------------------- |
-| `>`      | Redirecting output                           |
-| `&>`     | Redirecting output and error output          |
-| `&>>`    | Appending redirected output and error output |
-| `<`      | Redirecting input                            |
-| `<<`     | [Here documents](http://tldp.org/LDP/abs/html/here-docs.html) syntax |
-| `<<<`    | [Here strings](http://www.tldp.org/LDP/abs/html/x17837.html) |
+| `>`      | 출력 전송                                    |
+| `&>`     | 출력과 오류 출력 전송                        |
+| `&>>`    | 출력과 오류 출력을 전송지에 추가             |
+| `<`      | 입력 전송                                    |
+| `<<`     | [요 문서](http://tldp.org/LDP/abs/html/here-docs.html) syntax |
+| `<<<`    | [여기 문자열](http://www.tldp.org/LDP/abs/html/x17837.html) |
 
-Here are few examples of using redirections:
+리디렉션을 사용하는 예제 조금:
 
 ```bash
 # output of ls will be written to list.txt
@@ -476,29 +476,29 @@ less < errors.txt
 
 ## Pipes
 
-We could redirect standard streams not only in files, but also to other programs. **Pipes** let us use the output of a program as the input of another.
+파일뿐만 아니라 다른 프로그램에서도 표준 스트림 리디렉션을 할 수 있습니다. **Pipes**를 이용하여 프로그램 출력을 다른 곳 입력으로 사용할 수 있습니다.
 
-In the example below, `command1` sends its output to `command2`, which then passes it on to the input of `command3`:
+다음 예시에서는 `command1` 출력을 `command2`로 보내고, 그 출력을 다시 `command3` 입력으로 보냅니다:
 
     command1 | command2 | command3
 
-Constructions like this are called **pipelines**.
+이런 구조를 **파이프라인** 이라고 부릅니다.
 
-In practice, this can be used to process data through several programs. For example, here the output of `ls -l` is sent to the `grep` program, which  prints only files with a `.md` extension, and this output is finally sent to the `less` program:
+사실 몇 가지 프로그램을 통해서 데이터를 처리하는데 사용할 수 있습니다. 예를 들어 `ls -l`로 출력한 값에서 `grep` 명령을 이용하여 `.md` 확장자를 가진 파일만 출력한뒤 `less` 프로그램으로 출력해줍니다:
 
     ls -l | grep .md$ | less
 
-The exit status of a pipeline is normally the exit status of the last command in the pipeline. The shell will not return a status until all the commands in the pipeline have completed. If you want your pipelines to be considered a failure if any of the commands in the pipeline fail, you should set the pipefail option with:
+파이프라인에서 종료 상태는 일반적으로 마지막 명령이 끝나는 시점입니다. 파이프 라인에서 작동중인 모든 명령이 완료될때까지 셸 상태를 반환하지 않습니다. 파이프 라인으로 연결된 명령중 하나가 실패하였을때, 연결된 파이프라인이 모두 실패로 설정하고 싶다면 다음과 같이 pipefail 옵션을 설정해야합니다:
 
     set -o pipefail
 
 ## Lists of commands
 
-A **list of commands** is a sequence of one or more pipelines separated by `;`, `&`, `&&` or `||` operator.
+**명령어 나열**은 `;`, `&`, `&&`, `||` 연산자를 이용하여 하나 이상 파이프 라인에대한 순서를 나타냅니다.
 
-If a command is terminated by the control operator `&`, the shell executes the command asynchronously in a subshell. In other words, this command will be executed in the background.
+명령이 제어 연산자 `&`에 의해서 종료될 경우, 셸은 서브셸에서 비동기적으로 명령을 실행합니다. 다른 말로 하자면, 명령이 백그라운드로 실행됩니다.
 
-Commands separated by a `;` are executed sequentially: one after another. The shell waits for the finish of each command.
+`;`로 구분된 명령은 순차적으로 실행됩니다: 차례로. 셸은 각 명령이 종료될때까지 기다립니다.
 
 ```bash
 # command2 will be executed after command1
@@ -509,23 +509,23 @@ command1
 command2
 ```
 
-Lists separated by `&&` and `||` are called _AND_ and _OR_ lists, respectively.
+`&&`와 `||`로 구분된 명령어 나열은 각각 _AND_와 _OR_ 목록이라고 합니다.
 
-The _AND-list_ looks like this:
+_AND_list_는 다음과 같습니다:
 
 ```bash
 # command2 will be executed if, and only if, command1 finishes successfully (returns 0 exit status)
 command1 && command2
 ```
 
-The _OR-list_ has the form:
+_OR-list_는 다음과 같습니다:
 
 ```bash
 # command2 will be executed if, and only if, command1 finishes unsuccessfully (returns code of error)
 command1 || command2
 ```
 
-The return code of an _AND_ or _OR_ list is the exit status of the last executed command.
+_AND_ 또는 _OR_ 명령어 나열에서 반환 코드는 마지막으로 실행한 명령에대한 종료 상태입니다.
 
 # Conditional statements
 
