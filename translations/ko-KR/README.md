@@ -652,13 +652,13 @@ esac
 
 # Loops
 
-Here we won't be surprised. As in any programming language, a loop in bash is a block of code that iterates as long as the control conditional is true.
+더이상 놀라지 않겠죠. 다른 프로그래밍 언어들처럼 bash에서 사용되는 반복문은 주건 제어문이 true일때 반복 처리 코드 블록을 진행합니다. 
 
-There are four types of loops in Bash: `for`, `while`, `until` and `select`.
+Bash에서 반복문은 4가지 형식이 있습니다: `for`, `while`, `until`, `select`.
 
 ## `for` loop
 
-The `for` is very similar to its sibling in C. It looks like this:
+`for` 문은 C족과 매우 비슷합니다. 다음과 같이 사용합니다:
 
 ```bash
 for arg in elem1 elem2 ... elemN
@@ -667,15 +667,15 @@ do
 done
 ```
 
-During each pass through the loop, `arg` takes on the value from `elem1` to `elemN`. Values may also be wildcards or [brace expansions](#brace-expansion).
+각 루프를 통과할때, `arg`에 `elem1`에서 `elemN`까지의 값이 할당됩니다. 와일드 카드 또는 [중괄호 expansions](#brace-expansion)로 값이어도 됩니다.
 
-Also, we can write `for` loop in one line, but in this case there needs to be a semicolon before `do`, like below:
+또한 한 줄로 `for`문을 작성해야 한다면 다음처럼 `do` 앞에 세미콜론을 붙여서 사용할 수 있습니다:
 
 ```bash
 for i in {1..5}; do echo $i; done
 ```
 
-By the way, if `for..in..do` seems a little bit weird to you, you can also write `for` in C-like style such as:
+`for..in..do` 형식이 이상하다면 다른 방법으로 C와 같은 스타일로 `for`문을 사용할 수 있습니다:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -683,7 +683,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-`for` is handy when we want to do the same operation over each file in a directory. For example, if we need to move all `.bash` files into the `script` folder and then give them execute permissions, our script would look like this:
+디렉토리에서 각 파일에 동일한 작업을 진행하려고 할때 `for`문을 사용하면 편합니다. 예를 들어, 모든 `.bash` 파일을 `script` 폴더로 옯기고 실행 권한을 준다면, 다음과 같이 작성할 수 있습니다:
 
 ```bash
 #!/bin/bash
@@ -696,7 +696,7 @@ done
 
 ## `while` loop
 
-The `while` loop tests a condition and loops over a sequence of commands so long as that condition is _true_. A condition is nothing more than a [primary](#primary-and-combining-expressions) as used in `if..then` conditions. So a `while` loop looks like this:
+`while` 반복문은 조건을 테스트하고 _true_가 될때까지 명령을 반복합니다. 조건은 `if..then` 조건에서 [primary](#primary-and-combining-expressions) 사용되는 것과 다르지 않습니다. 그래서 `while` 반복문은 다음과 같습니다:
 
 ```bash
 while [[ condition ]]
@@ -705,9 +705,9 @@ do
 done
 ```
 
-Just like in the case of the `for` loop, if we want to write `do` and condition in the same line, then we must use a semicolon before `do`.
+`for` 반복문과 동일하게 같은 줄에 `do`를 사용한다면 앞에 세미콜론을 붙여서 사용해야 합니다.
 
-A working example might look like this:
+예제는 다음과 같습니다:
 
 ```bash
 #!/bin/bash
@@ -722,7 +722,7 @@ done
 
 ## `until` loop
 
-The `until` loop is the exact opposite of the `while` loop. Like a `while` it checks a test condition, but it keeps looping as long as this condition is _false_:
+`until` 반복문은 `while` 반복문과는 정반대로 작동합니다. `while`과 같이 테스트 조건을 확인하고 그 조건이 _false_ 될때까지 작동합니다:
 
 ```bash
 until [[ condition ]]; do
@@ -732,7 +732,7 @@ done
 
 ## `select` loop
 
-The `select` loop helps us to organize a user menu. It has almost the same syntax as the `for` loop:
+`select` 반복문은 사용자 메뉴얼을 구성할 수 있도록 도와줍니다. `for` 반복문과 동일한 구문으로 되어있습니다:
 
 ```bash
 select answer in elem1 elem2 ... elemN
@@ -741,9 +741,9 @@ do
 done
 ```
 
-The `select` prints all `elem1..elemN` on the screen with their sequence numbers, after that it prompts the user. Usually it looks like `$?` (`PS3` variable). The answer will be saved in `answer`. If `answer` is the number between `1..N`, then `statements` will execute and `select` will go to the next iteration — that's because we should use the `break` statement.
+`select`은 사용자가 입력하면, 연속된 숫자들과 스크린에 모든 `elem1..elemN`을 출력합니다. 일반적으로 `$?` (`PS3` 값) 과 같이 보입니다. 입력한 대답은 `answer`에 저장됩니다. `answer`가 `1..N` 사이 수인경우, `statements`가 실행되고 `select`는 다음을 실행합니다. 여기서 `break` 문을 사용할 수 있습니다.
 
-A working example might look like this:
+작동 예제는 다음과 같습니다:
 
 ```bash
 #!/bin/bash
@@ -762,9 +762,9 @@ do
 done
 ```
 
-This example, asks the user what package manager {s,he} would like to use. Then, it will ask what package we want to install and finally proceed to install it.
+이 예제에서는 사용자에게 사용할 어떤 패키지 관리자 {s,he}를 묻습니다. 그리고 패키지 관리자를 선택하고 설치할 패키지를 묻습니다.
 
-If we run this, we will get:
+실행하면 다음과 같은 명령을 확인할 수 있습니다:
 
 ```
 $ ./my_script
@@ -779,11 +779,13 @@ Enter the package name: bash-handbook
 
 ## Loop control
 
-There are situations when we need to stop a loop before its normal ending or step over an iteration. In these cases, we can use the shell built-in `break` and `continue` statements. Both of these work with every kind of loop.
+이런 일이 발생한다면 반복문을 멈출때가 필요하면 일반적으로 끝나거나 특정 단계 전 에
 
-The `break` statement is used to exit the current loop before its ending. We have already met with it.
+반복문이 일반적으로 끝내거나 특정 단계 전에 멈출때가 필요합니다. 이런 경우엔 셸 내장 함수인 `break`와 `continue` 문을 사용 할 수 있습니다. 둘다 모든 반복문에서 사용할 수 있습니다.
 
-The `continue` statement steps over one iteration. We can use it as such:
+`break` 문은 끝나기전 현제 반복문에서 나갈때 사용합니다. 이미 사용 가능합니다.
+
+`continue` 문은 한단계를 넘어서 진행됩니다. 다음과 같이 사용할 수 있습니다:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
@@ -792,7 +794,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-If we run the example above, it will print all odd numbers from 0 through 9.
+위 예제를 실행한다면, 0에서 9까지의 모든 짝수를 출력합니다.
 
 # Functions
 
