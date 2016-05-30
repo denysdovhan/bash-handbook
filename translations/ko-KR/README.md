@@ -899,31 +899,31 @@ echo "xtrace is turned off again"
 
 # Afterword
 
-I hope this small handbook was interesting and helpful. To be honest, I wrote this handbook for myself so as to not forget the bash basics. I tried to write concisely but meaningfully, and I hope you will appreciate that.
+나는 이 작은 핸드북이 재미있고 도움이 되었으면 합니다. 나 자신이 Bash에대한 기본을 잊지 않기위해 이 핸드북을 작성하였습니다. 간결하고 의미있는 것을 기록하려 하였습니다만, 잘 안되었다면 이해해 주셨으면 합니다.
 
-This handbook narrates my own experience with Bash. It does not purport to be comprehensive, so if you still want more, please run `man bash` and start there.
+이 핸드북은 bash에대한 내 경험을 이야기합니다. 이것은 그렇게 포괄적으로 서술되지 않았기에 더 많은 것을 원한다면 `man bash`를 실행해서 확인하십시오.
 
-Contributions are absolutely welcome and I will be grateful for any corrections or questions you can send my way. For all of that create a new [issue](https://github.com/denysdovhan/bash-handbook/issues).
+컨트리뷰션은 절대적으로 환영하며 어떤 질문이나 이슈에대해 나에게 알려주십시오. [이슈](https://github.com/denysdovhan/bash-handbook/issues)를 만들어서 말이죠.
 
-Thanks for reading this handbook!
+이 핸드북을 읽어 주셔서 감사합니다!
 
 # Want to learn more?
 
-Here's a list of other literature covering Bash:
+여기는 Bash에 대해서 더 알수 있는 문서 목록입니다:
 
-* Bash man page.  In many environments that you can run Bash, the help system `man` can display information about Bash, by running the command `man bash`.  For more information on the `man` command, see the web page ["The man Command"](http://www.linfo.org/man.html) hosted at [The Linux Information Project](http://www.linfo.org/).
-* ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
+* Bash man 페이지. Bash가 실행되는 여러 환경에서 도움말 시스템 `man`을 사용하여 Bash에 대한 내용을 확인할 수 있으며, 실행 명령어는 `man bash`입니다. `man` 명령에 대한 더 많은 내용을 확인하고 싶으면 [The Linux Information Project](http://www.linfo.org/)에서 호스팅되고 있는 ["The man Command"](http://www.linfo.org/man.html) 웹페이지를 확인하십시오.
+* ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/)은 많은 형식 (HTML, Info, TeX, PDF, Texinfo)으로 되어있습니다. <https://www.gnu.org/>에서 호스팅되고 있습니다. 2016년 1월 현제 버전 4.3이며, 마지막 업데이트는 2015년 2월 2일입니다.
 
 # Other resources
 
-* [awesome-bash](https://github.com/awesome-lists/awesome-bash) is a curated list of Bash scripts and resources
-* [awesome-shell](https://github.com/alebcay/awesome-shell) is another curated list of shell resources
-* [bash-it](https://github.com/Bash-it/bash-it) provides a solid framework for using, developing and maintaining shell scripts and custom commands for your daily work.
-* [dotfiles.github.io](http://dotfiles.github.io/) is a good source of pointers to the various dotfiles collections and shell frameworks available for bash and other shells.
-* [learnyoubash](https://github.com/denysdovhan/learnyoubash) helps you write your first bash script
-* [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
+* [awesome-bash](https://github.com/awesome-lists/awesome-bash)는 Bash 스크립트와 리소스에대한 모음
+* [awesome-shell](https://github.com/alebcay/awesome-shell)는 셸 리소스에 대한 다른 모음
+* [bash-it](https://github.com/Bash-it/bash-it) 일상 업무에서 사용할 셸 스크립트와 개인화된 명령을 사용하여 개발과 관리를 위한 강력한 프레임워크를 제공합니다.
+* [dotfiles.github.io](http://dotfiles.github.io/)는 다앙한 dotfile 컬렉션과 bash와 다른 셸에서 사용할 수 있는 셸 프레임워크를 소개하는 곳입니다.
+* [learnyoubash](https://github.com/denysdovhan/learnyoubash)는 첫 bash 스크립트를 작성하는데 도움이 되는 곳입니다.
+* [shellcheck](https://github.com/koalaman/shellcheck)는 셸 스크립트에 대한 정적 분석 도구입니다. [www.shellcheck.net](http://www.shellcheck.net/) 웹페이지로 사용하거나 명령어를 사용할 수 있습니다. 설치에 대한 자세한 내용은 [koalaman/shellcheck](https://github.com/koalaman/shellcheck)에서 확인할 수 있습니다.
 
-Finally, Stack Overflow has many questions that are [tagged as bash](https://stackoverflow.com/questions/tagged/bash) that you can learn from and is a good place to ask if you're stuck.
+마지막으로, Stack Overflow에서 [tagged as bash](https://stackoverflow.com/questions/tagged/bash)는 많은 질문에 대한 답을 얻을 수 있으며, 그것을 통해서 배울 수 있는 가장 좋은 장소입니다. 
 
 # License
 
