@@ -798,11 +798,11 @@ done
 
 # Functions
 
-In scripts we have the ability to define and call functions. As in any programming language, functions in bash are chunks of code, but there are differences.
+스크립트에서 함수를 정의하고 불러 사용가능 합니다. 다른 프로그래밍 언어처럼 Bash에서 함수는 코드 덩어리지만 차이가 있습니다.
 
-In bash, functions are a sequence of commands grouped under a single name, that is the _name_ of the function. Calling a function is the same as calling any other program, you just write the name and the function will be _invoked_.
+Bash에서 함수는 함수 _이름_으로 그룹화한 명령 입니다. 함수를 호출하는 방법은 다른 프로그램과 같이 호출하며, 그냥 이름을 사용하면 함수가 _호출됩니다_.
 
-We can declare our own function this way:
+다음과 같이 함수를 선언할 수 있습니다:
 
 ```bash
 my_func () {
@@ -812,11 +812,11 @@ my_func () {
 my_func # call my_func
 ```
 
-We must declare functions before we can invoke them.
+함수를 호출하기전 선언을 하여야지 사용이 가능합니다.
 
-Functions can take on arguments and return a result — exit code. Arguments, within functions, are treated in the same manner as arguments given to the script in [non-interactive](#non-interactive-mode) mode — using [positional parameters](#positional-parameters). A result code can be _returned_ using the `return` command.
+함수는 인수를 취해 결과 값을 반환할 수 있습니다 -- 종료 코드. 인수는 함수내 [non-interactive](#non-interactive-mode) 모드에서 스크립트에 주어진 인수와 동일하게 취급됩니다. -- [positional parameters](#positional-parameters)를 사용해서. 결과 코드는 `return` 명령을 사용하여 _반환합니다_.
 
-Below is a function that takes a name and returns `0`, indicating successful execution.
+함수가 정상적으로 실행된 것을 나타내는 이름을 가지고 `0`을 반환합니다.
 
 ```bash
 # function with params
@@ -833,29 +833,29 @@ greeting Denys  # Hello, Denys!
 greeting        # Hello, unknown!
 ```
 
-We already discussed [exit codes](#exit-codes). The `return` command without any arguments returns the exit code of the last executed command. Above, `return 0` will return a successful exit code. `0`.
+이미 [종료 코드](#exit-codes)에 대해서 이야기 하였습니다. `return` 명령은 인수없이 마지막으로 실행한 명령에 대한 종료 코드를 반환합니다. 그리고 `return 0`로 구성해 두면 정상 종료 코드로 `0`을 반환합니다.
 
 ## Debugging
 
-The shell gives us tools for debugging scripts. If we want to run a script in debug mode, we use a special option in our script's shebang:
+셸에서도 스크립트를 디버깅 할 수 있는 툴을 제공합니다. 디버그모드로 실행하려면 스크립트 shebang에 특별한 옵션을 추가해야합니다:
 
 ```bash
 #!/bin/bash options
 ```
 
-These options are settings that change shell behavior. The following table is a list of options which might be useful to you:
+이 옵션은 셸 동작을 변경하는 설정입니다. 다음 표에서 도움이 되는 것들에 대해 설명해뒀습니다:
 
-| Short | Name        | Description                                            |
+| Short | Name        | 설명                                                   |
 | :---: | :---------- | :----------------------------------------------------- |
-| `-f`  | noglob      | Disable filename expansion (globbing).                 |
-| `-i`  | interactive | Script runs in _interactive_ mode.                     |
-| `-n`  | noexec      | Read commands, but don't execute them (syntax check).  |
-|       | pipefail    | Make pipelines fail if any commands fail, not just if the final command fail. |
-| `-t`  | —           | Exit after first command.                              |
-| `-v`  | verbose     | Print each command to `stderr` before executing it.    |
-| `-x`  | xtrace      | Print each command and its expanded arguments to `stderr` before executing it. |
+| `-f`  | noglob      | 파일 이름 확장 (globbing)을 비활성화 합니다.           |
+| `-i`  | interactive | 스크립트를 _interactive_ 모드로 작동합니다.            |
+| `-n`  | noexec      | 명령을 읽습니다만 실행하지는 않습니다 (문법 체크).     |
+|       | pipefail    | 어떤 명령이 제대로 실행되지 못하여 마지막 명령이 실패한 것이 아니라면, 파이프라인 오류를 확인합니다. |
+| `-t`  | —           | 첫 명령 후 종료합니다.                                |
+| `-v`  | verbose     | 각 명령을 실행하기전 `stderr`를 출력합니다.            |
+| `-x`  | xtrace      | 각 명령을 실행하기전 명령과 `stderr`에 확장 변수를 출력합니다. |
 
-For example, we have script with `-x` option such as:
+예를 들어 다음과 같이 `-x`옵션을 사용해 스크립트를 만듭니다:
 
 ```bash
 #!/bin/bash -x
@@ -865,7 +865,7 @@ for (( i = 0; i < 3; i++ )); do
 done
 ```
 
-This will print the value of the variables to `stdout` along with other useful information:
+이 스크립트를 실행하게되면 다른 정보들과 함께 `stdout` 변수 값을 출력합니다:
 
 ```
 $ ./my_script
@@ -885,7 +885,7 @@ $ ./my_script
 + (( i < 3 ))
 ```
 
-Sometimes we need to debug a part of a script. In this case using the `set` command is convenient. This command can enable and disable options. Options are turned on using `-` and turned off using `+`:
+때때로 스크립트 일부를 디버깅 해야되는 경우가 발생합니다. 이때 `set` 명령을 사용하면 됩니다. 이 명령으로 옵션을 활성화하고 비활성화 할 수 있습니다. 사용법은 `-`을 사용하여 활성화 시키고, `+`를 사용하여 비활성화 합니다:
 
 ```bash
 #!/bin/bash
