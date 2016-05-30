@@ -23,6 +23,7 @@ Currently, there are these translations of **bash-handbook**:
 - [Português (Brasil)](/translations/pt-BR/README.md)
 - [简体中文 (中国)](/translations/zh-CN/README.md)
 - [繁體中文（台灣）](/translations/zh-TW/README.md)
+- [한국어 (한국)](/translations/ko-KR/README.md)
 
 [**Request another translation**][tr-request]
 
