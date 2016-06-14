@@ -1,5 +1,8 @@
 # bash-handbook [![CC 4.0][cc-image]][cc-url]
 
+[![NPM version][npm-image]][npm-url]
+[![Gitter][gitter-image]][gitter-url]
+
 This document was written for those who want to learn Bash without diving in too deeply.
 
 > **Tip**: Try [**learnyoubash**](https://git.io/learnyoubash) — an interactive workshopper based on this handbook!
@@ -943,3 +946,9 @@ Finally, Stack Overflow has many questions that are [tagged as bash](https://sta
 
 [cc-url]: http://creativecommons.org/licenses/by/4.0/
 [cc-image]: https://i.creativecommons.org/l/by/4.0/80x15.png
+
+[npm-url]: https://npmjs.org/package/bash-handbook
+[npm-image]: https://img.shields.io/npm/v/bash-handbook.svg?style=flat-square
+
+[gitter-url]: https://gitter.im/denysdovhan/bash-handbook
+[gitter-image]: https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square
