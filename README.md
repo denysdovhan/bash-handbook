@@ -1,5 +1,7 @@
 # bash-handbook [![CC 4.0][cc-image]][cc-url]
 
+[![Join the chat at https://gitter.im/denysdovhan/bash-handbook](https://badges.gitter.im/denysdovhan/bash-handbook.svg)](https://gitter.im/denysdovhan/bash-handbook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This document was written for those who want to learn Bash without diving in too deeply.
 
 > **Tip**: Try [**learnyoubash**](https://git.io/learnyoubash) — an interactive workshopper based on this handbook!
