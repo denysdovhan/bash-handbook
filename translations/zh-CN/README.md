@@ -60,7 +60,7 @@
 
 就让**Bash**来拯救我们吧。
 
-Bash是一个Unix Shell，作为[Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)的free software替代品，由[Brian Fox][]为GNU项目编写。它发布于1989年，在很长一段时间，Linux系统和OS X系统都把Bash作为默认的shell。
+Bash是一个Unix Shell，作为[Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)的free software替代品，由[Brian Fox][]为GNU项目编写。它发布于1989年，在很长一段时间，Linux系统和macOS系统都把Bash作为默认的shell。
 
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- 一些MD处理器不能很好的处理URL里面的 '()'，因此这个链接采用这种格式 -->

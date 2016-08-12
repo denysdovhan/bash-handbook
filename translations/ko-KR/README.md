@@ -72,7 +72,7 @@ $ npm install -g bash-handbook
 
 이런 작업에서는 **Bash**가 바로 우리의 구세주입니다!
 
-Bash는 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)을 대체할 GNU 프로젝트로 [Brain Fox][]의해 작성된 Unix 셸입니다. 1989년에 배포되었으며, Linux와 OS X에서 기본 셸로 오랫동안 사용되었습니다.
+Bash는 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell)을 대체할 GNU 프로젝트로 [Brain Fox][]의해 작성된 Unix 셸입니다. 1989년에 배포되었으며, Linux와 macOS에서 기본 셸로 오랫동안 사용되었습니다.
 
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- link this format, because some MD processors handle '()' in URLs poorly -->
@@ -650,7 +650,7 @@ esac
 
 # Loops
 
-더는 놀라지 않겠죠. 다른 프로그래밍 언어들처럼 bash에서 사용되는 반복문은 주건 제어문이 true일 때 반복 처리 코드 블록을 진행합니다. 
+더는 놀라지 않겠죠. 다른 프로그래밍 언어들처럼 bash에서 사용되는 반복문은 주건 제어문이 true일 때 반복 처리 코드 블록을 진행합니다.
 
 Bash에서 반복문은 4가지 형식이 있습니다: `for`, `while`, `until`, `select`.
 
@@ -919,7 +919,7 @@ echo "xtrace is turned off again"
 * [learnyoubash](https://github.com/denysdovhan/learnyoubash)는 첫 bash 스크립트를 작성하는 데 도움이 되는 곳입니다.
 * [shellcheck](https://github.com/koalaman/shellcheck)는 셸 스크립트에 대한 정적 분석 도구입니다. [www.shellcheck.net](http://www.shellcheck.net/) 웹페이지로 사용하거나 명령어를 사용할 수 있습니다. 설치에 대한 자세한 내용은 [koalaman/shellcheck](https://github.com/koalaman/shellcheck)에서 확인할 수 있습니다.
 
-마지막으로, Stack Overflow에서 [tagged as bash](https://stackoverflow.com/questions/tagged/bash)는 많은 질문에 대한 답을 얻을 수 있으며, 그것을 통해서 배울 수 있는 가장 좋은 장소입니다. 
+마지막으로, Stack Overflow에서 [tagged as bash](https://stackoverflow.com/questions/tagged/bash)는 많은 질문에 대한 답을 얻을 수 있으며, 그것을 통해서 배울 수 있는 가장 좋은 장소입니다.
 
 # License
 
