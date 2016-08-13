@@ -88,7 +88,7 @@ In that path towards efficiency and productivity, we are often posed with action
 
 Enter **Bash**, our savior.
 
-Bash is a Unix shell written by [Brian Fox][] for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as the Linux and OS X default shell for a long time.
+Bash is a Unix shell written by [Brian Fox][] for the GNU Project as a free software replacement for the [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). It was released in 1989 and has been distributed as the Linux and macOS default shell for a long time.
 
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- link this format, because some MD processors handle '()' in URLs poorly -->

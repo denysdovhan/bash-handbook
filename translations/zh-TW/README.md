@@ -84,7 +84,7 @@ $ npm install -g bash-handbook
 
 進入 **Bash** 的世界，coder 們的救星！
 
-Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) 為 GNU 專案開發的 Unix Shell，這是一個為取代 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell) 而開發的自由軟體，最初在 1989 年被發布，並且 Bash 也作為 Linux 和 OSX 的 default shell 很長一段時間了。
+Bash 是一個由 [Brain Fox](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)) 為 GNU 專案開發的 Unix Shell，這是一個為取代 [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell) 而開發的自由軟體，最初在 1989 年被發布，並且 Bash 也作為 Linux 和 macOS 的 default shell 很長一段時間了。
 
 那麼我們為什麼需要學習有著 30 年歷史的東西呢？答案很簡單：這個東西是當今最強大的且易於攜帶的工具，在所有 Unix-based 的作業系統撰寫有效率的的腳本程式。而這就是你需要學習 bash 的原因。
 

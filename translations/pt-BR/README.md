@@ -71,7 +71,7 @@ E, se entrarmos no caminho em direção à eficiência e produtividade, sempre e
 
 Entra em cena, o **Bash**, nosso salvador.
 
-Bash é um shell Unix escrito por [Brian Fox][] no formato de software livre para o projeto GNU, com a intenção de substituir o [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). Ele foi lançado em 1989 e tem sido distribuído como shell padrão no Linux e OS X a um longo tempo.
+Bash é um shell Unix escrito por [Brian Fox][] no formato de software livre para o projeto GNU, com a intenção de substituir o [Bourne shell](https://en.wikipedia.org/wiki/Bourne_shell). Ele foi lançado em 1989 e tem sido distribuído como shell padrão no Linux e macOS a um longo tempo.
 
 [Brian Fox]: https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer)
 <!-- link this format, because some MD processors handle '()' in URLs poorly -->
