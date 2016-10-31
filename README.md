@@ -607,6 +607,14 @@ while [[ $x -lt 10 ]]; do # value of x is less than 10
   x=`expr $x + 1` # increase x
 done
 ```
+```
+#!/bin/bash
+while read LINE; do
+  VAR="$VAR|$LINE"
+done < <(ls -1 /)
+
+echo $VAR
+```
 
 ## `until` loop
 
