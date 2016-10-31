@@ -230,6 +230,7 @@ fruits[0]=Apple
 fruits[1]=Pear
 fruits[2]=Plum
 echo ${fruits[*]} # echo ${fruits[@]} may be used as well
+echo ${#fruits[*]} # return count of elements
 ```
 
 Array variables can also be created using compound assignments such as:
@@ -364,6 +365,9 @@ grep da * 2> errors.txt
 
 # read from errors.txt
 less < errors.txt
+
+# redir all output to stdout
+command 2>&1
 ```
 
 ## Pipes
@@ -431,7 +435,7 @@ diff <(ls /) <(ls /usr)
 
 # Conditional statements
 
-Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]`.
+Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]` or `[ ]`.
 
 Conditional expression may contain `&&` and `||` operator, which are _AND_ and _OR_ accordingly. Beside this, there many [other handy expression](#primary-and-combining-expressions).
 
@@ -439,7 +443,7 @@ There are two different conditional statements: `if` statement and `case` statem
 
 ## Primary and combining expressions
 
-Expressions enclosed inside `[[ ]]` are called **test commands** or **primaries**. These expressions help us to indicate result of an conditional.
+Expressions enclosed inside `[[ ]]` or `[ ]` are called **test commands** or **primaries**. These expressions help us to indicate result of an conditional.
 
 **Working with file system:**
 
@@ -462,7 +466,7 @@ Expressions enclosed inside `[[ ]]` are called **test commands** or **primaries*
 | :------------: | :---------------------------------------------------------- |
 | `[ -z STR ]`   | `STR` is empty (the length is **z**ero).                    |
 | `[ -n STR ]`   |`STR` is not empty (the length is **n**on-zero).             |
-| `[ STR1 == STR2 ]` | `STR1` and `STR2` are equal.                            |
+| `[ STR1 = STR2 ]` | `STR1` and `STR2` are equal.                            |
 | `[ STR1 != STR2 ]` | `STR1` and `STR2` are not equal.                        |
 
 **Arithmetic binary operators:**
@@ -520,13 +524,17 @@ Sometimes `if..else` statements are not enough to do what we want to do. In this
 Look at the example below:
 
 ```bash
-if [[ `uname` == "Adam" ]]; then
+if [[ "`whoami`" = "Adam" ]]; then
   echo "Do not eat an apple!";
-elif [[ `uname` == "Eva" ]]; then
+elif [[ "`whoami`" = "Eva" ]]; then
   echo "Do not take an apple!";
 else
   echo "Apples are delicious!";
 fi;
+
+if [[ "`whoami`" = "Adam" || "`whoami`" = "Eva" ]]; then
+  echo "You are Adam or Eva"
+fi
 ```
 
 ## Using of `case` statement
