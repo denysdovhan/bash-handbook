@@ -415,6 +415,20 @@ command1 || command2
 
 The return code of _AND_ and _OR_ lists is the exit status of the last executed command.
 
+# Here string, here document and virtual file
+
+```bash
+cat <<EOF
+this is
+here document
+EOF
+
+cat <<< "This is here string"
+
+# turn command into virtual file
+diff <(ls /) <(ls /usr)
+```
+
 # Conditional statements
 
 Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]`.
