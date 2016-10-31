@@ -2,16 +2,6 @@
 
 This document was written for those who want to learn Bash without diving in too deeply.
 
-# Node Packaged Manuscript
-
-You can install this handbook using `npm`. Just run:
-
-```
-$ npm install -g bash-handbook
-```
-
-You should be able to run `bash-handbook` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
-
 # Table of Contents
 
 - [Introduction](#introduction)
@@ -158,7 +148,7 @@ A local variable can be declared using `=` sign (as a rule, there **should not**
 
 ```bash
 username="denysdovhan"  # declare variable
-echo $username          # display value
+echo "$username"          # display value
 unset username          # delete variable
 ```
 
@@ -226,11 +216,11 @@ When dealing with arrays, we should be aware of the special environment variable
 In bash you create an array by simply assigning a value to an index in the array variable:
 
 ```bash
-fruits[0]=Apple
-fruits[1]=Pear
-fruits[2]=Plum
-echo ${fruits[*]} # echo ${fruits[@]} may be used as well
-echo ${#fruits[*]} # return count of elements
+fruits[0]="Apple"
+fruits[1]="Pear"
+fruits[2]="Plum"
+echo "${fruits[*]}" # echo ${fruits[@]} may be used as well
+echo "${#fruits[*]}" # return count of elements
 ```
 
 Array variables can also be created using compound assignments such as:
@@ -244,7 +234,7 @@ fruits=(Apple Pear Plum)
 Besides, we can extract a slice of array using the _slice_ operators:
 
 ```bash
-echo ${fruits[*]:0:2} # Apple Pear
+echo "${fruits[*]:0:2}" # Apple Pear
 ```
 
 In the example above, `fruits[*]` returns the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
@@ -255,7 +245,7 @@ Adding elements into an array is quite simple too. Compound assignments are spec
 
 ```bash
 fruits=(Orange ${fruits[*]} Banana Cherry)
-echo ${fruits[*]} # Orange Apple Pear Plum Banana Cherry
+echo "${fruits[*]}" # Orange Apple Pear Plum Banana Cherry
 ```
 
 The example above, `fruits[*]` the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
@@ -266,7 +256,7 @@ To delete an element from an array, use the `unset` command:
 
 ```bash
 unset fruits[0]
-echo ${fruits[*]} # Apple Pear Plum Banana Cherry
+echo "${fruits[*]}" # Apple Pear Plum Banana Cherry
 ```
 
 # Shell expansions
@@ -295,11 +285,11 @@ echo {00..8..2} # 00 02 04 06 08
 Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by `` `​` `` or `$()`.  For example, we can use it as follows:
 
 ```bash
-now=`date +%T`
+now="`date +%T`"
 # or
-now=$(date +%T)
+now="$(date +%T)"
 
-echo $now # 19:08:26
+echo "$now" # 19:08:26
 ```
 
 ## Arithmetic expansion
@@ -308,7 +298,7 @@ In bash we are free to do any arithmetical operations. But the expression must e
 
 ```bash
 result=$(( ((10 + 5*3) - 7) / 2 ))
-echo $result # 9
+echo "$result" # 9
 ```
 
 ## Double and single quotes
@@ -582,14 +572,14 @@ During each pass through the loop, `arg` takes on the value from `elem1` to `ele
 Also, we can write `for` loop in one line, but in this case there needs to be semicolon before `do`, like below:
 
 ```bash
-for i in {1..5}; do echo $i; done
+for i in {1..5}; do echo "$i"; done
 ```
 
 By the way, if `for..in..do` seems a little bit weird for you, as well you can write `for` in C-like style such as:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
-  echo $i
+  echo "$i"
 done
 ```
 
@@ -625,8 +615,8 @@ A working example might look like this:
 # Squares of numbers from 1 to 10
 x=0
 while [[ $x -lt 10 ]]; do # value of x is less than 10
-  echo $(($x*$x))
-  x=`expr $x + 1` # increase x
+  echo "$(($x*$x))"
+  x="`expr $x + 1`" # increase x or let x=x+1
 done
 ```
 ```bash
@@ -707,7 +697,7 @@ The **continue** statement steps over one iteration. We can use it such as:
 ```bash
 for (( i = 0; i < 10; i++ )); do
   if [[ $(($i % 2)) == 0 ]]; then continue; fi;
-  echo $i
+  echo "$i"
 done
 ```
 
@@ -777,7 +767,7 @@ For example, we have script with `-x` option such as:
 #!/bin/bash -x
 
 for (( i = 0; i < 3; i++ )); do
-  echo $i
+  echo "$i"
 done
 ```
 
