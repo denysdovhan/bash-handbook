@@ -945,7 +945,7 @@ Finally, Stack Overflow has many questions that are [tagged as bash](https://sta
 [![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
 
 [cc-url]: http://creativecommons.org/licenses/by/4.0/
-[cc-image]: https://i.creativecommons.org/l/by/4.0/80x15.png
+[cc-image]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=flat-square
 
 [npm-url]: https://npmjs.org/package/bash-handbook
 [npm-image]: https://img.shields.io/npm/v/bash-handbook.svg?style=flat-square
