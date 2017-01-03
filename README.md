@@ -1,5 +1,6 @@
-# bash-handbook [![CC 4.0][cc-image]][cc-url]
+# bash-handbook
 
+[![CC 4.0][cc-image]][cc-url]
 [![NPM version][npm-image]][npm-url]
 [![Gitter][gitter-image]][gitter-url]
 
@@ -942,7 +943,9 @@ Finally, Stack Overflow has many questions that are [tagged as bash](https://sta
 
 # License
 
-[![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
+[![CC 4.0][cc-image]][cc-url]
+
+© [Denys Dovhan](http://denysdovhan.com)
 
 [cc-url]: http://creativecommons.org/licenses/by/4.0/
 [cc-image]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=flat-square
