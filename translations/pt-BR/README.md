@@ -911,7 +911,9 @@ Aqui tem uma lista de outros materiais, todos em inglês, sobre o Bash:
 
 # Licença
 
-[![CC 4.0][cc-image]][cc-url] © [Denys Dovhan](http://denysdovhan.com)
+[![CC 4.0][cc-image]][cc-url]
+
+&copy; [Denys Dovhan](http://denysdovhan.com)
 
 [cc-url]: http://creativecommons.org/licenses/by/4.0/
-[cc-image]: https://i.creativecommons.org/l/by/4.0/80x15.png
+[cc-image]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=flat-square
