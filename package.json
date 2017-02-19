@@ -28,7 +28,7 @@
     "chalk": "^1.1.1",
     "default-pager": "^1.1.0",
     "meow": "^3.7.0",
-    "msee": "^0.3.2",
+    "msee": "^0.3.3",
     "through2": "^2.0.2",
     "update-notifier": "^1.0.3"
   }
