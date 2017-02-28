@@ -30,6 +30,6 @@
     "meow": "^3.7.0",
     "msee": "^0.3.3",
     "through2": "^2.0.2",
-    "update-notifier": "^1.0.3"
+    "update-notifier": "^2.0.0"
   }
 }
