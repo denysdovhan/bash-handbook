@@ -33,12 +33,14 @@ Currently, there are these translations of **bash-handbook**:
 
 [tr-request]: https://github.com/denysdovhan/bash-handbook/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # Table of Contents
 
 - [Introduction](#introduction)
 - [Shells and modes](#shells-and-modes)
-  - [Interactive](#interactive-mode)
-  - [Non-interactive](#non-interactive-mode)
+  - [Interactive mode](#interactive-mode)
+  - [Non-interactive mode](#non-interactive-mode)
   - [Exit codes](#exit-codes)
 - [Comments](#comments)
 - [Variables](#variables)
@@ -71,10 +73,13 @@ Currently, there are these translations of **bash-handbook**:
   - [`select` loop](#select-loop)
   - [Loop control](#loop-control)
 - [Functions](#functions)
-- [Debugging](#debugging)
+  - [Debugging](#debugging)
 - [Afterword](#afterword)
+- [Want to learn more?](#want-to-learn-more)
 - [Other resources](#other-resources)
 - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Introduction
 
