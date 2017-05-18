@@ -109,7 +109,6 @@ Or if you prefer to use `sh` instead of `bash`, change `#!/bin/bash` to `#!/bin/
 
 Another handy thing we learned above is using the `echo` to print something to the terminal screen.
 
-
 ## Exit codes
 
 Every command returns an **exit code** (**return status** or **exit status**). A successful command always returns `0` (zero-code), and a command that has failed returns non-zero value (error code). Failure codes must be positive integers between 1 and 255.
@@ -119,6 +118,13 @@ Another handy command we can use when writing a script is `exit`. This command i
 When a program terminates, the shell assigns its **exit code** to the `$?` environment variable. The `$?` variable is how we usually test whether a script has a succeeded or not in its execution.
 
 In the same way we can use `exit` to terminate a script, we can use the `return` command to exit a function and return an **exit code** to the caller. You can use `exit` inside a function too and this will exit the function _and_ terminate the program.
+
+If you want to design a script with strict error handling, just set shebang with -e
+then after some command ends with another exit code then 0, execution ends.
+
+```bash
+#!/bin/bash -e
+```
 
 # Comments
 
