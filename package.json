@@ -18,7 +18,7 @@
     "guide",
     "handbook"
   ],
-  "author": "Denys Dovhan <email@denysdovhan.com> (http://denysdovhan.com)",
+  "author": "Denys Dovhan <denysdovhan@gmail.com> (http://denysdovhan.com)",
   "license": "CC-BY-4.0",
   "bugs": {
     "url": "https://github.com/denysdovhan/bash-handbook/issues"
