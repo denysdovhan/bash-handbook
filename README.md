@@ -940,6 +940,7 @@ Here's a list of other literature covering Bash:
 * [awesome-bash](https://github.com/awesome-lists/awesome-bash) is a curated list of Bash scripts and resources
 * [awesome-shell](https://github.com/alebcay/awesome-shell) is another curated list of shell resources
 * [bash-it](https://github.com/Bash-it/bash-it) provides a solid framework for using, developing and maintaining shell scripts and custom commands for your daily work.
+* [Bash Guide for Beginners](http://tldp.org/LDP/Bash-Beginners-Guide/html/) a good resource between the [HOWTO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) and the [Bash Scripting](http://tldp.org/LDP/abs/html/) guide.
 * [dotfiles.github.io](http://dotfiles.github.io/) is a good source of pointers to the various dotfiles collections and shell frameworks available for bash and other shells.
 * [learnyoubash](https://github.com/denysdovhan/learnyoubash) helps you write your first bash script
 * [shellcheck](https://github.com/koalaman/shellcheck) is a static analysis tool for shell scripts. You can either use it from a web page at [www.shellcheck.net](http://www.shellcheck.net/) or run it from the command line. Installation instructions are on the [koalaman/shellcheck](https://github.com/koalaman/shellcheck) github repository page.
