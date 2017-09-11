@@ -28,6 +28,7 @@ This document was written for those who want to learn Bash without diving in too
   - [Streams](#streams)
   - [Pipes](#pipes)
   - [Lists of commands](#lists-of-commands)
+  - [I/O string redirection](#here-string-here-document-and-virtual-file)
 - [Conditional statements](#conditional-statements)
   - [Primary and combining expressions](#primary-and-combining-expressions)
   - [Using of `if` statement](#using-of-if-statement)
@@ -416,6 +417,8 @@ command1 || command2
 The return code of _AND_ and _OR_ lists is the exit status of the last executed command.
 
 # Here string, here document and virtual file
+
+A here document, here string and virtual file is a special-purpose code block or commands that uses a form of I/O redirection to feed a command list or output of commands to an interactive program or a command, such as ftp, cat, or the ex text editor.
 
 ```bash
 cat <<EOF
