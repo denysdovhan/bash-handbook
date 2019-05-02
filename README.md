@@ -6,8 +6,6 @@
 
 This document was written for those who want to learn Bash without diving in too deeply.
 
-<<<<<<< HEAD
-=======
 > **Tip**: Try [**learnyoubash**](https://git.io/learnyoubash) — an interactive workshopper based on this handbook!
 
 # Node Packaged Manuscript
@@ -37,7 +35,6 @@ Currently, there are these translations of **bash-handbook**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 # Table of Contents
 
 - [Introduction](#introduction)
@@ -368,17 +365,11 @@ When dealing with arrays, we should be aware of the special environment variable
 In bash you create an array by simply assigning a value to an index in the array variable:
 
 ```bash
-<<<<<<< HEAD
 fruits[0]="Apple"
 fruits[1]="Pear"
 fruits[2]="Plum"
 echo "${fruits[*]}" # echo ${fruits[@]} may be used as well
 echo "${#fruits[*]}" # return count of elements
-=======
-fruits[0]=Apple
-fruits[1]=Pear
-fruits[2]=Plum
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 Array variables can also be created using compound assignments such as:
@@ -392,36 +383,23 @@ fruits=(Apple Pear Plum)
 Individual array elements are expanded similar to other variables:
 
 ```bash
-<<<<<<< HEAD
 echo "${fruits[*]:0:2}" # Apple Pear
-=======
+
 echo ${fruits[1]} # Pear
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 The entire array can be expanded by using `*` or `@` in place of the numeric index:
 
 ```bash
-<<<<<<< HEAD
 fruits=(Orange ${fruits[*]} Banana Cherry)
 echo "${fruits[*]}" # Orange Apple Pear Plum Banana Cherry
-=======
-echo ${fruits[*]} # Apple Pear Plum
-echo ${fruits[@]} # Apple Pear Plum
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 There is an important (and subtle) difference between the two lines above: consider an array element containing whitespace:
 
 ```bash
-<<<<<<< HEAD
 unset fruits[0]
 echo "${fruits[*]}" # Apple Pear Plum Banana Cherry
-=======
-fruits[0]=Apple
-fruits[1]="Desert fig"
-fruits[2]=Plum
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 We want to print each element of the array on a separate line, so we try to use the `printf` builtin:
@@ -454,19 +432,10 @@ Within double quotes, `${fruits[@]}` expands to a separate argument for each ele
 
 ## Array slice
 
-<<<<<<< HEAD
-```bash
-now="`date +%T`"
-# or
-now="$(date +%T)"
-
-echo "$now" # 19:08:26
-=======
 Besides, we can extract a slice of array using the _slice_ operators:
 
 ```bash
 echo ${fruits[@]:0:2} # Apple Desert fig
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 In the example above, `${fruits[@]}` expands to the entire contents of the array, and `:0:2` extracts the slice of length 2, that starts at index 0.
@@ -476,13 +445,8 @@ In the example above, `${fruits[@]}` expands to the entire contents of the array
 Adding elements into an array is quite simple too. Compound assignments are specially useful in this case. We can use them like this:
 
 ```bash
-<<<<<<< HEAD
-result=$(( ((10 + 5*3) - 7) / 2 ))
-echo "$result" # 9
-=======
 fruits=(Orange "${fruits[@]}" Banana Cherry)
 echo ${fruits[@]} # Orange Apple Desert fig Plum Banana Cherry
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 ```
 
 The example above, `${fruits[@]}` expands to the entire contents of the array and substitutes it into the compound assignment, then assigns the new value into the `fruits` array mutating its original value.
@@ -621,11 +585,7 @@ diff <(ls /) <(ls /usr)
 
 # Conditional statements
 
-<<<<<<< HEAD
-Like in other languages, Bash conditionals let us decide to perform an action or not, depend on result by evaluating an expression, which should be enclosed in `[[ ]]` or `[ ]`.
-=======
 Like in other languages, Bash conditionals let us decide to perform an action or not.  The result is determined by evaluating an expression, which should be enclosed in `[[ ]]`.
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 
 Conditional expression may contain `&&` and `||` operators, which are _AND_ and _OR_ accordingly. Besides this, there many [other handy expressions](#primary-and-combining-expressions).
 
@@ -633,11 +593,7 @@ There are two different conditional statements: `if` statement and `case` statem
 
 ## Primary and combining expressions
 
-<<<<<<< HEAD
-Expressions enclosed inside `[[ ]]` or `[ ]` are called **test commands** or **primaries**. These expressions help us to indicate result of an conditional.
-=======
 Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 
 **Working with the file system:**
 
@@ -718,7 +674,6 @@ Sometimes `if..else` statements are not enough to do what we want to do. In this
 Look at the example below:
 
 ```bash
-<<<<<<< HEAD
 if [[ "`whoami`" = "Adam" ]]; then
   echo "Do not eat an apple!";
 elif [[ "`whoami`" = "Eva" ]]; then
@@ -729,14 +684,6 @@ fi;
 
 if [[ "`whoami`" = "Adam" || "`whoami`" = "Eva" ]]; then
   echo "You are Adam or Eva"
-=======
-if [[ `uname` == "Adam" ]]; then
-  echo "Do not eat an apple!"
-elif [[ `uname` == "Eva" ]]; then
-  echo "Do not take an apple!"
-else
-  echo "Apples are delicious!"
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 fi
 ```
 
@@ -837,9 +784,8 @@ A working example might look like this:
 # Squares of numbers from 0 through 9
 x=0
 while [[ $x -lt 10 ]]; do # value of x is less than 10
-<<<<<<< HEAD
-  echo "$(($x*$x))"
-  x="`expr $x + 1`" # increase x or let x=x+1
+  echo $(( x * x ))
+  x=$(( x + 1 )) # increase x
 done
 ```
 ```bash
@@ -852,10 +798,6 @@ done
 
 ls -1 / | while read LINE; do
   echo "$LINE"
-=======
-  echo $(( x * x ))
-  x=$(( x + 1 )) # increase x
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 done
 
 # Without subshell, varibles from inside of loop is visible outside
@@ -934,13 +876,8 @@ The `continue` statement steps over one iteration. We can use it as such:
 
 ```bash
 for (( i = 0; i < 10; i++ )); do
-<<<<<<< HEAD
   if [[ $(($i % 2)) == 0 ]]; then continue; fi;
   echo "$i"
-=======
-  if [[ $(( i % 2 )) -eq 0 ]]; then continue; fi
-  echo $i
->>>>>>> d76913b3249f2bf3266a672974aae63941112675
 done
 ```
 
