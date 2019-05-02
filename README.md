@@ -351,6 +351,10 @@ Redirection makes it possible to control where the output of a command goes to, 
 Here are few examples of using redirections:
 
 ```bash
+# Redirecting stdout using exec
+LOGFILE=/some/file
+exec > $LOGFILE
+
 # output of ls will be written to list.txt
 ls -l > list.txt
 
