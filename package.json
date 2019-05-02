@@ -1,12 +1,13 @@
 {
   "name": "bash-handbook",
-  "version": "1.2.2",
+  "version": "2.9.7",
   "description": "For those who wanna learn Bash",
   "bin": {
     "bash-handbook": "bin/cmd.js"
   },
   "scripts": {
-    "postpublish": "git push --follow-tags"
+    "postpublish": "git push --follow-tags",
+    "doctoc": "doctoc --github --title '# Table of Contents' README.md"
   },
   "repository": {
     "type": "git",
@@ -17,18 +18,22 @@
     "guide",
     "handbook"
   ],
-  "author": "Denys Dovhan <email@denysdovhan.com> (http://denysdovhan.com)",
+  "author": "Denys Dovhan <denysdovhan@gmail.com> (http://denysdovhan.com)",
   "license": "CC-BY-4.0",
   "bugs": {
     "url": "https://github.com/denysdovhan/bash-handbook/issues"
   },
   "homepage": "https://github.com/denysdovhan/bash-handbook#readme",
   "dependencies": {
-    "boxen": "^0.2.0",
+    "boxen": "^1.1.0",
     "chalk": "^1.1.1",
-    "default-pager": "^1.0.2",
-    "msee": "^0.2.0",
-    "through2": "^2.0.0",
-    "update-notifier": "^0.6.0"
+    "default-pager": "^1.1.0",
+    "meow": "^3.7.0",
+    "msee": "^0.3.3",
+    "through2": "^2.0.2",
+    "update-notifier": "^2.0.0"
+  },
+  "devDependencies": {
+    "doctoc": "^1.3.0"
   }
 }
