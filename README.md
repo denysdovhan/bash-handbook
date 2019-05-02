@@ -605,6 +605,15 @@ for FILE in $HOME/*.bash; do
   mv $FILE ${HOME}/scripts
   chmod +x ${HOME}/scripts/${FILE}
 done
+
+# Loop with command substitution
+
+DELIMTXT="a b c d"
+for VAR in `echo $DELIMTXT`; do
+  T="${T}${VAR}\n";
+done
+
+printf "$T"
 ```
 
 ## `while` loop
@@ -633,13 +642,24 @@ while [[ $x -lt 10 ]]; do # value of x is less than 10
 done
 ```
 ```bash
+
+# Loops with command substitution
+
 #!/bin/bash
+
+# With subshell, variables outside of loop won't be visible
+
+ls -1 / | while read LINE; do
+  echo "$LINE"
+done
+
+# Without subshell, varibles from inside of loop is visible outside
 
 while read LINE; do
   VAR="$VAR|$LINE"
 done < <(ls -1 /)
 
-echo $VAR
+echo "$VAR"
 ```
 
 ## `until` loop
