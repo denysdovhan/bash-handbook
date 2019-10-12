@@ -583,7 +583,7 @@ Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test comman
 | :------------: | :---------------------------------------------------------- |
 | `[ -z STR ]`   | `STR` is empty (the length is **z**ero).                    |
 | `[ -n STR ]`   |`STR` is not empty (the length is **n**on-zero).             |
-| `[ STR1 == STR2 ]` | `STR1` and `STR2` are equal.                            |
+| `[ STR1 = STR2 ]` | `STR1` and `STR2` are equal.                            |
 | `[ STR1 != STR2 ]` | `STR1` and `STR2` are not equal.                        |
 
 **Arithmetic binary operators:**
