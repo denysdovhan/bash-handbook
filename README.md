@@ -299,6 +299,8 @@ now=$(date +%T)
 echo $now # 19:08:26
 ```
 
+Many prefer `$()` over ``` `` ``` because the latter cannot be nested, and the back-tick character is easy to mistake for an apostrophe in print.
+
 ## Arithmetic expansion
 
 In bash we are free to do any arithmetical operations. But the expression must enclosed by `$(( ))` The format for arithmetic expansions is:
@@ -641,9 +643,9 @@ Sometimes `if..else` statements are not enough to do what we want to do. In this
 Look at the example below:
 
 ```bash
-if [[ `uname` == "Adam" ]]; then
+if [[ $(uname) == "Adam" ]]; then
   echo "Do not eat an apple!"
-elif [[ `uname` == "Eva" ]]; then
+elif [[ $(uname) == "Eva" ]]; then
   echo "Do not take an apple!"
 else
   echo "Apples are delicious!"
