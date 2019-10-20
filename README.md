@@ -875,6 +875,7 @@ These options are settings that change shell behavior. The following table is a 
 | `-t`  | —           | Exit after first command.                              |
 | `-v`  | verbose     | Print each command to `stderr` before executing it.    |
 | `-x`  | xtrace      | Print each command and its expanded arguments to `stderr` before executing it. |
+| `-e`  | errexit     | Immediately exit when a command returns a non-zero status. |
 
 For example, we have script with `-x` option such as:
 
