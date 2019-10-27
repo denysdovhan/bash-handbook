@@ -289,12 +289,12 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
+Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by `$()` or ``` `` ```.  For example, we can use it as follows:
 
 ```bash
-now=`date +%T`
-# or
 now=$(date +%T)
+# or
+now=`date +%T`
 
 echo $now # 19:08:26
 ```
