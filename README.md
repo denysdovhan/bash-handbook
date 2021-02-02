@@ -934,7 +934,7 @@ Here's a list of other literature covering Bash:
 
 * Bash man page.  In many environments that you can run Bash, the help system `man` can display information about Bash, by running the command `man bash`.  For more information on the `man` command, see the web page ["The man Command"](http://www.linfo.org/man.html) hosted at [The Linux Information Project](http://www.linfo.org/).
 * ["Bourne-Again SHell manual"](https://www.gnu.org/software/bash/manual/) in many formats, including HTML, Info, TeX, PDF, and Texinfo.  Hosted at <https://www.gnu.org/>.  As of 2016/01, this covers version 4.3, last updated 2015/02/02.
-
+* ["Bash Shell Script"](http://www.gnu.org/software/bash/manual/bashref.html#Shell-Scripts) to learn how to write scripts using bash. It is hosted at <https://www.gnu.org/>. 
 # Other resources
 
 * [awesome-bash](https://github.com/awesome-lists/awesome-bash) is a curated list of Bash scripts and resources
