@@ -4,7 +4,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Gitter][gitter-image]][gitter-url]
 
-This document was written for those who want to learn Bash without diving in too deeply.
+This document is written for those who want to learn Bash without diving in too deeply.
 
 > **Tip**: Try [**learnyoubash**](https://git.io/learnyoubash) — an interactive workshopper based on this handbook!
 
