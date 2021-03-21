@@ -197,7 +197,7 @@ whoami
 
 Like in most programming languages, you can also create variables in bash.
 
-Bash knows no data types. Variables can contain only numbers or a string of one or more characters. There are three kinds of variables you can create: local variables, environment variables and variables as _positional arguments_.
+Bash knows no data types. Variables can contain only numbers or a string of one or more characters. There are three kinds of variables you can create: local variables, environment variables and variables as _positional parameters_.
 
 ## Local variables
 
