@@ -74,7 +74,7 @@ Currently, there are these translations of **bash-handbook**:
   - [Loop control](#loop-control)
 - [Functions](#functions)
   - [Debugging](#debugging)
-- [Reading User Input](#read)
+- [Reading User Input](#reading-user-input)
 - [Afterword](#afterword)
 - [Want to learn more?](#want-to-learn-more)
 - [Other resources](#other-resources)
@@ -919,22 +919,24 @@ set +x
 echo "xtrace is turned off again"
 ```
 
-# Read
+# Reading User Input
+
 The user can enter data into shell variables using `read` commands.
 
 ## `read`
+
 This command reads input from stdin into variables
 
-**Syntax:**
 ```bash
 read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N nchars]
      [-p prompt] [-t timeout] [-u fd] [variable1 ...] [variable2 ...]
 ```
 
 If no variable names are provided, the user input is stored in the variable `$REPLY` by default.
+
 ```bash
 #!/bin/bash
-#sample.sh
+
 read          #Waits for user input
 echo $REPLY   #Prints the text
 ```
@@ -955,7 +957,6 @@ echo $REPLY   #Prints the text
 
 ```bash
 #!/bin/bash
-#Script.sh
 read -p 'Enter your name: ' name
 echo Hello, "$name"!
 
@@ -969,7 +970,9 @@ echo ""
 read -p "Enter numbers: " -a array
 echo ${array[2]}
 ```
-**Output:**
+
+This script will produce such output:
+
 ```
 Enter your name: User1
 Enter password:
