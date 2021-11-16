@@ -425,7 +425,7 @@ echo ${frutas[@]} # Maça Mamão papaia Banana Melão Ameixa
 
 # Streams, pipes e listas
 
-Bash tem uma poderosa ferramente para trabalhar com outros programas e seus resultados. Usando _streams_ nós podemos enviar o resultado de um programa para outro programa ou arquivo, e assim, gravar logs ou fazer qualquer coisa que quisermos.
+Bash tem uma poderosa ferramenta para trabalhar com outros programas e seus resultados. Usando _streams_ nós podemos enviar o resultado de um programa para outro programa ou arquivo, e assim, gravar logs ou fazer qualquer coisa que quisermos.
 
 _Pipes_ te dá a oportunidade de transportar e controlar a execução de comandos.
 
