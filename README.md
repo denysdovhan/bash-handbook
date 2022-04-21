@@ -264,7 +264,7 @@ Variables may also have _default_ values. We can define as such using the follow
 ```bash
  # if variables are empty, assign them default values
 : ${VAR:='default'}
-: ${$1:='first'}
+: ${1:='first'}
 # or
 FOO=${FOO:-'default'}
 ```
