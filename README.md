@@ -295,15 +295,17 @@ echo {00..8..2} # 00 02 04 06 08
 
 ## Command substitution
 
-Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by ``` `` ``` or `$()`.  For example, we can use it as follows:
+Command substitution allow us to evaluate a command and substitute its value into another command or variable assignment. Command substitution is performed when a command is enclosed by `$()` or ``` `` ```.  For example, we can use it as follows:
 
 ```bash
-now=`date +%T`
-# or
 now=$(date +%T)
+# or
+now=`date +%T`
 
 echo $now # 19:08:26
 ```
+
+Many prefer `$()` over ``` `` ``` because the latter cannot be nested, and the back-tick character is easy to mistake for an apostrophe in print.
 
 ## Arithmetic expansion
 
@@ -647,9 +649,9 @@ Sometimes `if..else` statements are not enough to do what we want to do. In this
 Look at the example below:
 
 ```bash
-if [[ `uname` == "Adam" ]]; then
+if [[ $(uname) == "Adam" ]]; then
   echo "Do not eat an apple!"
-elif [[ `uname` == "Eva" ]]; then
+elif [[ $(uname) == "Eva" ]]; then
   echo "Do not take an apple!"
 else
   echo "Apples are delicious!"
