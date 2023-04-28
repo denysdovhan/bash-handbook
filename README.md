@@ -49,6 +49,7 @@ Currently, there are these translations of **bash-handbook**:
   - [Local variables](#local-variables)
   - [Environment variables](#environment-variables)
   - [Positional parameters](#positional-parameters)
+- [Regular Expressions](#regular-expressions)
 - [Shell expansions](#shell-expansions)
   - [Brace expansion](#brace-expansion)
   - [Command substitution](#command-substitution)
@@ -267,6 +268,121 @@ Variables may also have _default_ values. We can define as such using the follow
 : ${1:='first'}
 # or
 FOO=${FOO:-'default'}
+```
+
+# Regular expressions
+
+They are a powerful tool for manipulating and searching text. Here are some examples of regular expressions that use each `metacharacter`:
+
+### `.` (dot)
+Matches any single character except newline.  
+```bash
+grep h.t file.txt
+```
+Output:
+```bash
+hat
+hot
+hit
+```
+
+### `*` (asterisk)
+Matches zero or more occurrences of the preceding character or group.
+```bash
+grep ab*c file.txt
+```
+Output:
+```bash
+ac
+abc
+abbc
+abbbc
+```
+
+### `+` (plus)
+Matches one or more occurrences of the preceding character or group.
+```bash
+grep ab+c file.txt
+```
+Output:
+```bash
+abc
+abbc
+abbbc
+abbbbc
+```
+
+### `?` (question mark)
+Matches zero or one occurrence of the preceding character or group.
+```bash
+grep ab?c file.txt
+```
+Output:
+```bash
+ac
+abc
+```
+
+### `|` (pipe)
+Matches either the pattern to the left or the pattern to the right.
+```bash
+egrep "cat|dog" file.txt
+```
+Output:
+```bash
+cat
+dog
+```
+
+### `[]` (character class)
+Matches any character inside the brackets.
+```bash
+[aeiou] will match any vowel
+[a-z] will match any lowercase letter
+```
+
+### `[^]` (negated character class)
+Matches any character not inside the brackets.
+```bash
+[^aeiou] will match any consonant
+[^a-z] will match any non-lowercase letter
+```
+
+### `()` (grouping)
+Groups multiple tokens together and creates a capture group.
+```bash
+egrep "(ab)+" file.txt
+```
+
+Output:
+```bash
+ab
+abab
+ababab
+```
+
+### `{}` (quantifiers)
+Matches a specific number of occurrences of the preceding character or group.
+```bash
+egrep "a{3}" file.txt
+```
+
+Output:
+```bash
+aaa
+aaaa
+aaaaa
+```
+
+### `\` (escape)
+Escapes the next character to match it literally.
+```bash
+egrep "a\+" file.txt
+```
+
+Output:
+```bash
+a+
 ```
 
 # Shell expansions
