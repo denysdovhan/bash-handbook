@@ -780,6 +780,12 @@ A working example might look like this:
 PS3="Choose the package manager: "
 select ITEM in bower npm gem pip
 do
+  # exit early if selection is invalid
+  if [[ -z "$ITEM" ]]; then
+      >&2 echo "Invalid selection"
+      exit 1
+  fi
+
   echo -n "Enter the package name: " && read PACKAGE
   case $ITEM in
     bower) bower install $PACKAGE ;;
