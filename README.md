@@ -566,7 +566,7 @@ There are two different conditional statements: `if` statement and `case` statem
 
 ## Primary and combining expressions
 
-Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](http://serverfault.com/a/52050).
+Expressions enclosed inside `[[ ]]` (or `[ ]` for `sh`) are called **test commands** or **primaries**. These expressions help us to indicate results of a conditional. In the tables below, we are using `[ ]`, because it works for `sh` too. Here is an answer about [the difference between double and single square brackets in bash](https://web.archive.org/web/20240205165239/https://serverfault.com/questions/52034/what-is-the-difference-between-double-and-single-square-brackets-in-bash/52050#52050).
 
 **Working with the file system:**
 
